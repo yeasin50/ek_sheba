@@ -20,7 +20,10 @@ class IDSDPCard extends StatelessWidget {
       bottomRight: Radius.circular(32),
     );
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24,
+        vertical: 9,
+      ),
       child: Material(
         color: AppStyle.buttonGreen,
         borderRadius: borderRadius,
