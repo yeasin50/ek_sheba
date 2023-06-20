@@ -10,17 +10,20 @@ class EkSheba extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      routerConfig: routes,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.transparent,
-          fontFamily: GoogleFonts.poppins().fontFamily,
-          iconTheme: IconThemeData(
-            color: AppStyle.outlineColor,
-          )),
+    return Material(
+      //to remove the transparent background on status bar
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        routerConfig: routes,
+        theme: ThemeData(
+            scaffoldBackgroundColor: Colors.transparent,
+            fontFamily: GoogleFonts.poppins().fontFamily,
+            iconTheme: const IconThemeData(
+              color: AppStyle.outlineColor,
+            )),
+      ),
     );
   }
 }

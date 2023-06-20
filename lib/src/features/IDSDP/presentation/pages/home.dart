@@ -1,3 +1,5 @@
+import 'package:ek_sheba/src/features/IDSDP/data/datasources/home_button_datasource.dart';
+import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/idsdp_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
@@ -13,8 +15,16 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            IDSDPAppBar(),
-            SizedBox(height: 40),
+            const IDSDPAppBar(),
+            const SizedBox(height: 40),
+            ...homeButtons
+                .map(
+                  (e) => IDSDPCard(
+                    buttonInfo: e,
+                    onTap: () {},
+                  ),
+                )
+                .toList()
           ],
         ),
       ),
