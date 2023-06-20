@@ -16,6 +16,7 @@ class EkSheba extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       routerConfig: routes,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.transparent,
           fontFamily: GoogleFonts.poppins().fontFamily,
           iconTheme: IconThemeData(
             color: AppStyle.outlineColor,

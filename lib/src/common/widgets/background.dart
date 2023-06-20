@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
 
-import '../app_style.dart';
+import '../app_images.dart';
 
 ///decoration for the app background
 class BackgroundDecoration extends StatelessWidget {
   const BackgroundDecoration({
     super.key,
-    required this.child,
+    required this.body,
   });
 
-  final Widget child;
+  final Widget body;
 
   @override
   Widget build(BuildContext context) {
-    const boxDecoration = BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.white,
-          AppStyle.lightGreen,
-        ],
-      ),
-    );
-    return Stack(
-      children: [
-        Positioned(
-          left: 0,
-          right: 0,
-          height: 132,
-          child: DecoratedBox(
-            decoration: boxDecoration,
-          ), 
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppImages.background),
+          fit: BoxFit.cover,
         ),
-        child,
-      ],
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SafeArea(
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: body,
+            ),
+          );
+        },
+      ),
     );
   }
 }
