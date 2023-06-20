@@ -1,0 +1,13 @@
+{
+  "ek-sheba": "Ek-Sheba",
+  "SystemAdmin": "System Admin",
+  "UserID": "User ID",
+  "Password": "Password",
+  "SignIn": "Sign In",
+  "HelpDesk": "Help Desk",
+  "emptyEmail": "Please enter your email address",
+  "emptyPassword": "Please enter your password",
+  "emptyEmailAndPassword": "Please enter your email address and password",
+  "invalidUsernameOrPassword": "Invalid username or password",
+  "pleaseWait": "Please wait..."
+}
