@@ -6,5 +6,13 @@ import 'src/ek_sheba_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(const EkSheba());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('bn')],
+      path: 'assets/translations',
+      startLocale: const Locale('bn'),
+      fallbackLocale: const Locale('bn'),
+      child: const EkSheba(),
+    ),
+  );
 }
