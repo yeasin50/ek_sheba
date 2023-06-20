@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:ek_sheba/src/common/widgets/app_button.dart';
+import 'package:ek_sheba/src/common/widgets/app_dialog.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -40,6 +41,29 @@ class _LoginFormState extends State<LoginForm> {
   void _onForgetPasswordPressed() {}
 
   void _helpDesk() {}
+
+  void _onSignInPressed() async {
+    if (_emailController.text.isEmpty && _passwordController.text.isEmpty) {
+      showSampleDialog(context: context, message: "emptyEmailAndPassword");
+    } else if (_emailController.text.isEmpty) {
+      showSampleDialog(context: context, message: "emptyEmail");
+    } else if (_passwordController.text.isEmpty) {
+      showSampleDialog(context: context, message: "emptyPassword");
+    } else {
+      //signIN
+      showSampleDialog(
+        context: context,
+        message: "pleaseWait",
+        hasLoading: true,
+      );
+
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.pop(context);
+        //TODO:: navigate to home
+        debugPrint("sign in success");
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +136,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ],
             ),
-            space,
+            // SizedBox(height: 0),
             GestureDetector(
               onTap: _helpDesk,
               child: Row(
@@ -124,7 +148,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
 
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
 
             //login button
             AppButton(
@@ -178,6 +202,4 @@ class _LoginFormState extends State<LoginForm> {
       ),
     ];
   }
-
-  void _onSignInPressed() {}
 }
