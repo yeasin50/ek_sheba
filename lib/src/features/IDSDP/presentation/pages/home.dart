@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             IDSDPAppBar(),
+            SizedBox(height: 40),
           ],
         ),
       ),

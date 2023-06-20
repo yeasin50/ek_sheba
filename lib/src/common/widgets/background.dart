@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../app_images.dart';
+import '../../../gen/assets.gen.dart';
 
 ///decoration for the app background
 class BackgroundDecoration extends StatelessWidget {
@@ -14,9 +14,11 @@ class BackgroundDecoration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppImages.background),
+          image: AssetImage(
+            Assets.images.background.path,
+          ),
           fit: BoxFit.cover,
         ),
       ),

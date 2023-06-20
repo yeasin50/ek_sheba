@@ -1,7 +1,8 @@
-import 'package:ek_sheba/src/common/app_images.dart';
 import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../gen/assets.gen.dart';
 
 class IDSDPAppBar extends StatelessWidget {
   const IDSDPAppBar({super.key});
@@ -15,10 +16,10 @@ class IDSDPAppBar extends StatelessWidget {
       height: 1.5,
     );
 
-    final logo = Image.asset(
-      AppImages.govtLogo,
-      height: 32,
-      color: Colors.red,
+    final logo = Assets.images.govtLogo.image(
+      width: 48,
+      height: 48,
+      fit: BoxFit.cover,
     );
     const space = SizedBox(width: 12);
 
