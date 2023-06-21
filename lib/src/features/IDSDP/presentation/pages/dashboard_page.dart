@@ -12,10 +12,14 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const BackgroundDecoration(
+      hasDrawer: true,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            IDSDPAppBar(),
+            IDSDPAppBar(
+              hasDrawer: true,
+              hasHomeButton: true,
+            ),
             SizedBox(height: 16),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),

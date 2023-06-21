@@ -1,5 +1,6 @@
 import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../gen/assets.gen.dart';
@@ -8,9 +9,11 @@ class IDSDPAppBar extends StatelessWidget {
   const IDSDPAppBar({
     super.key,
     this.hasDrawer = false,
+    this.hasHomeButton = false,
   });
 
   final bool hasDrawer;
+  final bool hasHomeButton;
   @override
   Widget build(BuildContext context) {
     final textStyles = GoogleFonts.poppins(
@@ -53,6 +56,13 @@ class IDSDPAppBar extends StatelessWidget {
               ),
             ),
             space,
+            if (hasHomeButton)
+              IconButton(
+                onPressed: () {
+                  context.replace('/');
+                },
+                icon: const Icon(Icons.home),
+              ),
           ],
         ),
       ),
