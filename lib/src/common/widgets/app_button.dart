@@ -9,6 +9,9 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.isFilled,
     this.largeButton = false,
+    this.textPadding,
+    this.buttonPadding,
+    this.textStyle,
   });
 
   final String text;
@@ -17,6 +20,10 @@ class AppButton extends StatelessWidget {
 
   ///when height is 42
   final bool largeButton;
+
+  final EdgeInsets? textPadding;
+  final EdgeInsets? buttonPadding;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +39,17 @@ class AppButton extends StatelessWidget {
           color: AppStyle.buttonGreen,
           width: 1,
         ),
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: buttonPadding ?? const EdgeInsets.symmetric(vertical: 8),
       ),
       onPressed: onPressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: textPadding ?? const EdgeInsets.symmetric(horizontal: 16),
         child: Text(
           text.tr().toString(),
-          style: TextStyle(
-            color: isFilled ? Colors.white : AppStyle.buttonGreen,
-          ),
+          style: textStyle ??
+              TextStyle(
+                color: isFilled ? Colors.white : AppStyle.buttonGreen,
+              ),
         ),
       ),
     );
