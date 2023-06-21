@@ -1,6 +1,9 @@
+import 'package:collection/collection.dart';
+import 'package:ek_sheba/src/features/IDSDP/data/datasources/guideline_temp_db.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
+import '../widgets/guideline_listtile.dart';
 import '../widgets/guideline_options.dart';
 import '../widgets/minimal_appbar.dart';
 
@@ -11,25 +14,41 @@ class GuideLinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundDecoration(
-      body: ListView(
+      body: Column(
         children: [
           MinimalAppBar(
             title: 'Guideline',
             onBackButtonPressed: () {},
           ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: GuideLineOptions(
-              titles: const [
-                'Project Processing, Appraisal & Management (PPS)',
-                'National Plan Management System (NPM)',
-                'Research Management System (RMS)',
-                'GIS Based Resource Management System (GRM)',
+          Expanded(
+            child: ListView(
+              children: [
+                const SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: GuideLineOptions(
+                    titles: const [
+                      'Project Processing, Appraisal & Management (PPS)',
+                      'National Plan Management System (NPM)',
+                      'Research Management System (RMS)',
+                      'GIS Based Resource Management System (GRM)',
+                    ],
+                    onTap: (index) {},
+                  ),
+                ),
+                ...tempGuidelinesInfo.mapIndexed((index, element) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: GuideLineListTile(
+                      guideLineInfo: element,
+                      onView: () {},
+                      onDownload: () {},
+                    ),
+                  );
+                }),
               ],
-              onTap: (index) {},
             ),
-          )
+          ),
         ],
       ),
     );
