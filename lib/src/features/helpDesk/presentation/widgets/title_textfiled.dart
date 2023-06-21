@@ -49,9 +49,14 @@ class TitleTextField extends StatelessWidget {
           height: textFiledHeight,
           child: TextFormField(
             controller: controller,
-            maxLines: 4,
-            minLines: 3,
+            textAlignVertical: TextAlignVertical.top,
+            expands: textFiledHeight == 42 ? false : true,
+            maxLines: textFiledHeight == 42 ? 1 : null,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 8,
+              ),
               border: border,
               enabledBorder: border,
               focusedBorder: border,
