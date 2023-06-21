@@ -5,8 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../gen/assets.gen.dart';
 
 class IDSDPAppBar extends StatelessWidget {
-  const IDSDPAppBar({super.key});
+  const IDSDPAppBar({
+    super.key,
+    this.hasDrawer = false,
+  });
 
+  final bool hasDrawer;
   @override
   Widget build(BuildContext context) {
     final textStyles = GoogleFonts.poppins(
@@ -32,6 +36,13 @@ class IDSDPAppBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            if (hasDrawer)
+              IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(Icons.menu),
+              ),
             space,
             logo,
             space,

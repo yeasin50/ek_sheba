@@ -1,6 +1,6 @@
-import 'package:ek_sheba/src/features/IDSDP/data/datasources/home_button_datasource.dart';
-import 'package:ek_sheba/src/features/IDSDP/data/models/button_info.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/idsdp_card.dart';
+import '../../data/datasources/home_button_datasource.dart';
+import '../../data/models/button_info.dart';
+import '../widgets/idsdp_card.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
@@ -22,10 +22,11 @@ class HomePage extends StatelessWidget {
     }
 
     return BackgroundDecoration(
+      hasDrawer: true,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const IDSDPAppBar(),
+            const IDSDPAppBar(hasDrawer: true),
             const SizedBox(height: 40),
             ...homeButtons
                 .mapIndexed(
