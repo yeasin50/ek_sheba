@@ -19,6 +19,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   logger: ^1.4.0
   collection: ^1.17.1
+  url_launcher: ^6.1.11
   
 dev_dependencies:
   flutter_test:
