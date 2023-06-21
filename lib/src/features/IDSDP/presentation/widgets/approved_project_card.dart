@@ -1,5 +1,4 @@
 import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/widgets/app_button.dart';
 import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/progress_item_card.dart';
 import 'package:flutter/material.dart';
 
@@ -43,11 +42,45 @@ class ApprovedProjectCard extends StatelessWidget {
               offset: const Offset(0, -12),
               child: label,
             ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                // ProgressItemCard(title: title, count: count, color: color)
-              ],
+            Padding(
+              padding: EdgeInsets.only(
+                left: 7.0,
+                right: 7.0,
+                bottom: 24,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ProgressItemCard(
+                      onTap: () {},
+                      title: "Total",
+                      count: 26,
+                      color: const Color(0xffE1F2FE),
+                      textColor: const Color(0xff3B82F6),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: ProgressItemCard(
+                      onTap: () {},
+                      title: "On Going",
+                      count: 4,
+                      color: const Color(0xffFBE6FE),
+                      textColor: const Color(0xff9333EA),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: ProgressItemCard(
+                      onTap: () {},
+                      title: "Completed",
+                      count: 22,
+                      color: const Color(0xffD9FBE8),
+                      textColor: const Color(0xff0D9488),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
