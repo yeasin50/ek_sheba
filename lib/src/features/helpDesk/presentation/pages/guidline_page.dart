@@ -37,8 +37,10 @@ class GuideLinePage extends StatelessWidget {
                 ...tempGuidelinesInfo.mapIndexed((index, element) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: GuideLineListTile(
-                      guideLineInfo: element,
+                    child: GeneralListTile(
+                      title: element.title,
+                      description: element.description,
+                      onTap: () {},
                       onView: () {},
                       onDownload: () {},
                     ),

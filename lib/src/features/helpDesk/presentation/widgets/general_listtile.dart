@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common/app_style.dart';
-import '../../domain/entities/guideline_info.dart';
 import 'view_download_row.dart';
 
-class GuideLineListTile extends StatelessWidget {
-  const GuideLineListTile({
-    super.key,
-    required this.guideLineInfo,
+///create a list tile with title, description and view and download button
+class GeneralListTile extends StatelessWidget {
+  const GeneralListTile({
+    Key? key,
+    required this.title,
+    required this.description,
+    this.onTap,
     this.onView,
     this.onDownload,
-  });
-
-  final GuideLineInfo guideLineInfo;
-
+  }) : super(key: key);
+  final String title;
+  final String description;
+  final VoidCallback? onTap;
   final VoidCallback? onView;
   final VoidCallback? onDownload;
 
@@ -54,12 +56,12 @@ class GuideLineListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    guideLineInfo.title,
+                    title,
                     style: labelTextStyle,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    guideLineInfo.description,
+                    description,
                     style: descriptionTextStyle,
                     maxLines: 4,
                   ),
