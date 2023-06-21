@@ -32,7 +32,7 @@ class DashBoardItemDetailsPage extends StatelessWidget {
     );
 
     return BackgroundDecoration(
-      body: ListView(
+      body: ListView( // may shift to CustomScrollView
         children: [
           const IDSDPAppBar(),
           const SizedBox(height: 16),
