@@ -22,4 +22,15 @@ class AppStyle {
       offset: Offset(0, 2),
     ),
   ];
+
+  static const BoxDecoration appBarDecoration = BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xFFEAF7F0),
+        AppStyle.lightGreen,
+      ],
+    ),
+  );
 }

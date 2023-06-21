@@ -1,12 +1,10 @@
-import 'package:ek_sheba/src/features/IDSDP/presentation/pages/dashboard_item_details_page.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/pages/dashboard_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'features/Auth/presentation/pages/login_page.dart';
-import 'features/IDSDP/presentation/pages/home_page.dart';
+import 'features/IDSDP/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: '/dashboard_item',
+  initialLocation: '/help_desk',
   routes: [
     GoRoute(
       path: '/',
@@ -15,6 +13,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/login',
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: '/help_desk',
+      builder: (context, state) => const HelpDeskPage(),
     ),
     GoRoute(
       path: '/dashboard',

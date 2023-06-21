@@ -26,16 +26,7 @@ class IDSDPAppBar extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 24),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFFEAF7F0),
-            AppStyle.lightGreen,
-          ],
-        ),
-      ),
+      decoration: AppStyle.appBarDecoration,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
