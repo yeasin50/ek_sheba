@@ -3,6 +3,7 @@ import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:ek_sheba/src/common/widgets/app_button.dart';
 import 'package:ek_sheba/src/common/widgets/app_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -61,6 +62,7 @@ class _LoginFormState extends State<LoginForm> {
         Navigator.pop(context);
         //TODO:: navigate to home
         debugPrint("sign in success");
+        context.go('/');
       });
     }
   }
@@ -98,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 42),
             ..._buildTextField(
               controller: _emailController,
-              hintText: isEkSheba ? "UserID" : "email",
+              hintText: isEkSheba ? "UserID" : "emailAddress",
             ),
             space,
             ..._buildTextField(

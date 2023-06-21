@@ -6,7 +6,7 @@ import 'features/Auth/presentation/pages/login_page.dart';
 import 'features/IDSDP/presentation/pages/home_page.dart';
 
 final routes = GoRouter(
-  initialLocation: '/dashboard_item',
+  initialLocation: '/login',
   routes: [
     GoRoute(
       path: '/',
