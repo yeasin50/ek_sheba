@@ -5,7 +5,7 @@ import 'features/IDSDP/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: HelpLinePage.routeName,
+  initialLocation: '/login',
   routes: [
     GoRoute(
       path: '/',
@@ -49,7 +49,7 @@ final _helpDeskPageRoutes = [
     builder: (context, state) => const ResourcesPage(),
   ),
   GoRoute(
-    path: ResourcesPage.routeName,
+    path: NoticePlanPage.routeName,
     builder: (context, state) => const NoticePlanPage(),
   ),
   GoRoute(

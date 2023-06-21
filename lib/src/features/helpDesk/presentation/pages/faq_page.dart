@@ -15,10 +15,7 @@ class FAQPage extends StatelessWidget {
     return BackgroundDecoration(
       body: Column(
         children: [
-          MinimalAppBar(
-            title: 'FAQ',
-            onBackButtonPressed: () {},
-          ),
+          const MinimalAppBar(title: 'FAQ'),
           const SizedBox(height: 40),
           Expanded(
             child: Padding(

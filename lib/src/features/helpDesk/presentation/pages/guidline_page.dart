@@ -14,10 +14,7 @@ class GuideLinePage extends StatelessWidget {
     return BackgroundDecoration(
       body: Column(
         children: [
-          MinimalAppBar(
-            title: 'Guideline',
-            onBackButtonPressed: () {},
-          ),
+          const MinimalAppBar(title: 'Guideline'),
           Expanded(
             child: ListView(
               children: [

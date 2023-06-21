@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/widgets/app_button.dart';
-import 'package:ek_sheba/src/common/widgets/app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../common/app_style.dart';
+import '../../../../common/widgets/app_button.dart';
+import '../../../../common/widgets/app_dialog.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -41,7 +42,9 @@ class _LoginFormState extends State<LoginForm> {
 
   void _onForgetPasswordPressed() {}
 
-  void _helpDesk() {}
+  void _helpDesk() async {
+    await context.push('/help_desk');
+  }
 
   void _onSignInPressed() async {
     if (_emailController.text.isEmpty && _passwordController.text.isEmpty) {
@@ -60,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
 
       Future.delayed(const Duration(seconds: 2), () {
         Navigator.pop(context);
-        //TODO:: navigate to home
+        //TODO:: auth logic
         debugPrint("sign in success");
         context.go('/');
       });

@@ -1,9 +1,7 @@
-import 'package:ek_sheba/src/features/helpDesk/presentation/widgets/notice_date_range_selector.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
 import '../../data/datasources/notice_plan_temp_db.dart';
-import '../widgets/minimal_appbar.dart';
 import '../widgets/widgets.dart';
 
 class NoticePlanPage extends StatelessWidget {
@@ -15,10 +13,7 @@ class NoticePlanPage extends StatelessWidget {
     return BackgroundDecoration(
       body: Column(
         children: [
-          MinimalAppBar(
-            title: 'Notice Plan',
-            onBackButtonPressed: () {},
-          ),
+          const MinimalAppBar(title: 'Notice Plan'),
           const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),

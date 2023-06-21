@@ -1,4 +1,8 @@
+import '../../../../common/app_style.dart';
+import 'notice_plan_page.dart';
+import 'pages.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common/widgets/background.dart';
@@ -13,12 +17,15 @@ class HelpDeskPage extends StatelessWidget {
       Icons.arrow_forward_ios,
       color: Color(0xFF282020),
     );
+
     return BackgroundDecoration(
       body: Column(
         children: [
           MinimalAppBar(
             title: 'HelpDesk',
-            onBackButtonPressed: () {},
+            onBackButtonPressed: () {
+              context.pop();
+            },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -31,7 +38,7 @@ class HelpDeskPage extends StatelessWidget {
                 titleTextStyle: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xFF282020),
+                  color: AppStyle.textBlack,
                 ),
                 contentPadding: EdgeInsets.zero,
                 // dense: true,
@@ -42,34 +49,44 @@ class HelpDeskPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListTile(
-                    title: Text('FAQ'),
-                    onTap: () {},
-                    leading: Icon(Icons.info_outline),
+                    title: const Text('FAQ'),
+                    onTap: () {
+                      context.push('/faq');
+                    },
+                    leading: const Icon(Icons.info_outline),
                     trailing: trailingIcon,
                   ),
                   ListTile(
-                    title: Text('Guideline'),
-                    onTap: () {},
-                    leading: Icon(Icons.file_download_outlined),
+                    title: const Text('Guideline'),
+                    onTap: () {
+                      context.push('/guideLinePage');
+                    },
+                    leading: const Icon(Icons.file_download_outlined),
                     trailing: trailingIcon,
                   ),
                   ListTile(
-                    title: Text('Resources'),
-                    onTap: () {},
-                    leading: Icon(Icons.language_rounded),
+                    title: const Text('Resources'),
+                    onTap: () {
+                      context.push('/resource');
+                    },
+                    leading: const Icon(Icons.language_rounded),
                     trailing: trailingIcon,
                   ),
                   // Notice Panel
                   ListTile(
-                    title: Text('Notice Panel'),
-                    onTap: () {},
-                    leading: Icon(Icons.info_outline),
+                    title: const Text('Notice Panel'),
+                    onTap: () {
+                      context.push(NoticePlanPage.routeName);
+                    },
+                    leading: const Icon(Icons.info_outline),
                     trailing: trailingIcon,
                   ),
                   ListTile(
-                    title: Text('Help Line'),
-                    onTap: () {},
-                    leading: Icon(Icons.headphones_outlined),
+                    title: const Text('Help Line'),
+                    onTap: () {
+                      context.push(HelpLinePage.routeName);
+                    },
+                    leading: const Icon(Icons.headphones_outlined),
                     trailing: trailingIcon,
                   ),
                 ],

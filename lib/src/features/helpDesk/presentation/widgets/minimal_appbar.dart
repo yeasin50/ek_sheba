@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/app_style.dart';
 
@@ -25,7 +26,7 @@ class MinimalAppBar extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: onBackButtonPressed,
+            onTap: onBackButtonPressed ?? context.pop,
             child: const Icon(
               Icons.arrow_back,
               color: AppStyle.textBlack,
