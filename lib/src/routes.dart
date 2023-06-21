@@ -6,7 +6,7 @@ import 'features/IDSDP/presentation/pages/guidline_page.dart';
 import 'features/IDSDP/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: '/guideLinePage',
+  initialLocation: '/dashboard',
   routes: [
     GoRoute(
       path: '/',

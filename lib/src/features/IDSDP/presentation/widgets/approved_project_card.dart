@@ -53,7 +53,7 @@ class ApprovedProjectCard extends StatelessWidget {
                       textColor: const Color(0xff3B82F6),
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: ProgressItemCard(
                       onTap: () {},
@@ -63,7 +63,7 @@ class ApprovedProjectCard extends StatelessWidget {
                       textColor: const Color(0xff9333EA),
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: ProgressItemCard(
                       onTap: () {},

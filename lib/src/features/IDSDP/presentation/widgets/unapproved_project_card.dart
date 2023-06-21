@@ -62,7 +62,7 @@ class UnApprovedProjectCard extends StatelessWidget {
                           count: data[0],
                         ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(
                           onTap: () {},
@@ -70,7 +70,7 @@ class UnApprovedProjectCard extends StatelessWidget {
                           count: data[1],
                         ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(
                           onTap: () {},
@@ -90,11 +90,11 @@ class UnApprovedProjectCard extends StatelessWidget {
                           count: data[3],
                         ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(onTap: () {}, title: "For Recast", count: data[4]),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 8),
                       const Expanded(
                           //maintain the size
                           child: SizedBox()),

@@ -15,13 +15,26 @@ class AppStyle {
   ///used on outline + icon
   static const outlineColor = Color(0xFF6E7D91);
 
-  static const List<BoxShadow> boxShadow = [
+  static const List<BoxShadow> boxShadowSmall = [
     BoxShadow(
       color: Color.fromRGBO(0, 0, 0, 0.1),
-      blurRadius: 3,
+      blurRadius: 1,
       offset: Offset(0, 2),
     ),
   ];
+
+  static final List<BoxShadow> boxShadow = const [
+    Offset(0, 1),
+    Offset(1, 1),
+    Offset(0, -1),
+    Offset(-1, 0),
+  ]
+      .map((e) => BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.1),
+            blurRadius: 1,
+            offset: e,
+          ))
+      .toList();
 
   static const BoxDecoration appBarDecoration = BoxDecoration(
     gradient: LinearGradient(
