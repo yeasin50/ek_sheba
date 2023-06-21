@@ -1,7 +1,7 @@
 import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/progress_item_card.dart';
 import 'package:flutter/material.dart';
-
+import 'package:ek_sheba/src/common/app_style.dart';
 import 'label_decorator.dart';
 
 class ApprovedProjectCard extends StatelessWidget {
@@ -23,16 +23,10 @@ class ApprovedProjectCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: AppStyle.textWhite,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 3,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          boxShadow: AppStyle.boxShadow,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: Colors.black.withOpacity(.3),
+            color: Colors.black.withAlpha(75),
             width: 1,
           ),
         ),

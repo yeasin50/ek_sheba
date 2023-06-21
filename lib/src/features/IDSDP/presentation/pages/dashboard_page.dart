@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/unapproved_project_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
@@ -24,6 +25,8 @@ class DashboardPage extends StatelessWidget {
                   ProjectLocationMapCard(),
                   SizedBox(height: 24),
                   ApprovedProjectCard(),
+                  SizedBox(height: 24),
+                  UnApprovedProjectCard(),
                 ],
               ),
             ),
