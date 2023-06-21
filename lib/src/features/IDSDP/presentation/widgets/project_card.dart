@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Project extends StatelessWidget {
-  const Project({super.key});
+///this represents a project short description card in Dashboard details page
+///holds `SL`, `project description`, `total cost`
+class ProjectPlanCard extends StatelessWidget {
+  const ProjectPlanCard({super.key});
 
   @override
   Widget build(BuildContext context) {
