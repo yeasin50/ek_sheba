@@ -2,6 +2,7 @@ import 'package:ek_sheba/src/features/helpDesk/presentation/widgets/notice_date_
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
+import '../../data/datasources/notice_plan_temp_db.dart';
 import '../widgets/minimal_appbar.dart';
 import '../widgets/widgets.dart';
 
@@ -32,6 +33,20 @@ class NoticePlanPage extends StatelessWidget {
               onSearch: (searchText) {},
             ),
           ),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              itemCount: noticePlanTempDB.length,
+              itemBuilder: (context, index) {
+                return GeneralListTile(
+                  title: noticePlanTempDB[index].title,
+                  description: noticePlanTempDB[index].description,
+                  onView: () {},
+                  onDownload: () {},
+                );
+              },
+            ),
+          )
         ],
       ),
     );
