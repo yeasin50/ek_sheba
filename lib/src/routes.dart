@@ -2,10 +2,11 @@ import 'package:go_router/go_router.dart';
 
 import 'features/Auth/presentation/pages/login_page.dart';
 import 'features/IDSDP/presentation/pages/faq_page.dart';
+import 'features/IDSDP/presentation/pages/guidline_page.dart';
 import 'features/IDSDP/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: '/faq',
+  initialLocation: '/guideLinePage',
   routes: [
     GoRoute(
       path: '/',
@@ -22,6 +23,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/faq',
       builder: (context, state) => const FAQPage(),
+    ),
+    GoRoute(
+      path: '/guideLinePage',
+      builder: (context, state) => const GuideLinePage(),
     ),
     GoRoute(
       path: '/dashboard',
