@@ -1,10 +1,10 @@
-import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/app_style.dart';
 import '../../../../common/widgets/app_button.dart';
 
-/// a searchbox with a button return search tapEvent
+/// a searchBox with a button return search tapEvent
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
     super.key,
