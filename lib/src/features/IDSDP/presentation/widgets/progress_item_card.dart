@@ -1,5 +1,6 @@
-import 'package:ek_sheba/src/common/app_style.dart';
+import '../../../../common/app_style.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProgressItemCard extends StatelessWidget {
   const ProgressItemCard({
@@ -20,34 +21,57 @@ class ProgressItemCard extends StatelessWidget {
   final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: color ?? AppStyle.textWhite,
-      borderRadius: BorderRadius.circular(8),
-      child: InkWell(
+    return Container(
+      decoration: BoxDecoration(
+        color: color ?? AppStyle.textWhite,
         borderRadius: BorderRadius.circular(8),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title),
-                  const SizedBox(height: 8),
-                  Text(
-                    count.toString().padLeft(2, '0'),
-                    style: TextStyle(
-                      color: textColor ?? AppStyle.textBlack,
-                      fontSize: 24,
-                    ),
+        boxShadow: AppStyle.boxShadow,
+        border: Border.all(
+          color: color?.withAlpha(75) ?? Colors.black.withAlpha(40),
+          width: 1,
+        ),
+      ),
+      child: SizedBox(
+        height: 80,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: GoogleFonts.poppins(
+                            color: textColor ?? AppStyle.textBlack,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        count.toString().padLeft(2, '0'),
+                        style: GoogleFonts.poppins(
+                          color: textColor ?? AppStyle.textBlack,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const Icon(Icons.arrow_forward_ios_rounded),
-            ],
+                ),
+                const Icon(Icons.arrow_forward_ios_rounded),
+              ],
+            ),
           ),
         ),
       ),

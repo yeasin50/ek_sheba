@@ -5,16 +5,24 @@ import 'label_decorator.dart';
 import 'progress_item_card.dart';
 
 class UnApprovedProjectCard extends StatelessWidget {
-  const UnApprovedProjectCard({super.key});
+  const UnApprovedProjectCard({
+    super.key,
+  });
+
+  ///provide data on order of [In Preparation, For Recast, In Ministry , In Planning Commission, For Recast]
 
   @override
   Widget build(BuildContext context) {
+    //todo: get data from api
+    final List<int> data = [5, 5, 0, 4, 0];
+
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),
       child: Align(
         alignment: Alignment.centerLeft,
         child: LabelDecoratorWidget(
-          text: 'Approved Project',
+          color: AppStyle.textWhite,
+          text: 'Unapproved Project',
         ),
       ),
     );
@@ -38,41 +46,59 @@ class UnApprovedProjectCard extends StatelessWidget {
               child: label,
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 7.0,
                 right: 7.0,
                 bottom: 24,
               ),
-              child: Row(
+              child: Column(
                 children: [
-                  Expanded(
-                    child: ProgressItemCard(
-                      onTap: () {},
-                      title: "Total",
-                      count: 26,
-                      color: const Color(0xffE1F2FE),
-                      textColor: const Color(0xff3B82F6),
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ProgressItemCard(
+                          onTap: () {},
+                          title: "In Preparation",
+                          count: data[0],
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: ProgressItemCard(
+                          onTap: () {},
+                          title: "For Recast",
+                          count: data[1],
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: ProgressItemCard(
+                          onTap: () {},
+                          title: "In Ministry",
+                          count: data[2],
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: ProgressItemCard(
-                      onTap: () {},
-                      title: "On Going",
-                      count: 4,
-                      color: const Color(0xffFBE6FE),
-                      textColor: const Color(0xff9333EA),
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: ProgressItemCard(
-                      onTap: () {},
-                      title: "Completed",
-                      count: 22,
-                      color: const Color(0xffD9FBE8),
-                      textColor: const Color(0xff0D9488),
-                    ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ProgressItemCard(
+                          onTap: () {},
+                          title: "In Planning Commission",
+                          count: data[3],
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: ProgressItemCard(onTap: () {}, title: "For Recast", count: data[4]),
+                      ),
+                      const SizedBox(width: 4),
+                      const Expanded(
+                          //maintain the size
+                          child: SizedBox()),
+                    ],
                   ),
                 ],
               ),
