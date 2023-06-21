@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../common/widgets/background.dart';
 import '../widgets/widgets.dart';
- 
 
 class ResourcesPage extends StatelessWidget {
   const ResourcesPage({super.key});
@@ -19,7 +18,7 @@ class ResourcesPage extends StatelessWidget {
             onBackButtonPressed: () {},
           ),
           const SizedBox(height: 40),
-
+          const ResourceSelectorDropDown(),
         ],
       ),
     );
