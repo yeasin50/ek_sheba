@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../../../common/app_style.dart';
 
 class MinimalAppBar extends StatelessWidget {
-  
   const MinimalAppBar({
     super.key,
     required this.title,
@@ -38,7 +37,7 @@ class MinimalAppBar extends StatelessWidget {
               title.tr(),
               style: const TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),

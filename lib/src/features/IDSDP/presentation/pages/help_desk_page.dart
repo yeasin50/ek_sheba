@@ -21,7 +21,7 @@ class HelpDeskPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 48,
+              vertical: 40,
               horizontal: 24,
             ),
             child: ListTileTheme(

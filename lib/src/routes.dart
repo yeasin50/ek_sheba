@@ -1,10 +1,11 @@
 import 'package:go_router/go_router.dart';
 
 import 'features/Auth/presentation/pages/login_page.dart';
+import 'features/IDSDP/presentation/pages/faq_page.dart';
 import 'features/IDSDP/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: '/help_desk',
+  initialLocation: '/faq',
   routes: [
     GoRoute(
       path: '/',
@@ -17,6 +18,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/help_desk',
       builder: (context, state) => const HelpDeskPage(),
+    ),
+    GoRoute(
+      path: '/faq',
+      builder: (context, state) => const FAQPage(),
     ),
     GoRoute(
       path: '/dashboard',
