@@ -15,13 +15,15 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+
     return Row(
       children: [
         Expanded(
             child: SizedBox(
           height: 40,
           child: CupertinoSearchTextField(
-            onChanged: onSearch,
+            controller: controller,
             prefixIcon: const Icon(
               CupertinoIcons.search,
               color: AppStyle.buttonGreen,
@@ -43,7 +45,9 @@ class SearchWidget extends StatelessWidget {
         AppButton(
           text: 'Search',
           isFilled: true,
-          onPressed: () {},
+          onPressed: () {
+            onSearch(controller.text);
+          },
         ),
       ],
     );
