@@ -6,7 +6,7 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     required this.isFilled,
     this.largeButton = false,
     this.textPadding,

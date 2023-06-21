@@ -1,7 +1,8 @@
 import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'label_decorator.dart';
 
 class ProjectLocationMapCard extends StatelessWidget {
   const ProjectLocationMapCard({super.key});
@@ -24,15 +25,15 @@ class ProjectLocationMapCard extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        AppButton(
+        LabelDecoratorWidget(
           text: 'PROJECT LOCATION MAP',
-          onPressed: () {},
-          isFilled: true,
-          textPadding: const EdgeInsets.symmetric(horizontal: 2, vertical: 0),
-          buttonPadding: const EdgeInsets.symmetric(horizontal: 2, vertical: 0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 6,
+          ),
           textStyle: GoogleFonts.lexend(
             color: AppStyle.textWhite,
-            fontSize: 9,
+            fontSize: 10,
           ),
         )
       ],
