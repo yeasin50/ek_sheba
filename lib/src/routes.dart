@@ -1,13 +1,11 @@
-import 'package:ek_sheba/src/features/helpDesk/presentation/pages/notice_plan_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'features/Auth/presentation/pages/login_page.dart';
-
 import 'features/IDSDP/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: ResourcesPage.routeName,
+  initialLocation: HelpLinePage.routeName,
   routes: [
     GoRoute(
       path: '/',
@@ -53,5 +51,9 @@ final _helpDeskPageRoutes = [
   GoRoute(
     path: ResourcesPage.routeName,
     builder: (context, state) => const NoticePlanPage(),
+  ),
+  GoRoute(
+    path: HelpLinePage.routeName,
+    builder: (context, state) => const HelpLinePage(),
   ),
 ];
