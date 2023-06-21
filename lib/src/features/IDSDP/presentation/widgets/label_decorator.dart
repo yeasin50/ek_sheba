@@ -24,15 +24,18 @@ class LabelDecoratorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppStyle.buttonGreen,
-      borderRadius: BorderRadius.circular(4),
+      color: color,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(color: AppStyle.buttonGreen, width: 1),
+        borderRadius: BorderRadius.circular(4),
+      ),
       child: Padding(
         padding: padding ?? const EdgeInsets.all(4.0),
         child: Text(
           text,
           style: textStyle ??
               GoogleFonts.poppins(
-                color: AppStyle.textWhite,
+                color: color == AppStyle.buttonGreen ? AppStyle.textWhite : AppStyle.buttonGreen,
                 fontSize: 9,
                 fontWeight: FontWeight.w500,
               ),
