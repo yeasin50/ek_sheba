@@ -44,7 +44,10 @@ class IDSDPAppBar extends StatelessWidget {
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
-                icon: const Icon(Icons.menu),
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
               ),
             space,
             logo,
@@ -61,7 +64,10 @@ class IDSDPAppBar extends StatelessWidget {
                 onPressed: () {
                   context.replace('/');
                 },
-                icon: const Icon(Icons.home),
+                icon: const Icon(
+                  Icons.home,
+                  color: AppStyle.buttonGreen,
+                ),
               ),
           ],
         ),

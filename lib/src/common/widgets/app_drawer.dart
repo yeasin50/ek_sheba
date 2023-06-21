@@ -1,5 +1,6 @@
 import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -171,32 +172,67 @@ class AppDrawer extends StatelessWidget {
     );
 
     return Drawer(
-        child: ListView(
-      children: [
-        Material(
-          color: const Color.fromARGB(255, 32, 155, 132),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: 16,
-            ),
-            child: Row(
+      //offwhite
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
               children: [
-                const Icon(
-                  Icons.now_widgets_outlined,
-                  color: Colors.white,
+                Material(
+                  color: const Color.fromARGB(255, 32, 155, 132),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
+                      horizontal: 16,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.now_widgets_outlined,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(width: 8),
+                        Text("Dashboard", style: labelStyle),
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(width: 8),
-                Text("Dashboard", style: labelStyle),
+                preliminaryTile,
+                feasibilityStudyTile,
+                dPPTAPPTile,
+                rdppRtapp,
               ],
             ),
           ),
-        ),
-        preliminaryTile,
-        feasibilityStudyTile,
-        dPPTAPPTile,
-        rdppRtapp,
-      ],
-    ));
+
+          //logout
+          Material(
+            color: Color.fromARGB(255, 155, 87, 32),
+            child: InkWell(
+              onTap: () {
+                context.replace('/login');
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 16,
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.logout,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(width: 8),
+                    Text("Logout", style: labelStyle),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
