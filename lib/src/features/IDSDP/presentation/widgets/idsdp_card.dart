@@ -1,6 +1,7 @@
-import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/features/IDSDP/data/models/button_info.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../common/app_style.dart';
+import '../../data/models/button_info.dart';
 
 ///used to hold the card for the IDSDP page, [HomePage]
 class IDSDPCard extends StatelessWidget {

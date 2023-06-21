@@ -1,10 +1,9 @@
-import '../../../../common/widgets/background.dart';
-import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 
-import '../widgets/helpline_grid_tile.dart';
-import '../widgets/minimal_appbar.dart';
-import '../widgets/search_widget.dart';
+import '../../../../common/widgets/background.dart';
+
+import '../widgets/widgets.dart';
 
 class FAQPage extends StatelessWidget {
   const FAQPage({super.key});

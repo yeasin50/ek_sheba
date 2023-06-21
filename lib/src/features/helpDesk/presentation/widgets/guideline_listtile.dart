@@ -1,7 +1,8 @@
 import '../../../../common/app_style.dart';
-import '../../domain/entities/guideline_info.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../domain/entities/guideline_info.dart';
 
 class GuideLineListTile extends StatelessWidget {
   const GuideLineListTile({

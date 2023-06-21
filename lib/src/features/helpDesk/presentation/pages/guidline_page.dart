@@ -1,11 +1,9 @@
 import 'package:collection/collection.dart';
-import 'package:ek_sheba/src/features/IDSDP/data/datasources/guideline_temp_db.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
-import '../widgets/guideline_listtile.dart';
-import '../widgets/guideline_options.dart';
-import '../widgets/minimal_appbar.dart';
+import '../../data/datasources/guideline_temp_db.dart';
+import '../widgets/widgets.dart';
 
 class GuideLinePage extends StatelessWidget {
   const GuideLinePage({super.key});

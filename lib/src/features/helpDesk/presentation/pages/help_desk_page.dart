@@ -1,7 +1,8 @@
-import 'package:ek_sheba/src/common/widgets/background.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/minimal_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../common/widgets/background.dart';
+import '../widgets/minimal_appbar.dart';
 
 class HelpDeskPage extends StatelessWidget {
   const HelpDeskPage({super.key});

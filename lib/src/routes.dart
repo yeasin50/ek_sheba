@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
 
 import 'features/Auth/presentation/pages/login_page.dart';
-import 'features/IDSDP/presentation/pages/faq_page.dart';
-import 'features/IDSDP/presentation/pages/guidline_page.dart';
+
 import 'features/IDSDP/presentation/pages/pages.dart';
+import 'features/helpDesk/presentation/pages/pages.dart';
 
 final routes = GoRouter(
-  initialLocation: '/dashboard',
+  initialLocation: '/resource',
   routes: [
     GoRoute(
       path: '/',
@@ -16,18 +16,7 @@ final routes = GoRouter(
       path: '/login',
       builder: (context, state) => const LoginPage(),
     ),
-    GoRoute(
-      path: '/help_desk',
-      builder: (context, state) => const HelpDeskPage(),
-    ),
-    GoRoute(
-      path: '/faq',
-      builder: (context, state) => const FAQPage(),
-    ),
-    GoRoute(
-      path: '/guideLinePage',
-      builder: (context, state) => const GuideLinePage(),
-    ),
+    ..._helpDeskPageRoutes,
     GoRoute(
       path: '/dashboard',
       builder: (context, state) => const DashboardPage(),
@@ -41,3 +30,23 @@ final routes = GoRouter(
     )
   ],
 );
+
+/// Login pages
+final _helpDeskPageRoutes = [
+  GoRoute(
+    path: '/help_desk',
+    builder: (context, state) => const HelpDeskPage(),
+  ),
+  GoRoute(
+    path: '/faq',
+    builder: (context, state) => const FAQPage(),
+  ),
+  GoRoute(
+    path: '/guideLinePage',
+    builder: (context, state) => const GuideLinePage(),
+  ),
+  GoRoute(
+    path: '/resource',
+    builder: (context, state) => const ResourcesPage(),
+  ),
+];
