@@ -1,9 +1,7 @@
-import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/widgets/background.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/label_decorator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../widgets/dashboard_listview.dart';
 import '../widgets/project_location_map_card.dart';
