@@ -1,6 +1,7 @@
-import 'package:ek_sheba/src/common/widgets/app_button.dart';
-import 'package:ek_sheba/src/features/helpDesk/presentation/widgets/title_textfiled.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../common/widgets/app_button.dart';
+import 'title_textfiled.dart';
 
 class HealLineFormWidget extends StatefulWidget {
   const HealLineFormWidget({super.key});
@@ -16,7 +17,11 @@ class _HealLineFormWidgetState extends State<HealLineFormWidget> {
   final _emailController = TextEditingController();
   final _messageController = TextEditingController();
   final _additionalInfoController = TextEditingController();
+  
 
+  void _onFormSubmit()async{
+
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,8 +64,9 @@ class _HealLineFormWidgetState extends State<HealLineFormWidget> {
         const SizedBox(height: 42),
         AppButton(
           isFilled: true,
-          text: 'Submit',
-          onPressed: () {},
+          text: 'Send',
+          largeButton: true,
+          onPressed: _onFormSubmit,
         ),
       ],
     );
