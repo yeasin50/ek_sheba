@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common/app_style.dart';
-import '../../domain/entities/guideline_info.dart';
+import '../../domain/entities/resource_info.dart';
 import 'view_download_row.dart';
 
-class GuideLineListTile extends StatelessWidget {
-  const GuideLineListTile({
+class ResourceCard extends StatelessWidget {
+  const ResourceCard({
     super.key,
-    required this.guideLineInfo,
-    this.onView,
+    required this.resourceInfo,
     this.onDownload,
+    this.onView,
+    this.onTap,
   });
 
-  final GuideLineInfo guideLineInfo;
-
+  final ResourceInfo resourceInfo;
   final VoidCallback? onView;
   final VoidCallback? onDownload;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,30 @@ class GuideLineListTile extends StatelessWidget {
       color: const Color(0xFF6E7D91),
     );
 
+    Row buildCategorySummaryRow(bool isCategory, String text) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            isCategory ? "Category:" : "Summary:",
+            style: labelTextStyle.copyWith(
+              fontSize: 12,
+              decoration: TextDecoration.none,
+            ),
+            maxLines: 1,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              text,
+              style: descriptionTextStyle,
+              maxLines: 2,
+            ),
+          ),
+        ],
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: DecoratedBox(
@@ -46,7 +71,7 @@ class GuideLineListTile extends StatelessWidget {
           elevation: 0,
           child: InkWell(
             borderRadius: BorderRadius.circular(6),
-            onTap: () {},
+            onTap: onTap,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 10),
               child: Column(
@@ -54,20 +79,19 @@ class GuideLineListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    guideLineInfo.title,
+                    resourceInfo.title,
                     style: labelTextStyle,
+                    maxLines: 1,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    guideLineInfo.description,
-                    style: descriptionTextStyle,
-                    maxLines: 4,
-                  ),
+                  buildCategorySummaryRow(true, resourceInfo.category ?? ""),
+                  const SizedBox(height: 8),
+                  buildCategorySummaryRow(false, resourceInfo.summary),
                   const SizedBox(height: 8),
                   ViewDownloadRow(
                     onView: onView,
                     onDownload: onDownload,
-                  )
+                  ),
                 ],
               ),
             ),

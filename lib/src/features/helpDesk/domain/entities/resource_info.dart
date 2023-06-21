@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 class ResourceInfo extends Equatable {
   const ResourceInfo({
     this.id,
-    this.title,
+    required this.title,
     this.category,
     required this.summary,
     required this.createdAt,
@@ -13,7 +13,7 @@ class ResourceInfo extends Equatable {
   });
 
   final String? id;
-  final String? title;
+  final String title;
   final String? category;
   final String summary;
   final DateTime createdAt;
@@ -28,9 +28,9 @@ class ResourceInfo extends Equatable {
     if (id != null) {
       result.addAll({'id': id});
     }
-    if (title != null) {
-      result.addAll({'title': title});
-    }
+
+    result.addAll({'title': title});
+
     if (category != null) {
       result.addAll({'category': category});
     }
@@ -44,7 +44,7 @@ class ResourceInfo extends Equatable {
   factory ResourceInfo.fromMap(Map<String, dynamic> map) {
     return ResourceInfo(
       id: map['id'],
-      title: map['title'],
+      title: map['title'] ?? '',
       category: map['category'],
       summary: map['summary'] ?? '',
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
