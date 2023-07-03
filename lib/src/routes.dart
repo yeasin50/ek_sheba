@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'features/Auth/presentation/pages/login_page.dart';
@@ -39,6 +40,12 @@ final _helpDeskPageRoutes = [
   GoRoute(
     path: '/faq',
     builder: (context, state) => const FAQPage(),
+  ),
+  GoRoute(
+    path: FAQDetailsPage.routeName,
+    builder: (context, state) => FAQDetailsPage(
+      uuid: state.extra as String? ?? "",
+    ),
   ),
   GoRoute(
     path: '/guideLinePage',

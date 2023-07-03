@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
@@ -8,6 +9,7 @@ import '../../../../locator.dart';
 import '../../domain/entities/faq_info.dart';
 import '../bloc/faq/faq_bloc.dart';
 import '../widgets/widgets.dart';
+import 'faq_details_page.dart';
 
 class FAQPage extends StatelessWidget {
   const FAQPage({super.key});
@@ -90,7 +92,9 @@ class OnFAQLoadedView extends StatelessWidget {
         return HelpLineGridTile(
           fontSize: 14,
           text: faq.moduleName ?? faq.imsModuleName ?? "",
-          onTap: () {},
+          onTap: () {
+            context.push(FAQDetailsPage.routeName, extra: faq.uuid);
+          },
         );
       }).toList(),
     );

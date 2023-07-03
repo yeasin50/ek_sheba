@@ -14,6 +14,7 @@ class FaqBloc extends Bloc<FaqEvent, FaqState> {
   FaqBloc(this._faqRepository) : super(FaqInitial()) {
     on<FaqFetchEvent>(_onFetchFaq);
     on<FaqSearchEvent>(_onSearchFaq);
+    on<OnFaqDetailsEvent>(_onFaqTap);
   }
 
   FutureOr<void> _onFetchFaq(FaqFetchEvent event, Emitter<FaqState> emit) async {
@@ -29,7 +30,16 @@ class FaqBloc extends Bloc<FaqEvent, FaqState> {
     emit(FaqLoading());
     final result = await _faqRepository.searchFaq(event.query);
     result.fold(
-      (failure) => emit(FaqError("Failed to load faq")),
+      (failure) => emit(const FaqError("Failed to load faq")),
+      (faqList) => emit(FaqLoaded(faqList)),
+    );
+  }
+
+  FutureOr<void> _onFaqTap(OnFaqDetailsEvent event, Emitter<FaqState> emit) async {
+    emit(FaqLoading());
+    final result = await _faqRepository.searchFaq("", imsModuleId: event.uuid);
+    result.fold(
+      (failure) => emit(const FaqError("Couldn't load faq details")),
       (faqList) => emit(FaqLoaded(faqList)),
     );
   }

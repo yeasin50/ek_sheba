@@ -20,3 +20,10 @@ class FaqSearchEvent extends FaqEvent {
   @override
   List<Object?> get props => [query, imsModuleId];
 }
+
+class OnFaqDetailsEvent extends FaqEvent {
+  final String uuid;
+  const OnFaqDetailsEvent(this.uuid);
+  @override
+  List<Object?> get props => [uuid];
+}

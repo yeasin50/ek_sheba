@@ -53,7 +53,7 @@ class FAQRepositoryImpl implements IFaqRepository {
         },
         body: jsonEncode(body),
       );
-      logger.e("searchFaq: ${response.body}");
+
       if (response.statusCode == 200) {
         final List<FAQModule> faqList = [];
         final List<dynamic> faqListJson = jsonDecode(response.body) as List<dynamic>? ?? [];
