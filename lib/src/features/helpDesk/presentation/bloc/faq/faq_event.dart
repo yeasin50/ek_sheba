@@ -4,7 +4,7 @@ abstract class FaqEvent extends Equatable {
   const FaqEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class FaqFetchEvent extends FaqEvent {
@@ -15,7 +15,8 @@ class FaqFetchEvent extends FaqEvent {
 
 class FaqSearchEvent extends FaqEvent {
   final String query;
-  const FaqSearchEvent(this.query);
+  final String? imsModuleId;
+  const FaqSearchEvent(this.query, {this.imsModuleId});
   @override
-  List<Object> get props => [query];
+  List<Object?> get props => [query, imsModuleId];
 }

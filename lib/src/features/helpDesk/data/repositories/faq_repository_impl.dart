@@ -34,21 +34,39 @@ class FAQRepositoryImpl implements IFaqRepository {
   }
 
   @override
-  Future<Either<Failure, List<FAQModule>>> searchFaq(String query) async {
+  Future<Either<Failure, List<FAQModule>>> searchFaq(
+    String query, {
+    String? imsModuleId,
+  }) async {
     try {
-      final response = await http.get(Uri.parse("${APIInfo.baseUrl}api/ims-module/search?query=$query"));
+      final uri = Uri.parse("${APIInfo.baseUrl}api/faq/search-by-question");
+
+      final body = {"question": query};
+      if (imsModuleId != null) {
+        body["imsModuleId"] = imsModuleId;
+      }
+
+      final response = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(body),
+      );
+      logger.e("searchFaq: ${response.body}");
       if (response.statusCode == 200) {
         final List<FAQModule> faqList = [];
-        final List<dynamic> faqListJson = response.body as List<dynamic>? ?? [];
+        final List<dynamic> faqListJson = jsonDecode(response.body) as List<dynamic>? ?? [];
         for (var element in faqListJson) {
           faqList.add(FAQModule.fromMap(element));
         }
         return Right(faqList);
       } else {
         logger.e("searchFaq: ${response.body}");
+        return Left(NullFailure());
       }
-      return Left(NullFailure());
     } catch (e) {
+      logger.e("searchFaq: $e");
       return Left(ServerFailure());
     }
   }
