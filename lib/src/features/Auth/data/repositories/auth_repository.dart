@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:ek_sheba/src/common/utils/api_config.dart';
-import 'package:ek_sheba/src/common/utils/logger.dart';
-import 'package:ek_sheba/src/features/Auth/domain/entities/system_user.dart';
+import '../../../../common/utils/api_config.dart';
+import '../../../../common/utils/logger.dart';
+import '../../domain/entities/system_user.dart';
 
 import '../../domain/entities/ek_sheba_user.dart';
 import 'package:fpdart/fpdart.dart';
@@ -19,16 +19,21 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     try {
+      final body = {
+        "userId": email,
+        "password": password,
+      };
       final response = await http.post(
         Uri.parse(APIInfo.ekShebaLogin),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+          'Content-Type': 'application/json',
         },
-        body: <String, String>{'email': email, 'password': password},
+        body: jsonEncode(body),
       );
       if (response.statusCode == 200) {
         return right(EkShebaUser.fromJson(response.body));
       } else {
+        logger.e(response.body);
         return left(AuthFailure());
       }
     } catch (e) {

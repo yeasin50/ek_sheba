@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../common/app_style.dart';
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_dialog.dart';
+import '../../../../locator.dart';
+import '../bloc/auth_bloc.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -54,19 +56,13 @@ class _LoginFormState extends State<LoginForm> {
     } else if (_passwordController.text.isEmpty) {
       showSampleDialog(context: context, message: "emptyPassword");
     } else {
-      //signIN
-      showSampleDialog(
-        context: context,
-        message: "pleaseWait",
-        hasLoading: true,
+      final event = LoginEvent(
+        email: _emailController.text,
+        password: _passwordController.text,
+        authType: isEkSheba ? AuthType.ekSheba : AuthType.system,
+        rememberMe: isRememberMe,
       );
-
-      Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pop(context);
-        //TODO:: auth logic
-        debugPrint("sign in success");
-        context.go('/');
-      });
+      locator.get<AuthBloc>().add(event);
     }
   }
 
