@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>ek_sheba</string>
+		<string>Planning App</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -53,5 +53,7 @@
 			<string>sms</string>
 			<string>tel</string>
 		</array>
+		<key>UIStatusBarHidden</key>
+		<true />
 	</dict>
 </plist>
