@@ -48,7 +48,7 @@ class GeneralListTile extends StatelessWidget {
           elevation: 0,
           child: InkWell(
             borderRadius: BorderRadius.circular(6),
-            onTap: () {},
+            onTap: onTap,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 10),
               child: Column(
