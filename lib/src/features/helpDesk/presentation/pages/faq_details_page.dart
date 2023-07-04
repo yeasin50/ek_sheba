@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:ek_sheba/src/features/helpDesk/data/repositories/faq_repository_impl.dart';
 import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,15 @@ class FAQDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logger.i(uuid);
     return BlocBuilder<FaqBloc, FaqState>(
       bloc: FaqBloc(locator.get<FAQRepositoryImpl>())..add((OnFaqDetailsEvent(uuid))),
       builder: (context, state) {
         bool isLoading = state is FaqLoading;
         bool isError = state is FaqError;
-        final firstItem = state is FaqLoaded ? state.faqList.first : null;
+        final itemsList = state is FaqLoaded ? state.faqList : null;
+        final firstItem = itemsList?.firstOrNull;
+
         final title = firstItem != null ? firstItem.imsModuleName ?? firstItem.question ?? "FAQ Details" : "FAQ ....";
         return Builder(builder: (context) {
           return BackgroundDecoration(
@@ -49,9 +53,9 @@ class FAQDetailsPage extends StatelessWidget {
                             ),
                           ),
                         ],
-                        if (state is FaqLoaded) ...[
+                        if (state is FaqLoaded && firstItem != null) ...[
                           Text(
-                            firstItem?.question ?? "Question",
+                            firstItem.question ?? "Question",
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -59,12 +63,18 @@ class FAQDetailsPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            firstItem?.answer ?? "Answer",
+                            firstItem.answer ?? "Answer",
                             style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
-                        ],
+                        ] else ...[
+                          const Center(
+                            child: Text(
+                              "Could not found any FAQ data",
+                            ),
+                          ),
+                        ]
                       ],
                     ),
                   ),
