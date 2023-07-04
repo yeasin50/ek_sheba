@@ -1,9 +1,12 @@
-# Backend Implementation July 13, 2023
+# Backend Implementation July 4, 2023
 
-- [ ] change name to `Planning App`
-- [ ] add logo
-- [ ] Backend `FAQ`
-- [ ] Backend `Guideline`
+> Android api>=21
+- [x] change name to `Planning App`
+- [x] add logo
+- [x] Backend `FAQ`
+- [x] Backend `Guideline`
+- [ ] Backend Guideline pdf view
+- [ ] Backend Guideline pdf download
 - [ ] Backend `Help line`
 - [ ] Backend `Guideline`
 - [ ] Backend `Notice Panel`

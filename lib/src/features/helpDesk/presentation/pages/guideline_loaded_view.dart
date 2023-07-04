@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/utils/utils.dart';
 import '../../../../common/widgets/app_dialog.dart';
@@ -51,7 +52,13 @@ class OnGuidelineLoadView extends StatelessWidget {
                 description: element.description ?? "Null",
                 onTap: null,
                 onView: () {
-                  logger.d("onView ${element.attachmentUrl}");
+                  context.push(
+                    '/pdf_view',
+                    extra: {
+                      "url": element.attachmentUrl,
+                      "title": element.title,
+                    },
+                  );
                 },
                 onDownload: () {},
               ),
