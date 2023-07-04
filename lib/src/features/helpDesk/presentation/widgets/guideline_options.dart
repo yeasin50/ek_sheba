@@ -11,9 +11,11 @@ class GuideLineOptions extends StatelessWidget {
     super.key,
     required this.titles,
     required this.onTap,
+    required this.selectedIndex,
   });
   final List<String> titles;
   final Function(int) onTap;
+  final int? selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class GuideLineOptions extends StatelessWidget {
         return HelpLineGridTile(
           fontSize: 12,
           text: value,
-          isFilled: index == 0,
+          isFilled: index == selectedIndex,
           onTap: () => onTap(index),
         );
       }).toList(),
