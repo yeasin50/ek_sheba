@@ -23,9 +23,10 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
 
   void _toggleLoginType() {
-    setState(() {
-      isEkSheba = !isEkSheba;
-    });
+    isEkSheba = !isEkSheba;
+    _emailController.clear();
+    _passwordController.clear();
+    setState(() {});
   }
 
   bool isPasswordVisible = false;

@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final response = await http.post(
         Uri.parse(APIInfo.ekShebaLogin),
         headers: <String, String>{
-          'Content-Type': 'text/plain',
+          'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(body),
       );
