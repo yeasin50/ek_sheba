@@ -1,10 +1,9 @@
-import 'package:ek_sheba/src/features/helpDesk/presentation/bloc/resource/resource_bloc.dart';
-import 'package:ek_sheba/src/locator.dart';
+import '../bloc/resource/resource_bloc.dart';
+import '../../../../locator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../common/widgets/background.dart';
-import '../../data/datasources/resource_temp_db.dart';
 import '../widgets/widgets.dart';
 
 class ResourcesPage extends StatelessWidget {
