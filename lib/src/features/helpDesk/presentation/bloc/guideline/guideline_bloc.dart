@@ -40,22 +40,30 @@ class GuidelineBloc extends Bloc<GuidelineEvent, GuidelineState> {
 
   ///get module list by module id
   FutureOr<void> _onSelectGuideline(GuidelineSelectEvent event, Emitter<GuidelineState> emit) async {
-    if (state is! GuidelineLoaded) return;
+    _loadDataOnGuidelineLoaded() async {
+      if (event.imsModuleId == null) return;
+      emit((state as GuidelineLoaded).copyWith(
+        isListLoading: true,
+        selectedGuidelineId: event.imsModuleId ?? "",
+      ));
 
-    emit((state as GuidelineLoaded).copyWith(
-      isListLoading: false,
-      selectedGuidelineId: event.imsModuleId ?? "",
-    ));
+      final result = await _guidelineRepository.getGuidelinesByModule(imsModuleId: event.imsModuleId);
+      result.fold(
+        (failure) => emit(const GuidelineError("Failed to load guidelines")),
+        (guidelineList) async {
+          emit((state as GuidelineLoaded).copyWith(
+            isListLoading: false,
+            guidelineList: guidelineList,
+          ));
+        },
+      );
+    }
 
-    final result = await _guidelineRepository.getGuidelinesByModule(imsModuleId: event.imsModuleId);
-    result.fold(
-      (failure) => emit(const GuidelineError("Failed to load guidelines")),
-      (guidelineList) async {
-        emit((state as GuidelineLoaded).copyWith(
-          isListLoading: false,
-          guidelineList: guidelineList,
-        ));
-      },
-    );
+    if (state is! GuidelineLoaded) {
+      emit(const GuidelineLoading());
+      add(const GuidelineFetchEvent());
+    } else {
+      await _loadDataOnGuidelineLoaded();
+    }
   }
 }
