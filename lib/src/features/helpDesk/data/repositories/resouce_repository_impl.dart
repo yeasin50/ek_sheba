@@ -74,7 +74,7 @@ class ResourceRepositoryImpl implements IResourceRepository {
   @override
   Future<Either<Failure, List<String>>> getYearListByCategory(String category) async {
     try {
-      final uri = Uri.parse('${APIInfo.baseUrl}api/resources/get-year-by-list-category');
+      final uri = Uri.parse('${APIInfo.baseUrl}api/resources/get-year-list-by-category/$category');
       final response = await http.get(uri);
       if (response.statusCode == 200) {
         final List<String> resourceList = [];
@@ -84,10 +84,11 @@ class ResourceRepositoryImpl implements IResourceRepository {
         }
         return right(resourceList);
       } else {
+        logger.e("getYearListByCategory ${response.body}");
         return left(ServerFailure());
       }
     } catch (e) {
-      logger.e(e);
+      logger.e("getYearListByCategory $e");
       return left(ServerFailure());
     }
   }

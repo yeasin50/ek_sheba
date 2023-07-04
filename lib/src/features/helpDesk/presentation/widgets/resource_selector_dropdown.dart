@@ -20,10 +20,6 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
 
   List<String> _months = [];
 
-  String? _selectedCategory;
-  String? _selectedYear;
-  String? _selectedMonth;
-
   late final ResourceBloc bloc;
   @override
   void initState() {
@@ -49,21 +45,18 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
               _months = ["All", ...state.resourceInfo?.monthList ?? []];
               _years = ["All", ...state.resourceInfo?.yearList ?? []];
 
-              logger.i(state.toString());
+              logger.i(state.selectedCategory);
 
               return Column(
                 children: [
                   ResourceDropdownButton(
                     items: _categories,
-                    value: _selectedCategory,
+                    value: state.selectedCategory,
                     hint: 'Select Category',
                     onChanged: (value) {
-                      setState(() {
-                        _selectedCategory = value;
-                      });
-                      if (_selectedCategory == null) return;
+                      if (value == null) return;
 
-                      final event = ResourceYearListRequested(category: _selectedCategory!);
+                      final event = OnCategoryChange(category: value);
                       context.read<ResourceBloc>().add(event);
                     },
                   ),
@@ -73,16 +66,12 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
                       Expanded(
                         child: ResourceDropdownButton(
                           items: _years,
-                          value: _selectedYear,
+                          value: state.selectedYear,
                           hint: 'Select Year',
                           onChanged: (value) {
-                            setState(() {
-                              _selectedYear = value;
-                            });
-                            if (_selectedYear == null) return;
-                            final event = ResourceMonthListRequested(year: _selectedYear!);
+                            if (value == null) return;
+                            final event = OnYearChange(year: value);
                             context.read<ResourceBloc>().add(event);
-                            _onItemChanged();
                           },
                         ),
                       ),
@@ -90,13 +79,12 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
                       Expanded(
                         child: ResourceDropdownButton(
                           items: _months,
-                          value: _selectedMonth,
+                          value: state.selectedMonth,
                           hint: 'Select Month',
                           onChanged: (value) {
-                            setState(() {
-                              _selectedMonth = value;
-                            });
-                            _onItemChanged();
+                            if (value == null) return;
+                            final event = OnYearChange(year: value);
+                            context.read<ResourceBloc>().add(event);
                           },
                         ),
                       ),

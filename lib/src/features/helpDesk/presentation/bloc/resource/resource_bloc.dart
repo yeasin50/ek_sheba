@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../data/repositories/resouce_repository_impl.dart';
@@ -16,19 +17,11 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
   ResourceBloc(this._repo) : super(const ResourceInitial()) {
     on<ResourceFilterRequested>(_onFilterListRequest);
     on<ResourceActiveListRequested>(_onActiveListRequest);
-    on<ResourceYearListRequested>(_onYearListRequest);
-    on<ResourceMonthListRequested>(_onMonthListRequest);
+    on<OnCategoryChange>(_onCategoryChange);
+    on<OnYearChange>(_onYearChange);
+    on<OnMonthChange>(_onMonthChange);
 
     on<ResourceSearchRequested>(_onSearch);
-  }
-
-  FutureOr<void> _onFilterListRequest(ResourceFilterRequested event, Emitter<ResourceState> emit) async {
-    final result = await _repo.getFilterList();
-
-    result.fold(
-      (l) => emit(const ResourceFilterLoadFailure()),
-      (r) => emit(state.copyWith(resourceInfo: r)),
-    );
   }
 
   //initial list
@@ -41,18 +34,46 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     );
   }
 
-  FutureOr<void> _onYearListRequest(ResourceYearListRequested event, Emitter<ResourceState> emit) async {
-    final result = await _repo.getYearListByCategory(event.category);
+  FutureOr<void> _onFilterListRequest(ResourceFilterRequested event, Emitter<ResourceState> emit) async {
+    final result = await _repo.getFilterList();
 
     result.fold(
       (l) => emit(const ResourceFilterLoadFailure()),
+      (r) => emit(state.copyWith(resourceInfo: r)),
+    );
+  }
+
+  FutureOr<void> _onCategoryChange(OnCategoryChange event, Emitter<ResourceState> emit) async {
+    logger.e("_onCategoryChange ${event.category}");
+
+    emit(state.copyWith(selectedCategory: event.category));
+    final result = await _repo.getYearListByCategory(event.category);
+
+    result.fold(
+      (l) => logger.e(l.toString()),
       (r) {
-        emit(state.copyWith(resourceInfo: state.resourceInfo?.copyWith(yearList: r)));
+        logger.e(r.toString());
+        emit(state.copyWith(
+          resourceInfo: state.resourceInfo?.copyWith(yearList: r),
+          selectedYear: null,
+          selectedMonth: null,
+        ));
       },
     );
   }
 
-  FutureOr<void> _onMonthListRequest(ResourceMonthListRequested event, Emitter<ResourceState> emit) {}
+  FutureOr<void> _onYearChange(OnYearChange event, Emitter<ResourceState> emit) async {
+    final result = await _repo.getMonthListByYear(event.year);
+
+    result.fold(
+      (l) => emit(const ResourceFilterLoadFailure()),
+      (r) {
+        emit(state.copyWith(resourceInfo: state.resourceInfo?.copyWith(monthList: r)));
+      },
+    );
+  }
+
+  FutureOr<void> _onMonthChange(OnMonthChange event, Emitter<ResourceState> emit) {}
 
   FutureOr<void> _onSearch(ResourceSearchRequested event, Emitter<ResourceState> emit) async {}
 }
