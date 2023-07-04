@@ -4,8 +4,10 @@ import 'features/Auth/data/repositories/auth_repository.dart';
 import 'features/Auth/presentation/bloc/auth_bloc.dart';
 import 'features/helpDesk/data/repositories/faq_repository_impl.dart';
 import 'features/helpDesk/data/repositories/guideline_repository_impl.dart';
+import 'features/helpDesk/data/repositories/resouce_repository_impl.dart';
 import 'features/helpDesk/presentation/bloc/faq/faq_bloc.dart';
 import 'features/helpDesk/presentation/bloc/guideline/guideline_bloc.dart';
+import 'features/helpDesk/presentation/bloc/resource/resource_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -18,4 +20,7 @@ void setup() {
 
   locator.registerLazySingleton(() => GuidelineRepositoryImpl());
   locator.registerLazySingleton(() => GuidelineBloc(locator.get<GuidelineRepositoryImpl>()));
+
+  locator.registerLazySingleton(() => ResourceRepositoryImpl());
+  locator.registerLazySingleton(() => ResourceBloc(locator.get<ResourceRepositoryImpl>()));
 }
