@@ -23,7 +23,7 @@ class GuidelineBloc extends Bloc<GuidelineEvent, GuidelineState> {
     final result = await _guidelineRepository.getGuidelines();
     result.fold(
       (failure) => emit(const GuidelineError("Failed to load guidelines")),
-      (guidelineList) async {
+      (guidelineList) {
         if (guidelineList.isEmpty) {
           emit(const GuidelineError("No guideline found"));
           return;
@@ -33,6 +33,7 @@ class GuidelineBloc extends Bloc<GuidelineEvent, GuidelineState> {
           guidelines: guidelineList,
           isListLoading: true,
         ));
+        if (guidelineList.isNotEmpty) add(GuidelineSelectEvent(imsModuleId: guidelineList.first.uuid));
       },
     );
   }

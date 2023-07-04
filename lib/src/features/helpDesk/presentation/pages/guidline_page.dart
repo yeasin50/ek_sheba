@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:collection/collection.dart';
 import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
@@ -29,11 +27,6 @@ class GuideLinePage extends StatelessWidget {
                 } else if (state is GuidelineError) {
                   return Center(child: Text(state.message));
                 } else if (state is GuidelineLoaded) {
-                  scheduleMicrotask(() {
-                    if (state.guidelines.isNotEmpty) {
-                      locator.get<GuidelineBloc>().add(GuidelineSelectEvent(imsModuleId: state.guidelines.first.uuid));
-                    }
-                  });
                   return _OnGuidelineLoadView(loadedState: state);
                 } else {
                   return Text("NA State $state");
