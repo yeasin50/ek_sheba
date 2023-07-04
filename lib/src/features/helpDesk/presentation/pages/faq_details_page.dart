@@ -4,6 +4,7 @@ import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../common/utils/raw_text.dart';
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../bloc/faq/faq_bloc.dart';
@@ -63,7 +64,7 @@ class FAQDetailsPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            firstItem.answer ?? "Answer",
+                            string2Raw(firstItem.answer) ?? "Answer",
                             style: const TextStyle(
                               fontSize: 16,
                             ),
