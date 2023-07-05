@@ -1,3 +1,5 @@
+import 'package:ek_sheba/src/features/helpDesk/data/repositories/resouce_repository_impl.dart';
+
 import '../bloc/resource/resource_bloc.dart';
 import '../../../../locator.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +16,7 @@ class ResourcesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator.get<ResourceBloc>()..add(ResourceActiveListRequested()),
+      create: (context) => ResourceBloc(locator.get<ResourceRepositoryImpl>())..add(ResourceActiveListRequested()),
       child: BackgroundDecoration(
         body: Column(
           children: [
