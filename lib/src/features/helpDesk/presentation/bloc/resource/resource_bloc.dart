@@ -77,7 +77,7 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
       );
 
       ///! this is a hack to get the search result
-     
+
       return;
     }
 
@@ -108,6 +108,7 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
             monthList: [..._filterInfo?.monthList ?? []],
             categoryList: [..._filterInfo?.categoryList ?? []],
           ),
+          selectedYear: () => "All",
           selectedMonth: () => null,
         ),
       );
