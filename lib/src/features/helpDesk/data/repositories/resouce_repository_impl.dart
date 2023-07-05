@@ -95,29 +95,40 @@ class ResourceRepositoryImpl implements IResourceRepository {
 
   @override
   Future<Either<Failure, List<ResourceInfo>>> searchResource({
-    required String category,
-    required String year,
-    required String month,
+    required String? category,
+    required String? year,
+    required String? month,
   }) async {
     try {
-      final uri = Uri.parse('${APIInfo.baseUrl}/api/resources/search-resources');
+      _getBody() {
+        final body = {};
+        if (category != null) {
+          body['category'] = category;
+        }
+        if (year != null) {
+          body['year'] = year;
+        }
+        if (month != null) {
+          body['month'] = month;
+        }
+        return json.encode(body);
+      }
+
+      final uri = Uri.parse('${APIInfo.baseUrl}api/resources/search-resources');
       final response = await http.post(
         uri,
-        body: json.encode({
-          'category': category,
-          'year': year,
-          'month': month,
-        }),
+        body: _getBody(),
         headers: {'Content-Type': 'application/json'},
       );
       if (response.statusCode == 200) {
         final List<ResourceInfo> resourceList = [];
         final List<dynamic> data = json.decode(response.body) ?? [];
         for (var element in data) {
-          resourceList.add(ResourceInfo.fromJson(element));
+          resourceList.add(ResourceInfo.fromMap(element));
         }
         return right(resourceList);
       } else {
+        logger.e("searchResource ${response.body}");
         return left(ServerFailure());
       }
     } catch (e) {

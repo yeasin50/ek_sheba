@@ -17,21 +17,27 @@ class ResourceState extends Equatable {
   final String? selectedMonth;
 
   @override
-  List<Object?> get props => [resourceInfo, resourceList, selectedCategory, selectedYear, selectedMonth];
+  List<Object?> get props => [
+        resourceInfo,
+        resourceList,
+        selectedCategory,
+        selectedYear,
+        selectedMonth,
+      ];
 
   ResourceState copyWith({
     ResourceFilterInfo? resourceInfo,
     List<ResourceInfo>? resourceList,
-    String? selectedCategory,
-    String? selectedYear,
-    String? selectedMonth,
+    ValueGetter<String?>? selectedCategory,
+    ValueGetter<String?>? selectedYear,
+    ValueGetter<String?>? selectedMonth,
   }) {
     return ResourceState(
       resourceInfo: resourceInfo ?? this.resourceInfo,
       resourceList: resourceList ?? this.resourceList,
-      selectedCategory: selectedCategory ?? this.selectedCategory,
-      selectedYear: selectedYear ?? this.selectedYear,
-      selectedMonth: selectedMonth ?? this.selectedMonth,
+      selectedCategory: selectedCategory == null ? this.selectedCategory : selectedCategory(),
+      selectedYear: selectedYear == null ? this.selectedYear : selectedYear(),
+      selectedMonth: selectedMonth == null ? this.selectedMonth : selectedMonth(),
     );
   }
 }

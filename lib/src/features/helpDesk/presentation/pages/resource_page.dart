@@ -21,26 +21,26 @@ class ResourcesPage extends StatelessWidget {
             const MinimalAppBar(title: 'Resources'),
             const SizedBox(height: 40),
             const ResourceSelectorDropDown(),
-//             Builder(builder: (context) {
-//               return Expanded(
-//                 child: BlocBuilder<ResourceBloc, ResourceState>(
-//                   builder: (context, state) {
-//                     if (state.resourceList.isEmpty) return const Center(child: Text("Empty List"));
-//
-//                     return ListView.builder(
-//                       padding: const EdgeInsets.symmetric(
-//                         vertical: 24,
-//                         horizontal: 24,
-//                       ),
-//                       itemCount: state.resourceList.length,
-//                       itemBuilder: (context, index) {
-//                         return ResourceCard(resourceInfo: state.resourceList[index]);
-//                       },
-//                     );
-//                   },
-//                 ),
-//               );
-//             })
+            Builder(builder: (context) {
+              return Expanded(
+                child: BlocBuilder<ResourceBloc, ResourceState>(
+                  builder: (context, state) {
+                    if (state.resourceList.isEmpty) return const Center(child: Text("Empty List"));
+
+                    return ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: 24,
+                      ),
+                      itemCount: state.resourceList.length,
+                      itemBuilder: (context, index) {
+                        return ResourceCard(resourceInfo: state.resourceList[index]);
+                      },
+                    );
+                  },
+                ),
+              );
+            })
           ],
         ),
       ),
