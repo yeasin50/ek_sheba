@@ -17,7 +17,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
 
   /// main data from  [Get Filter List]
   ///  hold the data for dropdown
-  ResourceFilterInfo? filterInfo;
+  ResourceFilterInfo? _filterInfo;
+  List<ResourceInfo> _initResourceList = [];
 
   ResourceBloc(this._repo) : super(const ResourceInitial()) {
     on<ResourceFilterRequested>(_onFilterListRequest);
@@ -35,7 +36,10 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
 
     result.fold(
       (l) => emit(const ResourceFilterLoadFailure()),
-      (r) => emit(state.copyWith(resourceList: r)),
+      (r) {
+        _initResourceList = r;
+        emit(state.copyWith(resourceList: r));
+      },
     );
   }
 
@@ -45,7 +49,7 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     result.fold(
       (l) => emit(const ResourceFilterLoadFailure()),
       (ResourceFilterInfo r) {
-        filterInfo = r;
+        _filterInfo = r;
         emit(state.copyWith(resourceInfo: r));
       },
     );
@@ -58,18 +62,22 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
       logger.i("${state.resourceInfo}");
 
       final rsInfo = state.resourceInfo?.copyWith(
-        yearList: [...filterInfo?.yearList ?? []],
-        monthList: [...filterInfo?.monthList ?? []],
-        categoryList: [...filterInfo?.categoryList ?? []],
+        yearList: [..._filterInfo?.yearList ?? []],
+        monthList: [..._filterInfo?.monthList ?? []],
+        categoryList: [..._filterInfo?.categoryList ?? []],
       );
       emit(
         state.copyWith(
           selectedCategory: () => "All",
+          resourceList: _initResourceList,
           resourceInfo: rsInfo,
           selectedYear: () => null,
           selectedMonth: () => null,
         ),
       );
+
+      ///! this is a hack to get the search result
+     
       return;
     }
 
@@ -84,9 +92,10 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     result.fold(
       (l) => logger.e(l.toString()),
       (r) {
-        emit(state.copyWith(
-          resourceInfo: state.resourceInfo?.copyWith(yearList: r),
-        ));
+        emit(state.copyWith(resourceInfo: state.resourceInfo?.copyWith(yearList: r)));
+
+        ///! this is a hack to get the search result
+        add(const ResourceSearchRequested());
       },
     );
   }
@@ -96,14 +105,19 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
       emit(
         state.copyWith(
           resourceInfo: state.resourceInfo?.copyWith(
-            monthList: [...filterInfo?.monthList ?? []],
-            categoryList: [...filterInfo?.categoryList ?? []],
+            monthList: [..._filterInfo?.monthList ?? []],
+            categoryList: [..._filterInfo?.categoryList ?? []],
           ),
           selectedMonth: () => null,
         ),
       );
+
+      ///! this is a hack to get the search result
+      add(const ResourceSearchRequested());
       return;
     }
+
+    //else
     emit(state.copyWith(
       selectedYear: () => event.year,
       selectedMonth: () => null,
@@ -115,9 +129,10 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
       (l) => logger.e(l.toString()),
       (r) {
         logger.e(r.toString());
-        emit(state.copyWith(
-          resourceInfo: state.resourceInfo?.copyWith(monthList: r),
-        ));
+        emit(state.copyWith(resourceInfo: state.resourceInfo?.copyWith(monthList: r)));
+
+        ///! this is a hack to get the search result
+        add(const ResourceSearchRequested());
       },
     );
   }
@@ -127,16 +142,36 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
       emit(
         state.copyWith(
           selectedMonth: () => "All",
-          resourceInfo: state.resourceInfo?.copyWith(
-            categoryList: [...filterInfo?.categoryList ?? []],
-          ),
+          resourceInfo: state.resourceInfo?.copyWith(categoryList: [..._filterInfo?.categoryList ?? []]),
         ),
       );
+
+      ///! this is a hack to get the search result
+      add(const ResourceSearchRequested());
       return;
     }
     logger.e("_onMonthChange ${event.month}");
     emit(state.copyWith(selectedMonth: () => event.month));
+
+    ///! this is a hack to get the search result
+    add(const ResourceSearchRequested());
   }
 
-  FutureOr<void> _onSearch(ResourceSearchRequested event, Emitter<ResourceState> emit) async {}
+  FutureOr<void> _onSearch(ResourceSearchRequested event, Emitter<ResourceState> emit) async {
+    logger.d("_onSearch ${state.selectedCategory} ${state.selectedYear} ${state.selectedMonth}");
+
+    final result = await _repo.searchResource(
+      category: state.selectedCategory == "All" ? null : state.selectedCategory,
+      year: state.selectedYear == "All" ? null : state.selectedYear,
+      month: state.selectedMonth == "All" ? null : state.selectedMonth,
+    );
+
+    result.fold(
+      (l) => logger.e(l.toString()),
+      (r) {
+        logger.e(r.toString());
+        emit(state.copyWith(resourceList: r));
+      },
+    );
+  }
 }

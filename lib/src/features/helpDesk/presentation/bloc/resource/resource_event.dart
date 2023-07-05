@@ -39,18 +39,15 @@ class OnMonthChange extends ResourceEvent {
 }
 
 class ResourceSearchRequested extends ResourceEvent {
-  final String? category;
-  final String? year;
-  final String? month;
+  //using state to get the value
+  // final String? category;
+  // final String? year;
+  // final String? month;
 
-  const ResourceSearchRequested({
-    required this.category,
-    required this.year,
-    required this.month,
-  });
+  const ResourceSearchRequested();
 
   @override
-  List<Object?> get props => [category, year, month];
+  List<Object?> get props => [];
 }
 
 class ResourceFilterListRefreshRequested extends ResourceEvent {}
