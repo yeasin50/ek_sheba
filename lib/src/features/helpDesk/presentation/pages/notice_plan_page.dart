@@ -46,7 +46,7 @@ class NoticePlanPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: BlocBuilder<NoticePlanBloc, NoticePlanState>(
-                    bloc: locator.get<NoticePlanBloc>(),
+                    bloc: locator.get<NoticePlanBloc>()..add(InitialLoad()),
                     builder: (context, state) {
                       if (state is NoticePlanInitial) {
                         return const Padding(

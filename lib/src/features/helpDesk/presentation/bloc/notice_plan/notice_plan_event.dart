@@ -6,7 +6,8 @@ abstract class NoticePlanEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
- 
+
+class InitialLoad extends NoticePlanEvent {}
 
 class OnSearch extends NoticePlanEvent {
   final String? searchText;
@@ -14,9 +15,9 @@ class OnSearch extends NoticePlanEvent {
   final DateTime? toDate;
 
   const OnSearch({
-    required this.searchText,
-    required this.fromDate,
-    required this.toDate,
+    this.searchText,
+    this.fromDate,
+    this.toDate,
   });
 
   @override

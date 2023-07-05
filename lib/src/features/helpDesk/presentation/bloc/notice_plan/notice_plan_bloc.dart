@@ -12,7 +12,7 @@ part 'notice_plan_state.dart';
 class NoticePlanBloc extends Bloc<NoticePlanEvent, NoticePlanState> {
   final INoticePlanRepository _repo;
   NoticePlanBloc(this._repo) : super(NoticePlanInitial()) {
-    // on<OnDateRangeSelected>(_onDateRangeSelected);
+    on<InitialLoad>(_initialLoad);
     on<OnSearch>(_onSearch);
   }
 
@@ -24,8 +24,12 @@ class NoticePlanBloc extends Bloc<NoticePlanEvent, NoticePlanState> {
       toDate: event.toDate,
     );
     result.fold(
-      (l) => emit(NoticePlanError(message: "Failed to load notices")),
+      (l) => emit(const NoticePlanError(message: "Failed to load notices")),
       (r) => emit(NoticePlanLoaded(notices: r)),
     );
+  }
+
+  FutureOr<void> _initialLoad(InitialLoad event, Emitter<NoticePlanState> emit) async {
+    await _onSearch(OnSearch(), emit);
   }
 }
