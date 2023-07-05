@@ -12,30 +12,30 @@ class ResourceFilterRequested extends ResourceEvent {}
 class ResourceActiveListRequested extends ResourceEvent {}
 
 class OnCategoryChange extends ResourceEvent {
-  final String category;
+  final String? category;
 
   const OnCategoryChange({required this.category});
 
   @override
-  List<Object> get props => [category];
+  List<Object?> get props => [category];
 }
 
 class OnYearChange extends ResourceEvent {
-  final String year;
+  final String? year;
 
   const OnYearChange({required this.year});
 
   @override
-  List<Object> get props => [year];
+  List<Object?> get props => [year];
 }
 
 class OnMonthChange extends ResourceEvent {
-  final String month;
+  final String? month;
 
   const OnMonthChange({required this.month});
 
   @override
-  List<Object> get props => [month];
+  List<Object?> get props => [month];
 }
 
 class ResourceSearchRequested extends ResourceEvent {

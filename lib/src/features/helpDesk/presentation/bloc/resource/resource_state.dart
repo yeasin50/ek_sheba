@@ -17,7 +17,13 @@ class ResourceState extends Equatable {
   final String? selectedMonth;
 
   @override
-  List<Object?> get props => [resourceInfo, resourceList, selectedCategory, selectedYear, selectedMonth];
+  List<Object?> get props => [
+        resourceInfo,
+        resourceList,
+        selectedCategory,
+        selectedYear,
+        selectedMonth,
+      ];
 
   ResourceState copyWith({
     ResourceFilterInfo? resourceInfo,
