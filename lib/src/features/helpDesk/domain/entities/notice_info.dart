@@ -2,56 +2,61 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-///kinda duplicate of [NoticeInfo] but 
 class NoticeInfo extends Equatable {
   const NoticeInfo({
-    this.id,
-    required this.title,
-    required this.description,
-    required this.url,
+    required this.id,
+    required this.uuid,
+    this.title,
+    this.summary,
+    this.publishedDate,
+    this.attachmentUrl,
+    this.isActive,
   });
 
-  final String? id;
-  final String title;
-  final String description;
-  final String url;
+  final int id;
+  final String uuid;
+  final String? title;
+  final String? summary;
+  final String? publishedDate;
+  final String? attachmentUrl;
+  final bool? isActive;
 
   @override
-  List<Object?> get props => [id, title, description, url];
-
-  NoticeInfo copyWith({
-    String? id,
-    String? title,
-    String? description,
-    String? url,
-  }) {
-    return NoticeInfo(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      url: url ?? this.url,
-    );
-  }
+  List<Object?> get props => [id, uuid, title, summary, publishedDate, attachmentUrl, isActive];
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    if (id != null) {
-      result.addAll({'id': id});
+    result.addAll({'id': id});
+    result.addAll({'uuid': uuid});
+    if (title != null) {
+      result.addAll({'title': title});
     }
-    result.addAll({'title': title});
-    result.addAll({'description': description});
-    result.addAll({'url': url});
+    if (summary != null) {
+      result.addAll({'summary': summary});
+    }
+    if (publishedDate != null) {
+      result.addAll({'publishedDate': publishedDate});
+    }
+    if (attachmentUrl != null) {
+      result.addAll({'attachmentUrl': attachmentUrl});
+    }
+    if (isActive != null) {
+      result.addAll({'isActive': isActive});
+    }
 
     return result;
   }
 
   factory NoticeInfo.fromMap(Map<String, dynamic> map) {
     return NoticeInfo(
-      id: map['id'],
-      title: map['title'] ?? '',
-      description: map['description'] ?? '',
-      url: map['url'] ?? '',
+      id: map['id']?.toInt() ?? 0,
+      uuid: map['uuid'] ?? '',
+      title: map['title'],
+      summary: map['summary'],
+      publishedDate: map['publishedDate'],
+      attachmentUrl: map['attachmentUrl'],
+      isActive: map['isActive'],
     );
   }
 
@@ -59,8 +64,28 @@ class NoticeInfo extends Equatable {
 
   factory NoticeInfo.fromJson(String source) => NoticeInfo.fromMap(json.decode(source));
 
+  NoticeInfo copyWith({
+    int? id,
+    String? uuid,
+    String? title,
+    String? summary,
+    String? publishedDate,
+    String? attachmentUrl,
+    bool? isActive,
+  }) {
+    return NoticeInfo(
+      id: id ?? this.id,
+      uuid: uuid ?? this.uuid,
+      title: title ?? this.title,
+      summary: summary ?? this.summary,
+      publishedDate: publishedDate ?? this.publishedDate,
+      attachmentUrl: attachmentUrl ?? this.attachmentUrl,
+      isActive: isActive ?? this.isActive,
+    );
+  }
+
   @override
   String toString() {
-    return 'NoticeInfo(id: $id, title: $title, description: $description, url: $url)';
+    return 'NoticeInfo(id: $id, uuid: $uuid, title: $title, summary: $summary, publishedDate: $publishedDate, attachmentUrl: $attachmentUrl, isActive: $isActive)';
   }
 }

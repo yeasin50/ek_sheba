@@ -2,6 +2,8 @@ import '../../../../common/app_style.dart';
 import '../../../../common/utils/app_date_format.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/widgets/app_dialog.dart';
+
 typedef OnDateRangeSelected = void Function(DateTime? startDate, DateTime? endDate);
 
 class NoticeDateRangeSelector extends StatefulWidget {
@@ -21,8 +23,16 @@ class _NoticeDateRangeSelectorState extends State<NoticeDateRangeSelector> {
   DateTime? _endDate;
 
   void _onStartDateSelected() async {
-    final date = await _showDatePicker();
+    final date = await _showDatePicker(_startDate);
     if (date == null) return;
+    if (_endDate != null && date.isAfter(_endDate!) && context.mounted) {
+      _endDate = null;
+      // showSampleDialog(
+      //   context: context,
+      //   message: 'Start date must be before end date',
+      // );
+      // return;
+    }
     setState(() {
       _startDate = date;
     });
@@ -30,8 +40,15 @@ class _NoticeDateRangeSelectorState extends State<NoticeDateRangeSelector> {
   }
 
   void _onEndDateSelected() async {
-    final date = await _showDatePicker();
+    final date = await _showDatePicker(_endDate);
     if (date == null) return;
+    if (date.isBefore(_startDate!) && context.mounted) {
+      showSampleDialog(
+        context: context,
+        message: 'End date must be after start date',
+      );
+      return;
+    }
     setState(() {
       _endDate = date;
     });
@@ -98,10 +115,10 @@ class _NoticeDateRangeSelectorState extends State<NoticeDateRangeSelector> {
     );
   }
 
-  Future<DateTime?> _showDatePicker() async {
+  Future<DateTime?> _showDatePicker(DateTime? initialData) async {
     final date = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: initialData ?? DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2050),
     );
