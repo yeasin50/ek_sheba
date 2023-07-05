@@ -20,11 +20,12 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
 
   List<String> _months = [];
 
-  late final ResourceBloc bloc;
+
   @override
   void initState() {
     super.initState();
-    bloc = locator.get<ResourceBloc>()..add(ResourceFilterRequested());
+    context.read<ResourceBloc>().add(ResourceFilterRequested());
+   
   }
 
   _onItemChanged() {}
@@ -39,7 +40,7 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: BlocBuilder<ResourceBloc, ResourceState>(
-            bloc: bloc,
+            // bloc: bloc,
             builder: (context, state) {
               _categories = ["All", ...state.resourceInfo?.categoryList ?? []];
               _months = ["All", ...state.resourceInfo?.monthList ?? []];

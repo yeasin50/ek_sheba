@@ -1,5 +1,4 @@
-import 'package:ek_sheba/src/features/helpDesk/data/repositories/resouce_repository_impl.dart';
-
+import '../../data/repositories/resouce_repository_impl.dart';
 import '../bloc/resource/resource_bloc.dart';
 import '../../../../locator.dart';
 import 'package:flutter/cupertino.dart';
