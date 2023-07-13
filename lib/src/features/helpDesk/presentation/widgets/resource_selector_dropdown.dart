@@ -1,5 +1,10 @@
 import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
+import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/resource/resource_bloc.dart';
 
 class ResourceSelectorDropDown extends StatefulWidget {
   const ResourceSelectorDropDown({super.key});
@@ -9,36 +14,21 @@ class ResourceSelectorDropDown extends StatefulWidget {
 }
 
 class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
-  final List<String> _categories = [
-    'All',
-    'Project Processing, Appraisal & Management (PPS)',
-    'National Plan Management System (NPM)',
-    'Research Management System (RMS)',
-    'GIS Based Resource Management System (GRM)',
-  ];
+  List<String> _categories = [];
 
-  final List<String> _years = [
-    'All',
-    '2021',
-    '2020',
-    '2019',
-    '2018',
-    '2017',
-  ];
+  List<String> _years = [];
 
-  final List<String> _months = [
-    'All',
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
+  List<String> _months = [];
 
-  String? _selectedCategory;
-  String? _selectedYear;
-  String? _selectedMonth;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ResourceBloc>().add(ResourceFilterRequested());
+   
+  }
+
+  _onItemChanged() {}
 
   @override
   Widget build(BuildContext context) {
@@ -49,49 +39,58 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
         borderRadius: BorderRadius.circular(6),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Column(
-            children: [
-              ResourceDropdownButton(
-                items: _categories,
-                value: _selectedCategory,
-                hint: 'Select Category',
-                onChanged: (value) {
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 10),
-              Row(
+          child: BlocBuilder<ResourceBloc, ResourceState>(
+            // bloc: bloc,
+            builder: (context, state) {
+              _categories = ["All", ...state.resourceInfo?.categoryList ?? []];
+              _months = ["All", ...state.resourceInfo?.monthList ?? []];
+              _years = ["All", ...state.resourceInfo?.yearList ?? []];
+
+              logger.i(state.selectedCategory);
+
+              return Column(
                 children: [
-                  Expanded(
-                    child: ResourceDropdownButton(
-                      items: _years,
-                      value: _selectedYear,
-                      hint: 'Select Year',
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedYear = value;
-                        });
-                      },
-                    ),
+                  ResourceDropdownButton(
+                    items: _categories,
+                    value: state.selectedCategory,
+                    hint: 'Select Category',
+                    onChanged: (value) {
+                      final event = OnCategoryChange(category: value);
+                      context.read<ResourceBloc>().add(event);
+                    },
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: ResourceDropdownButton(
-                      items: _months,
-                      value: _selectedMonth,
-                      hint: 'Select Month',
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedMonth = value;
-                        });
-                      },
-                    ),
-                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ResourceDropdownButton(
+                          items: _years,
+                          value: state.selectedYear,
+                          hint: 'Select Year',
+                          onChanged: (value) {
+                            final event = OnYearChange(year: value);
+                            context.read<ResourceBloc>().add(event);
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: ResourceDropdownButton(
+                          items: _months,
+                          value: state.selectedMonth,
+                          hint: 'Select Month',
+                          onChanged: (value) {
+                            if (value == null) return;
+                            final event = OnMonthChange(month: value);
+                            context.read<ResourceBloc>().add(event);
+                          },
+                        ),
+                      ),
+                    ],
+                  )
                 ],
-              )
-            ],
+              );
+            },
           ),
         ),
       ),

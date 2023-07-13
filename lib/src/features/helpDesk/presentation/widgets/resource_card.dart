@@ -79,14 +79,14 @@ class ResourceCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    resourceInfo.title,
+                    resourceInfo.title ?? "",
                     style: labelTextStyle,
                     maxLines: 1,
                   ),
                   const SizedBox(height: 8),
-                  buildCategorySummaryRow(true, resourceInfo.category ?? ""),
+                  buildCategorySummaryRow(true, resourceInfo.category ?? "NUll"),
                   const SizedBox(height: 8),
-                  buildCategorySummaryRow(false, resourceInfo.summary),
+                  buildCategorySummaryRow(false, resourceInfo.summary ?? "Null"),
                   const SizedBox(height: 8),
                   ViewDownloadRow(
                     onView: onView,

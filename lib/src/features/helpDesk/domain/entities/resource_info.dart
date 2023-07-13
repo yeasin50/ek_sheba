@@ -4,51 +4,84 @@ import 'package:equatable/equatable.dart';
 
 class ResourceInfo extends Equatable {
   const ResourceInfo({
-    this.id,
-    required this.title,
+    required this.id,
+    required this.uuid,
+    this.title,
     this.category,
-    required this.summary,
-    required this.createdAt,
-    required this.url,
+    this.summary,
+    this.year,
+    this.month,
+    this.publishedDate,
+    this.attachmentName,
+    this.attachmentUrl,
+    this.isActive,
   });
 
-  final String? id;
-  final String title;
+  final int id;
+  final String uuid;
+  final String? title;
   final String? category;
-  final String summary;
-  final DateTime createdAt;
-  final String url;
+  final String? summary;
+  final String? year;
+  final String? month;
+  final String? publishedDate;
+  final String? attachmentName;
+  final String? attachmentUrl;
+  final bool? isActive;
 
   @override
-  List<Object?> get props => [id, summary, title, category, createdAt, url];
+  List<Object?> get props =>
+      [id, uuid, title, category, summary, year, month, publishedDate, attachmentName, attachmentUrl, isActive];
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    if (id != null) {
-      result.addAll({'id': id});
+    result.addAll({'id': id});
+    result.addAll({'uuid': uuid});
+    if (title != null) {
+      result.addAll({'title': title});
     }
-
-    result.addAll({'title': title});
-
     if (category != null) {
       result.addAll({'category': category});
     }
-    result.addAll({'summary': summary});
-    result.addAll({'createdAt': createdAt.millisecondsSinceEpoch});
-    result.addAll({'url': url});
+    if (summary != null) {
+      result.addAll({'summary': summary});
+    }
+    if (year != null) {
+      result.addAll({'year': year});
+    }
+    if (month != null) {
+      result.addAll({'month': month});
+    }
+    if (publishedDate != null) {
+      result.addAll({'publishedDate': publishedDate});
+    }
+    if (attachmentName != null) {
+      result.addAll({'attachmentName': attachmentName});
+    }
+    if (attachmentUrl != null) {
+      result.addAll({'attachmentUrl': attachmentUrl});
+    }
+    if (isActive != null) {
+      result.addAll({'isActive': isActive});
+    }
 
     return result;
   }
 
   factory ResourceInfo.fromMap(Map<String, dynamic> map) {
     return ResourceInfo(
-      id: map['id'],
-      title: map['title'] ?? '',
+      id: map['id']?.toInt() ?? 0,
+      uuid: map['uuid'] ?? '',
+      title: map['title'],
       category: map['category'],
-      summary: map['summary'] ?? '',
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
-      url: map['url'] ?? '',
+      summary: map['summary'],
+      year: map['year'],
+      month: map['month'],
+      publishedDate: map['publishedDate'],
+      attachmentName: map['attachmentName'],
+      attachmentUrl: map['attachmentUrl'],
+      isActive: map['isActive'],
     );
   }
 
@@ -56,26 +89,36 @@ class ResourceInfo extends Equatable {
 
   factory ResourceInfo.fromJson(String source) => ResourceInfo.fromMap(json.decode(source));
 
-  @override
-  String toString() {
-    return 'ResourceInfo(id: $id, title: $title, category: $category, summary: $summary, createdAt: $createdAt, url: $url)';
-  }
-
   ResourceInfo copyWith({
-    String? id,
+    int? id,
+    String? uuid,
     String? title,
     String? category,
     String? summary,
-    DateTime? createdAt,
-    String? url,
+    String? year,
+    String? month,
+    String? publishedDate,
+    String? attachmentName,
+    String? attachmentUrl,
+    bool? isActive,
   }) {
     return ResourceInfo(
       id: id ?? this.id,
+      uuid: uuid ?? this.uuid,
       title: title ?? this.title,
       category: category ?? this.category,
       summary: summary ?? this.summary,
-      createdAt: createdAt ?? this.createdAt,
-      url: url ?? this.url,
+      year: year ?? this.year,
+      month: month ?? this.month,
+      publishedDate: publishedDate ?? this.publishedDate,
+      attachmentName: attachmentName ?? this.attachmentName,
+      attachmentUrl: attachmentUrl ?? this.attachmentUrl,
+      isActive: isActive ?? this.isActive,
     );
+  }
+
+  @override
+  String toString() {
+    return 'ResourceInfo(id: $id, uuid: $uuid, title: $title, category: $category, summary: $summary, year: $year, month: $month, publishedDate: $publishedDate, attachmentName: $attachmentName, attachmentUrl: $attachmentUrl, isActive: $isActive)';
   }
 }

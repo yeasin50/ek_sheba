@@ -1,9 +1,12 @@
-import 'package:collection/collection.dart';
+import '../../../../locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
-import '../../data/datasources/guideline_temp_db.dart';
+import '../bloc/guideline/guideline_bloc.dart';
 import '../widgets/widgets.dart';
+import 'guideline_loaded_view.dart';
 
 class GuideLinePage extends StatelessWidget {
   const GuideLinePage({super.key});
@@ -16,34 +19,19 @@ class GuideLinePage extends StatelessWidget {
         children: [
           const MinimalAppBar(title: 'Guideline'),
           Expanded(
-            child: ListView(
-              children: [
-                const SizedBox(height: 40),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: GuideLineOptions(
-                    titles: const [
-                      'Project Processing, Appraisal & Management (PPS)',
-                      'National Plan Management System (NPM)',
-                      'Research Management System (RMS)',
-                      'GIS Based Resource Management System (GRM)',
-                    ],
-                    onTap: (index) {},
-                  ),
-                ),
-                ...tempGuidelinesInfo.mapIndexed((index, element) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: GeneralListTile(
-                      title: element.title,
-                      description: element.description,
-                      onTap: () {},
-                      onView: () {},
-                      onDownload: () {},
-                    ),
-                  );
-                }),
-              ],
+            child: BlocBuilder<GuidelineBloc, GuidelineState>(
+              bloc: locator.get<GuidelineBloc>()..add(const GuidelineFetchEvent()),
+              builder: (context, state) {
+                if (state is GuidelineLoading) {
+                  return defaultLoadingIndication;
+                } else if (state is GuidelineError) {
+                  return Center(child: Text(state.message));
+                } else if (state is GuidelineLoaded) {
+                  return OnGuidelineLoadView(loadedState: state);
+                } else {
+                  return Text("NA State $state");
+                }
+              },
             ),
           ),
         ],

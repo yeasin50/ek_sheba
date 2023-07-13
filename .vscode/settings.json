@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "IDSDP"
-    ]
+    ],
+    "dart.lineLength": 120,
+    //editor line length
+    "editor.wordWrapColumn": 120
 }

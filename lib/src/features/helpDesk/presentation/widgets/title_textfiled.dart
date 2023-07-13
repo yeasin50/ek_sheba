@@ -7,12 +7,15 @@ class TitleTextField extends StatelessWidget {
     super.key,
     required this.title,
     required this.controller,
+    this.validator,
     this.textFiledHeight = 42,
   });
 
   final String title;
   final TextEditingController controller;
   final double textFiledHeight;
+
+  final FormFieldValidator<String?>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,7 @@ class TitleTextField extends StatelessWidget {
         SizedBox(
           height: textFiledHeight,
           child: TextFormField(
+            validator: validator,
             controller: controller,
             textAlignVertical: TextAlignVertical.top,
             expands: textFiledHeight == 42 ? false : true,
