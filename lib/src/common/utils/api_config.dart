@@ -3,4 +3,6 @@ class APIInfo {
 
   static get ekShebaLogin => "${baseUrl}api/sso";
   static get systemLogin => "${baseUrl}oauth/token";
+
+  static get getDashboard => "${baseUrl}external/mobile-apps/get-dashboard-projects";
 }

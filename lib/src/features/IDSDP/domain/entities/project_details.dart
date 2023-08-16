@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:decimal/decimal.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_subitem.dart';
@@ -66,21 +67,26 @@ class ProjectDetails extends Equatable {
   }
 
   factory ProjectDetails.fromMap(Map<String, dynamic> map) {
-    return ProjectDetails(
-      id: map['id']?.toInt() ?? 0,
-      uuid: map['uuid'] ?? '',
-      titleEn: map['titleEn'] ?? '',
-      titleBn: map['titleBn'] ?? '',
-      commencementDate: map['commencementDate'] ?? '',
-      completionDate: map['completionDate'] ?? '',
-      status: map['status'] ?? '',
-      totalAmount: Decimal.tryParse(map['totalAmount']) ?? Decimal.zero,
-      projectType: ProjectSubItemInfo.fromMap(map['projectType']),
-      sector: ProjectSubItemInfo.fromMap(map['sector']),
-      sectorDivision: ProjectSubItemInfo.fromMap(map['sectorDivision']),
-      agency: ProjectSubItemInfo.fromMap(map['agency']),
-      ministryDivision: ProjectSubItemInfo.fromMap(map['ministryDivision']),
-    );
+    try {
+      return ProjectDetails(
+        id: map['id']?.toInt() ?? 0,
+        uuid: map['uuid'] ?? '',
+        titleEn: map['titleEn'] ?? '',
+        titleBn: map['titleBn'] ?? '',
+        commencementDate: map['commencementDate'] ?? '',
+        completionDate: map['completionDate'] ?? '',
+        status: map['status'] ?? '',
+        totalAmount: Decimal.tryParse("${map['totalAmount']}") ?? Decimal.zero,
+        projectType: ProjectSubItemInfo.fromMap(map['projectType']),
+        sector: ProjectSubItemInfo.fromMap(map['sector']),
+        sectorDivision: ProjectSubItemInfo.fromMap(map['sectorDivision']),
+        agency: ProjectSubItemInfo.fromMap(map['agency']),
+        ministryDivision: ProjectSubItemInfo.fromMap(map['ministryDivision']),
+      );
+    } catch (e) {
+      logger.e(e.toString());
+      rethrow;
+    }
   }
 
   String toJson() => json.encode(toMap());

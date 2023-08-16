@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:equatable/equatable.dart';
 
 class ProjectSubItemInfo extends Equatable {
@@ -34,13 +35,18 @@ class ProjectSubItemInfo extends Equatable {
   }
 
   factory ProjectSubItemInfo.fromMap(Map<String, dynamic> map) {
-    return ProjectSubItemInfo(
-      id: map['id']?.toInt() ?? 0,
-      uuid: map['uuid'] ?? '',
-      nameEn: map['nameEn'] ?? '',
-      nameBn: map['nameBn'] ?? '',
-      code: map['code'] ?? '',
-    );
+    try {
+      return ProjectSubItemInfo(
+        id: map['id']?.toInt() ?? 0,
+        uuid: map['uuid'] ?? '',
+        nameEn: map['nameEn'] ?? '',
+        nameBn: map['nameBn'] ?? '',
+        code: map['code'] ?? '',
+      );
+    } catch (e) {
+      logger.e(e.toString());
+      rethrow;
+    }
   }
 
   String toJson() => json.encode(toMap());
