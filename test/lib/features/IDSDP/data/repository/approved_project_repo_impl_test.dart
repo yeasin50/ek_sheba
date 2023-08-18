@@ -1,20 +1,18 @@
 import 'dart:convert';
-
+import 'package:my_utils/my_utils.dart';
 import 'package:ek_sheba/src/features/IDSDP/data/repositories/approved_project_repo_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../fixture/fixture.dart';
 
 void main() {
-  group('approved_project_repo_impl', () async {
+  test('smoke test', () => expect(true, true));
+
+  group('approved_project_repo_impl', () {
     final data = jsonDecode(fixture('dashboard_projects.json'));
 
     test('should return completed project count', () async {
       // arrange
-      const onGoingProjectCount = 17;
-      const completedProjectCount = 6;
-      const totalProjectCount = 23;
-
       final approvedProjectRepoImpl = DashboardApprovedProjectRepoImpl();
       approvedProjectRepoImpl.init(data['approvedProjects']);
 
@@ -24,11 +22,9 @@ void main() {
       final ap = await approvedProjectRepoImpl.approvedProjectCount();
 
       // assert
-      expect(apc.isRight(), true);
-      apc.fold(
-        (l) => null,
-        (r) => expect(r, completedProjectCount),
-      );
+      expect(apc.asRight(), 6);
+      expect(apog.asRight(), 17);
+      expect(ap.asRight(), 23);
     });
   });
 }

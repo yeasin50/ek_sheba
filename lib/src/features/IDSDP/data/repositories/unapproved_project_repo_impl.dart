@@ -4,7 +4,7 @@ import '../../domain/repositories/dashboard_project_repo.dart';
 import '../utils/counter_from_key.dart';
 import '../utils/projects_from_map.dart';
 
-class DashboardApprovedProjectRepoImpl implements DashboardUnapprovedProjectRepo {
+class DashboardUnapprovedProjectRepoImpl implements DashboardUnapprovedProjectRepo {
   /// this map should be value of [unApprovedProjects]
   late final Map<String, dynamic> data;
 
