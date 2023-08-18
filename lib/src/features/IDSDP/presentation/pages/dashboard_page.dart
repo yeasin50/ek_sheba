@@ -2,12 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
+import '../../../../locator.dart';
 import '../widgets/approved_project_card.dart';
 import '../widgets/project_location_map_card.dart';
 import '../widgets/unapproved_project_card.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  @override
+  void initState() {
+    super.initState();
+    // locator
+  }
 
   @override
   Widget build(BuildContext context) {

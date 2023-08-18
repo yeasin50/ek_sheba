@@ -8,13 +8,13 @@ export 'dashboard_approved_project_repo.dart';
 export 'dashboard_unapproved_project_repo.dart';
 
 abstract class DashBoardProjectRepo {
-  DashBoardProjectRepo({
-    required this.dashBoardProjectRepo,
-    required this.dashboardUnapprovedProjectRepo,
+  const DashBoardProjectRepo({
+    required this.approvedRepo,
+    required this.unApprovedRepo,
   });
 
-  final DashboardApprovedProjectRepo dashBoardProjectRepo;
-  final DashboardUnapprovedProjectRepo dashboardUnapprovedProjectRepo;
+  final DashboardApprovedProjectRepo approvedRepo;
+  final DashboardUnapprovedProjectRepo unApprovedRepo;
 
   ///* Get all projects load when dashboard page load
   /// returns   [Failure] or [Unit]
