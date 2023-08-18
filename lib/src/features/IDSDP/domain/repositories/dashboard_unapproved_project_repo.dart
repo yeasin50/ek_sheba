@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:my_utils/my_utils.dart';
 
-import '../../../../common/utils/failures.dart';
+ 
 import '../entities/project_details.dart';
 
 abstract interface class DashboardUnapprovedProjectRepo {

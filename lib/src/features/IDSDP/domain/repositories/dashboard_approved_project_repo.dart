@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:my_utils/my_utils.dart';
 
-import '../../../../common/utils/failures.dart';
 import '../entities/project_details.dart';
 export '../entities/project_details.dart';
 export 'package:fpdart/fpdart.dart';

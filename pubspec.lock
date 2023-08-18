@@ -393,10 +393,10 @@ packages:
     dependency: "direct main"
     description:
       name: fpdart
-      sha256: "4a0d047c3359a4bdd19e4941603bbe394bd133b3772a38049e17f9534d47106e"
+      sha256: "7413acc5a6569a3fe8277928fc7487f3198530f0c4e635d0baef199ea36e8ee9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "1.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -534,13 +534,13 @@ packages:
     source: hosted
     version: "1.2.0+4"
   logger:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: logger
-      sha256: "7ad7215c15420a102ec687bb320a7312afd449bac63bfb1c60d9787c27b9767f"
+      sha256: "66cb048220ca51cf9011da69fa581e4ee2bed4be6e82870d9e9baae75739da49"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "2.0.1"
   logging:
     dependency: transitive
     description:
@@ -581,6 +581,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  my_utils:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "64e735c7143a77ec9a453f54d2df4cc1505d9dd6"
+      url: "https://github.com/yeasin50/my_utils.git"
+    source: git
+    version: "0.0.1"
   nested:
     dependency: transitive
     description:

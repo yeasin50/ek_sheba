@@ -9,7 +9,6 @@ import 'package:fpdart/fpdart.dart';
 
 import 'package:http/http.dart' as http;
 
-import '../../../../common/utils/failures.dart';
 import '../../domain/repositories/auth_repo.dart';
 
 class AuthRepositoryImpl implements AuthRepository {

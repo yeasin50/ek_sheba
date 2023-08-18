@@ -1,8 +1,8 @@
-import 'package:ek_sheba/src/common/utils/failures.dart';
 import 'package:ek_sheba/src/features/IDSDP/data/utils/projects_from_map.dart';
 import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_details.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:my_utils/my_utils.dart';
 
 void main() {
   group('projects from map', () {

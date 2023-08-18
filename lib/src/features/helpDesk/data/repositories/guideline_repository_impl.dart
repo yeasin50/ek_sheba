@@ -6,7 +6,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../common/utils/api_config.dart';
-import '../../../../common/utils/failures.dart';
 import '../../domain/entities/guideline_info.dart';
 import '../../domain/repositories/guideline_repository.dart';
 

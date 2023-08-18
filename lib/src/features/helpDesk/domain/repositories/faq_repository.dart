@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:my_utils/my_utils.dart';
 
-import '../../../../common/utils/failures.dart';
 import '../entities/faq_info.dart';
 
 abstract interface class IFaqRepository {

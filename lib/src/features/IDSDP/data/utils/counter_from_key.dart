@@ -1,6 +1,6 @@
 
-import 'package:ek_sheba/src/common/utils/failures.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:my_utils/my_utils.dart';
 
 /// return int from [key] or [NullFailure] for dashboard project count
 Future<Either<Failure,int>> counterFromKey(String? key) async {

@@ -4,7 +4,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../common/utils/api_config.dart';
-import '../../../../common/utils/failures.dart';
 import '../../../../common/utils/logger.dart';
 import '../../domain/entities/faq_info.dart';
 import '../../domain/repositories/faq_repository.dart';

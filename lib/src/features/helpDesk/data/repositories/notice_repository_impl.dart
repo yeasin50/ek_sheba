@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:ek_sheba/src/common/utils/failures.dart';
 import 'package:ek_sheba/src/common/utils/logger.dart';
 
 import 'package:ek_sheba/src/features/helpDesk/domain/entities/notice_info.dart';

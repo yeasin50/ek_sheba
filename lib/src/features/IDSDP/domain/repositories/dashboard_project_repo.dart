@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:my_utils/my_utils.dart';
 
-import '../../../../common/utils/failures.dart';
 import 'dashboard_approved_project_repo.dart';
 import 'dashboard_unapproved_project_repo.dart';
 

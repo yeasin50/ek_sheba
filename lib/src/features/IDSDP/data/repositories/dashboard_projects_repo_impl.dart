@@ -1,4 +1,3 @@
-import 'package:ek_sheba/src/common/utils/failures.dart';
 
 import 'package:fpdart/src/either.dart';
 
