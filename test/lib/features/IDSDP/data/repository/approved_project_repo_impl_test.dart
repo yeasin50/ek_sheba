@@ -22,9 +22,9 @@ void main() {
       final ap = await approvedProjectRepoImpl.approvedProjectCount();
 
       // assert
-      expect(apc.asRight(), 6);
-      expect(apog.asRight(), 17);
-      expect(ap.asRight(), 23);
+      expect(apc, 6);
+      expect(apog, 17);
+      expect(ap, 23);
     });
   });
 }
