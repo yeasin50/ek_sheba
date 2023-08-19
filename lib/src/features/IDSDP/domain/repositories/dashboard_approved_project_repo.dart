@@ -9,9 +9,9 @@ abstract interface class DashboardApprovedProjectRepo {
   void init(Map<String, dynamic> data);
 
   ///**** Approved Project
-  Future<Either<Failure, int>> approvedOnGoingProjectCount();
-  Future<Either<Failure, int>> approvedCompletedProjectCount();
-  Future<Either<Failure, int>> approvedProjectCount();
+  int approvedOnGoingProjectCount();
+  int approvedCompletedProjectCount();
+  int approvedProjectCount();
 
   /// Get approved project OnGoing
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjectOnGoing();

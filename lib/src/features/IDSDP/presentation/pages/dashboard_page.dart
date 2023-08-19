@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../locator.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../widgets/approved_project_card.dart';
 import '../widgets/project_location_map_card.dart';
 import '../widgets/unapproved_project_card.dart';
@@ -15,35 +17,51 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  bool isLoading = true;
   @override
   void initState() {
     super.initState();
-    // locator
+
+    locator<DashboardProjectRepoImpl>().loadProjects().then((value) {
+      setState(() {
+        isLoading = false;
+      });
+
+      value.fold(
+        (l) async {
+          await showSampleDialog(context: context, message: "Failed to load data. Please try system account.");
+        },
+        (r) {},
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const BackgroundDecoration(
+    return BackgroundDecoration(
       hasDrawer: true,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            IDSDPAppBar(
+            const IDSDPAppBar(
               hasDrawer: true,
               hasHomeButton: true,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
-                  ProjectLocationMapCard(),
-                  SizedBox(height: 24),
-                  ApprovedProjectCard(),
-                  SizedBox(height: 24),
-                  UnApprovedProjectCard(),
-                ],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: isLoading
+                    ? [defaultLoadingIndication]
+                    : const [
+                        ProjectLocationMapCard(),
+                        SizedBox(height: 24),
+                        ApprovedProjectCard(),
+                        SizedBox(height: 24),
+                        UnApprovedProjectCard(),
+                      ],
               ),
             ),
           ],

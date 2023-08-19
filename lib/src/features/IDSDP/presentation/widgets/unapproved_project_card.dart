@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/app_style.dart';
+import '../../../../locator.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import 'label_decorator.dart';
 import 'progress_item_card.dart';
 
@@ -14,7 +16,13 @@ class UnApprovedProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //todo: get data from api
-    final List<int> data = [5, 5, 0, 4, 0];
+    final List<int> data = [
+      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInPreparationProjectCount(),
+      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedForRecastProjectCount(),
+      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInMinistryProjectCount(),
+      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
+      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInEcnecProjectCount(),
+    ];
 
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),

@@ -6,7 +6,7 @@ import '../utils/projects_from_map.dart';
 
 class DashboardUnapprovedProjectRepoImpl implements DashboardUnapprovedProjectRepo {
   /// this map should be value of [unApprovedProjects]
-  late final Map<String, dynamic> data;
+  late   Map<String, dynamic> data;
 
   @override
   void init(Map<String, dynamic> data) => this.data = data;
@@ -31,19 +31,19 @@ class DashboardUnapprovedProjectRepoImpl implements DashboardUnapprovedProjectRe
       projectsFromMap(data: data['inPreparationProjectList']);
 
   @override
-  Future<Either<Failure, int>> unapprovedForRecastProjectCount() => counterFromKey(data['forRecastProjectCount']);
+    int  unapprovedForRecastProjectCount() => counterFromKey(data['forRecastProjectCount']);
 
   @override
-  Future<Either<Failure, int>> unapprovedInEcnecProjectCount() => counterFromKey(data['inEcnecProjectCount']);
+    int  unapprovedInEcnecProjectCount() => counterFromKey(data['inEcnecProjectCount']);
 
   @override
-  Future<Either<Failure, int>> unapprovedInMinistryProjectCount() => counterFromKey(data['inMinistryProjectCount']);
+    int  unapprovedInMinistryProjectCount() => counterFromKey(data['inMinistryProjectCount']);
 
   @override
-  Future<Either<Failure, int>> unapprovedInPlanningCommissionProjectCount() =>
+    int  unapprovedInPlanningCommissionProjectCount() =>
       counterFromKey(data['inPlanningCommissionProjectCount']);
 
   @override
-  Future<Either<Failure, int>> unapprovedInPreparationProjectCount() =>
+    int  unapprovedInPreparationProjectCount() =>
       counterFromKey(data['inPreparationProjectCount']);
 }

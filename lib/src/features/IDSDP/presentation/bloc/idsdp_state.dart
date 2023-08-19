@@ -10,9 +10,8 @@ class IdsdpInitial extends IdsdpState {}
 
 class IdsdpLoading extends IdsdpState {}
 
-// class IdsdpLoaded extends IdsdpState {
-//   final List<ProjectDetails> projects;
-//   const IdsdpLoaded({required this.projects});
-//   @override
-//   List<Object> get props => [projects];
-// }
+class IdsdpLoaded extends IdsdpState {
+  const IdsdpLoaded();
+  @override
+  List<Object> get props => [];
+}

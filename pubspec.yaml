@@ -26,6 +26,7 @@ dependencies:
   my_utils:
     git: https://github.com/yeasin50/my_utils.git
   fpdart: ^1.1.0
+  flutter_secure_storage: ^8.0.0
  
 
   

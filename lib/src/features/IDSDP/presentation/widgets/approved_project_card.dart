@@ -1,7 +1,9 @@
 import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/progress_item_card.dart';
+import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:ek_sheba/src/common/app_style.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import 'label_decorator.dart';
 
 class ApprovedProjectCard extends StatelessWidget {
@@ -48,7 +50,7 @@ class ApprovedProjectCard extends StatelessWidget {
                     child: ProgressItemCard(
                       onTap: () {},
                       title: "Total",
-                      count: 26,
+                      count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedProjectCount(),
                       color: const Color(0xffE1F2FE),
                       textColor: const Color(0xff3B82F6),
                     ),
@@ -58,7 +60,7 @@ class ApprovedProjectCard extends StatelessWidget {
                     child: ProgressItemCard(
                       onTap: () {},
                       title: "On Going",
-                      count: 4,
+                      count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedOnGoingProjectCount(),
                       color: const Color(0xffFBE6FE),
                       textColor: const Color(0xff9333EA),
                     ),
@@ -68,7 +70,7 @@ class ApprovedProjectCard extends StatelessWidget {
                     child: ProgressItemCard(
                       onTap: () {},
                       title: "Completed",
-                      count: 22,
+                      count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedCompletedProjectCount(),
                       color: const Color(0xffD9FBE8),
                       textColor: const Color(0xff0D9488),
                     ),

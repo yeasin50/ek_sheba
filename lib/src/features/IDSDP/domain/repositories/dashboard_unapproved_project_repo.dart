@@ -1,18 +1,16 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:my_utils/my_utils.dart';
 
- 
 import '../entities/project_details.dart';
 
 abstract interface class DashboardUnapprovedProjectRepo {
-  
   void init(Map<String, dynamic> data);
 
-  Future<Either<Failure, int>> unapprovedInPreparationProjectCount();
-  Future<Either<Failure, int>> unapprovedForRecastProjectCount();
-  Future<Either<Failure, int>> unapprovedInMinistryProjectCount();
-  Future<Either<Failure, int>> unapprovedInPlanningCommissionProjectCount();
-  Future<Either<Failure, int>> unapprovedInEcnecProjectCount();
+  int unapprovedInPreparationProjectCount();
+  int unapprovedForRecastProjectCount();
+  int unapprovedInMinistryProjectCount();
+  int unapprovedInPlanningCommissionProjectCount();
+  int unapprovedInEcnecProjectCount();
 
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInPreparation();
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectForRecast();
