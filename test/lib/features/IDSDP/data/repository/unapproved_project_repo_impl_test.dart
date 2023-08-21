@@ -32,12 +32,11 @@ void main() {
       // "inPlanningCommissionProjectCount": 13,
       // "inEcnecProjectCount": 3
 
-      expect(epp.asRight(), 152);
-      expect(empc.asRight(), 14);
-      expect(eppc.asRight(), 13);
-      expect(epc.asRight(), 3);
-      expect(eprc.asRight(), 4);
-
+      expect(epp, 152);
+      expect(empc, 14);
+      expect(eppc, 13);
+      expect(epc, 3);
+      expect(eprc, 4);
     });
   });
 }

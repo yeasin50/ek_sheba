@@ -1,6 +1,7 @@
 import 'package:my_utils/my_utils.dart';
 
 import '../../domain/repositories/dashboard_project_repo.dart';
+import '../models/project_type.dart';
 import '../utils/counter_from_key.dart';
 import '../utils/projects_from_map.dart';
 
@@ -18,17 +19,17 @@ class DashboardApprovedProjectRepoImpl implements DashboardApprovedProjectRepo {
   int approvedOnGoingProjectCount() => counterFromKey(data['onGoingProjectCount']);
 
   @override
-  int approvedProjectCount() => counterFromKey(data['totalProjectCount']);
+  int approvedProjectCount() => counterFromKey(data[' ']);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjectCompleted() async =>
-      projectsFromMap(data: data['completedProjectList']);
+      projectsFromMap(data: data[ProjectType.completed]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjectOnGoing() async =>
-      projectsFromMap(data: data['onGoingProjectList']);
+      projectsFromMap(data: data[ProjectType.onGoing]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjects() async =>
-      projectsFromMap(data: data['totalProjectList']);
+      projectsFromMap(data: data[ProjectType.total]);
 }

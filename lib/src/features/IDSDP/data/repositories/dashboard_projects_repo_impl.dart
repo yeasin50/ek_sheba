@@ -5,6 +5,7 @@ import 'package:my_utils/my_utils.dart';
 import 'package:http/http.dart' as http;
 import '../../../../common/utils/token_storage.dart';
 import '../../domain/repositories/dashboard_project_repo.dart';
+import '../models/project_type.dart';
 
 class DashboardProjectRepoImpl extends DashBoardProjectRepo {
   DashboardProjectRepoImpl({
@@ -19,7 +20,7 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
       final token = await TokenManager.getToken();
       if (token == null) {
         logger.e('loadProjects: token is null');
-        // return Left(NullFailure());
+        return Left(NullFailure());
       }
 
       final response = await http.get(
@@ -42,5 +43,20 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
       logger.e('loadProjects: ${e.toString()}');
       return Left(NullFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, List<ProjectDetails>>> fromType(ProjectType type) async {
+    return switch (type) {
+      ProjectType.total => await approvedRepo.getApprovedProjects(),
+      ProjectType.onGoing => await approvedRepo.getApprovedProjectOnGoing(),
+      ProjectType.completed => await approvedRepo.getApprovedProjectCompleted(),
+      ProjectType.inPreparation => await unApprovedRepo.getUnapprovedProjectInPreparation(),
+      ProjectType.forRecast => await unApprovedRepo.getUnapprovedProjectForRecast(),
+      ProjectType.inMinistry => await unApprovedRepo.getUnapprovedProjectInMinistry(),
+      ProjectType.inPlanningCommission => await unApprovedRepo.getUnapprovedProjectInPlanningCommission(),
+      ProjectType.inECNEC => await unApprovedRepo.getUnapprovedProjectInEcnec(),
+      _ => Left(NullFailure()),
+    };
   }
 }

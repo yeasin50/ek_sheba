@@ -1,13 +1,24 @@
 import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/progress_item_card.dart';
 import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:go_router/go_router.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
+import '../pages/dashboard_item_details_page.dart';
 import 'label_decorator.dart';
 
 class ApprovedProjectCard extends StatelessWidget {
   const ApprovedProjectCard({super.key});
+
+  void _navToProjectDetails(BuildContext context, String itemTitle) {
+    logger.i("ApprovedProjectCard: _navToProjectDetails: itemTitle: $itemTitle");
+    context.push(
+      DashBoardItemDetailsPage.routeName,
+      extra: {'itemTitle': itemTitle},
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +50,14 @@ class ApprovedProjectCard extends StatelessWidget {
               child: label,
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: 7.0,
-                right: 7.0,
-                bottom: 24,
-              ),
+              padding: const EdgeInsets.only(left: 7.0, right: 7.0, bottom: 24),
               child: Row(
                 children: [
                   Expanded(
                     child: ProgressItemCard(
-                      onTap: () {},
+                      onTap: () {
+                        _navToProjectDetails(context, "Total");
+                      },
                       title: "Total",
                       count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedProjectCount(),
                       color: const Color(0xffE1F2FE),
@@ -58,7 +67,9 @@ class ApprovedProjectCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: ProgressItemCard(
-                      onTap: () {},
+                      onTap: () {
+                        _navToProjectDetails(context, "In Preparation");
+                      },
                       title: "On Going",
                       count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedOnGoingProjectCount(),
                       color: const Color(0xffFBE6FE),
@@ -68,7 +79,9 @@ class ApprovedProjectCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: ProgressItemCard(
-                      onTap: () {},
+                      onTap: () {
+                        _navToProjectDetails(context, "Completed");
+                      },
                       title: "Completed",
                       count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedCompletedProjectCount(),
                       color: const Color(0xffD9FBE8),
