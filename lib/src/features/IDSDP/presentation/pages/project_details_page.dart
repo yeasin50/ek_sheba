@@ -1,4 +1,5 @@
 import 'package:ek_sheba/src/common/utils/raw_text.dart';
+import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/project_download_option.dart';
 import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/project_summary_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -21,17 +22,16 @@ class ProjectDetailsPage extends StatelessWidget {
     final sectorDivision = string2Raw(projectDetails.sectorDivision.nameEn);
     return Scaffold(
       body: BackgroundDecoration(
-        hasDrawer: true,
-        body: ListView(
-          children: [
-            const IDSDPAppBar(
-              hasDrawer: true,
-              hasHomeButton: true,
-            ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: SingleChildScrollView(
+          hasDrawer: true,
+          body: ListView(
+            children: [
+              const IDSDPAppBar(
+                hasDrawer: true,
+                hasHomeButton: true,
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
                     if (sectorDivision != null) ProjectLocationMapCard(title: sectorDivision),
@@ -56,13 +56,13 @@ class ProjectDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     ProjectSummaryWidget(projectDetails: projectDetails),
+                    const SizedBox(height: 24),
+                    ProjectDownloadOptions(project: projectDetails),
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          )),
     );
   }
 }
