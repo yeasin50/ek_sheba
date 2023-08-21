@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
-import '../../../../locator.dart';
-import '../../data/repositories/dashboard_projects_repo_impl.dart';
+
 import '../bloc/idsdp_bloc.dart';
 import '../widgets/approved_project_card.dart';
 import '../widgets/project_location_map_card.dart';
@@ -47,10 +46,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   }
 
                   if (state is IdsdpLoaded) {
-                    return const  Column(
+                    return const Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:   [
+                      children: [
                         ProjectLocationMapCard(),
                         SizedBox(height: 24),
                         ApprovedProjectCard(),

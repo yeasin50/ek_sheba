@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../domain/entities/project_details.dart';
+import 'project_card.dart';
 
 /// DashboardItems
 /// returns a list of items for the dashboard using [Column] widget
@@ -88,17 +89,17 @@ Widget getItem(String title) {
       if (snapshot.hasData) {
         logger.d('getItem: ${snapshot.data}');
 
-        // return ListView.builder(
-        //   shrinkWrap: true,
-        //   physics: const NeverScrollableScrollPhysics(),
-        //   itemCount: (snapshot.data as Right).value.length,
-        //   itemBuilder: (context, index) {
-        //     final project = (snapshot.data as Right).value[index] as ProjectDetails;
-
-        return Text("s");
-        // return ProjectPlanInfoCard(projectDetails: project);
-        // },
-        // );
+        return Column(
+          children: snapshot.data != null
+              ? snapshot.data!
+                  .map(
+                    (e) => ProjectPlanInfoCard(
+                      projectDetails: e,
+                    ),
+                  )
+                  .toList()
+              : [],
+        );
       }
 
       return const Center(child: Text('NA state'));
