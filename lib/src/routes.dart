@@ -8,7 +8,7 @@ import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
 
 final routes = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/dashboard',
   routes: [
     GoRoute(
       path: '/',
@@ -24,7 +24,8 @@ final routes = GoRouter(
       builder: (context, state) => const DashboardPage(),
     ),
     GoRoute(
-      path: '/dashboard_item',
+      name: DashBoardItemDetailsPage.routeName,
+      path: DashBoardItemDetailsPage.routeName,
       builder: (context, state) {
         final itemTitle = state.extra as Map?;
         return DashBoardItemDetailsPage(itemTitle: itemTitle?['itemTitle'] ?? "in Preparation");

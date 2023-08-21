@@ -2,6 +2,7 @@ import '../../../../common/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//used on dashboard page
 class ProgressItemCard extends StatelessWidget {
   const ProgressItemCard({
     super.key,
