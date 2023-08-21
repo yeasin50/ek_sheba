@@ -14,22 +14,22 @@ class DashboardUnapprovedProjectRepoImpl implements DashboardUnapprovedProjectRe
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectForRecast() async =>
-      projectsFromMap(data: data[ProjectType.forRecast]);
+      projectsFromMap(data: data[ProjectType.forRecast.key]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInEcnec() async =>
-      projectsFromMap(data: data[ProjectType.inECNEC]);
+      projectsFromMap(data: data[ProjectType.inECNEC.key]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInMinistry() async =>
-      projectsFromMap(data: data[ProjectType.inMinistry]);
+      projectsFromMap(data: data[ProjectType.inMinistry.key]);
   @override
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInPlanningCommission() async =>
-      projectsFromMap(data: data[ProjectType.inPlanningCommission]);
+      projectsFromMap(data: data[ProjectType.inPlanningCommission.key]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInPreparation() async =>
-      projectsFromMap(data: data[ProjectType.inPreparation]);
+      projectsFromMap(data: data[ProjectType.inPreparation.key]);
 
   @override
   int unapprovedForRecastProjectCount() => counterFromKey(data['forRecastProjectCount']);

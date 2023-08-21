@@ -2083,6 +2083,51 @@
   "unApprovedProjects": {
     "inPreparationProjectList": [
       {
+        "id": 1747,
+        "uuid": "abf39c41-7d04-4867-baec-6da845af8a50",
+        "titleEn": "Demonstration GOB Funded Project210823",
+        "titleBn": "উপস্থাপনমূলক জিওবি অর্থায়নে প্রকল্প",
+        "commencementDate": "2024-01-01",
+        "completionDate": "2026-12-31",
+        "projectType": {
+          "id": 1,
+          "uuid": "f4e8c6ad-7748-410d-9d57-3220dfbc33cd",
+          "nameEn": "DPP",
+          "nameBn": "ডিপিপি",
+          "code": "1"
+        },
+        "sector": {
+          "id": 18,
+          "uuid": "ad866a34-564d-4607-b6c6-7d6d5d535051",
+          "nameEn": "Local Government and Rural Development",
+          "nameBn": "স্থানীয় সরকার ও পল্লী উন্নয়ন",
+          "code": "08"
+        },
+        "sectorDivision": {
+          "id": 2,
+          "uuid": "b2dd0665-b8da-4ab9-b593-bbe52076bf26",
+          "nameEn": "Agricultural, Water Resources and Rural Institutions Division",
+          "nameBn": "কৃষি, পানি সম্পদ ও পল্লী প্রতিষ্ঠান বিভাগ",
+          "code": "01"
+        },
+        "agency": {
+          "id": 713,
+          "uuid": "10712a54-49da-bb15-7b5c5b4ca46b",
+          "nameEn": "National Institute of Local Government",
+          "nameBn": "জাতীয় স্থানীয় সরকার ইনস্টিটিউট",
+          "code": "131012300"
+        },
+        "ministryDivision": {
+          "id": 10,
+          "uuid": "d2662d09-faed-453d-ac7e-0d0a25b058aa",
+          "nameEn": "Local Government Division",
+          "nameBn": "স্থানীয় সরকার বিভাগ",
+          "code": "137"
+        },
+        "status": "AGENCY_DESK",
+        "totalAmount": 2600.0
+      },
+      {
         "id": 1447,
         "uuid": "bf87f353-dde9-4e6a-9b4e-1b3027ef7c7c",
         "titleEn": "Jazira",
@@ -9148,7 +9193,7 @@
           "nameBn": "স্থানীয় সরকার বিভাগ",
           "code": "137"
         },
-        "status": "MINISTRY_DESK",
+        "status": "POTRO_JARI_ATTACHED_IN_MINISTRY",
         "totalAmount": 1111.0
       },
       {
@@ -9464,7 +9509,7 @@
           "code": "137"
         },
         "status": "PROJECT_SCRUTINY_COMMITTEE_MEETING_NOTICE",
-        "totalAmount": 10116.0
+        "totalAmount": 11559.0
       },
       {
         "id": 1270,
@@ -9739,6 +9784,51 @@
     ],
     "inPlanningCommissionProjectList": [
       {
+        "id": 1405,
+        "uuid": "21dc7dd8-ba66-4667-91a2-1ae61413d466",
+        "titleEn": "social development project",
+        "titleBn": "পল্লি উন্নয়ন ",
+        "commencementDate": "2024-06-03",
+        "completionDate": "2028-02-01",
+        "projectType": {
+          "id": 1,
+          "uuid": "f4e8c6ad-7748-410d-9d57-3220dfbc33cd",
+          "nameEn": "DPP",
+          "nameBn": "ডিপিপি",
+          "code": "1"
+        },
+        "sector": {
+          "id": 18,
+          "uuid": "ad866a34-564d-4607-b6c6-7d6d5d535051",
+          "nameEn": "Local Government and Rural Development",
+          "nameBn": "স্থানীয় সরকার ও পল্লী উন্নয়ন",
+          "code": "08"
+        },
+        "sectorDivision": {
+          "id": 2,
+          "uuid": "b2dd0665-b8da-4ab9-b593-bbe52076bf26",
+          "nameEn": "Agricultural, Water Resources and Rural Institutions Division",
+          "nameBn": "কৃষি, পানি সম্পদ ও পল্লী প্রতিষ্ঠান বিভাগ",
+          "code": "01"
+        },
+        "agency": {
+          "id": 713,
+          "uuid": "10712a54-49da-bb15-7b5c5b4ca46b",
+          "nameEn": "National Institute of Local Government",
+          "nameBn": "জাতীয় স্থানীয় সরকার ইনস্টিটিউট",
+          "code": "131012300"
+        },
+        "ministryDivision": {
+          "id": 10,
+          "uuid": "d2662d09-faed-453d-ac7e-0d0a25b058aa",
+          "nameEn": "Local Government Division",
+          "nameBn": "স্থানীয় সরকার বিভাগ",
+          "code": "137"
+        },
+        "status": "PLANNING_COMMISSION_HEAD",
+        "totalAmount": 3320.0
+      },
+      {
         "id": 1554,
         "uuid": "5d8cdb31-fb95-4f1e-8448-aa1263eae5f4",
         "titleEn": "Demonstration GOB Funded Project31",
@@ -9782,51 +9872,6 @@
         },
         "status": "PLANNING_MINISTER",
         "totalAmount": 1407.0
-      },
-      {
-        "id": 1405,
-        "uuid": "21dc7dd8-ba66-4667-91a2-1ae61413d466",
-        "titleEn": "social development project",
-        "titleBn": "পল্লি উন্নয়ন ",
-        "commencementDate": "2024-06-03",
-        "completionDate": "2028-02-01",
-        "projectType": {
-          "id": 1,
-          "uuid": "f4e8c6ad-7748-410d-9d57-3220dfbc33cd",
-          "nameEn": "DPP",
-          "nameBn": "ডিপিপি",
-          "code": "1"
-        },
-        "sector": {
-          "id": 18,
-          "uuid": "ad866a34-564d-4607-b6c6-7d6d5d535051",
-          "nameEn": "Local Government and Rural Development",
-          "nameBn": "স্থানীয় সরকার ও পল্লী উন্নয়ন",
-          "code": "08"
-        },
-        "sectorDivision": {
-          "id": 2,
-          "uuid": "b2dd0665-b8da-4ab9-b593-bbe52076bf26",
-          "nameEn": "Agricultural, Water Resources and Rural Institutions Division",
-          "nameBn": "কৃষি, পানি সম্পদ ও পল্লী প্রতিষ্ঠান বিভাগ",
-          "code": "01"
-        },
-        "agency": {
-          "id": 713,
-          "uuid": "10712a54-49da-bb15-7b5c5b4ca46b",
-          "nameEn": "National Institute of Local Government",
-          "nameBn": "জাতীয় স্থানীয় সরকার ইনস্টিটিউট",
-          "code": "131012300"
-        },
-        "ministryDivision": {
-          "id": 10,
-          "uuid": "d2662d09-faed-453d-ac7e-0d0a25b058aa",
-          "nameEn": "Local Government Division",
-          "nameBn": "স্থানীয় সরকার বিভাগ",
-          "code": "137"
-        },
-        "status": "PLANNING_COMMISSION_DESK",
-        "totalAmount": 3320.0
       },
       {
         "id": 1396,
@@ -10461,7 +10506,7 @@
         "totalAmount": 55935.0
       }
     ],
-    "inPreparationProjectCount": 152,
+    "inPreparationProjectCount": 153,
     "forRecastProjectCount": 4,
     "inMinistryProjectCount": 14,
     "inPlanningCommissionProjectCount": 13,

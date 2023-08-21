@@ -19,17 +19,17 @@ class DashboardApprovedProjectRepoImpl implements DashboardApprovedProjectRepo {
   int approvedOnGoingProjectCount() => counterFromKey(data['onGoingProjectCount']);
 
   @override
-  int approvedProjectCount() => counterFromKey(data[' ']);
+  int approvedProjectCount() => counterFromKey(data['totalProjectCount']);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjectCompleted() async =>
-      projectsFromMap(data: data[ProjectType.completed]);
+      projectsFromMap(data: data[ProjectType.completed.key]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjectOnGoing() async =>
-      projectsFromMap(data: data[ProjectType.onGoing]);
+      projectsFromMap(data: data[ProjectType.onGoing.key]);
 
   @override
   Future<Either<Failure, List<ProjectDetails>>> getApprovedProjects() async =>
-      projectsFromMap(data: data[ProjectType.total]);
+      projectsFromMap(data: data[ProjectType.total.key]);
 }
