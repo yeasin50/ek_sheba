@@ -1,11 +1,10 @@
-import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/utils/logger.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/progress_item_card.dart';
-import 'package:ek_sheba/src/locator.dart';
+import '../../../../common/app_style.dart';
+import '../../../../common/utils/logger.dart';
+import '../bloc/idsdp_bloc.dart';
+import 'progress_item_card.dart';
+import '../../../../locator.dart';
 import 'package:flutter/material.dart';
-import 'package:ek_sheba/src/common/app_style.dart';
 import 'package:go_router/go_router.dart';
-import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../pages/dashboard_item_details_page.dart';
 import 'label_decorator.dart';
 
@@ -22,6 +21,8 @@ class ApprovedProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final approvedRepo = (locator<IdsdpBloc>().state as IdsdpLoaded).repo.approvedRepo;
+
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),
       child: Align(
@@ -59,7 +60,7 @@ class ApprovedProjectCard extends StatelessWidget {
                         _navToProjectDetails(context, "Total");
                       },
                       title: "Total",
-                      count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedProjectCount(),
+                      count: approvedRepo.approvedProjectCount(),
                       color: const Color(0xffE1F2FE),
                       textColor: const Color(0xff3B82F6),
                     ),
@@ -71,7 +72,7 @@ class ApprovedProjectCard extends StatelessWidget {
                         _navToProjectDetails(context, "In Preparation");
                       },
                       title: "On Going",
-                      count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedOnGoingProjectCount(),
+                      count: approvedRepo.approvedOnGoingProjectCount(),
                       color: const Color(0xffFBE6FE),
                       textColor: const Color(0xff9333EA),
                     ),
@@ -83,7 +84,7 @@ class ApprovedProjectCard extends StatelessWidget {
                         _navToProjectDetails(context, "Completed");
                       },
                       title: "Completed",
-                      count: locator<DashboardProjectRepoImpl>().approvedRepo.approvedCompletedProjectCount(),
+                      count: approvedRepo.approvedCompletedProjectCount(),
                       color: const Color(0xffD9FBE8),
                       textColor: const Color(0xff0D9488),
                     ),

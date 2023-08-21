@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../locator.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
+import '../bloc/idsdp_bloc.dart';
 import '../widgets/approved_project_card.dart';
 import '../widgets/project_location_map_card.dart';
 import '../widgets/unapproved_project_card.dart';
@@ -21,19 +23,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-
-    locator<DashboardProjectRepoImpl>().loadProjects().then((value) {
-      setState(() {
-        isLoading = false;
-      });
-
-      value.fold(
-        (l) async {
-          await showSampleDialog(context: context, message: "Failed to load data. Please try system account.");
-        },
-        (r) {},
-      );
-    });
+    BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
   }
 
   @override
@@ -50,18 +40,27 @@ class _DashboardPageState extends State<DashboardPage> {
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: isLoading
-                    ? [defaultLoadingIndication]
-                    : const [
+              child: BlocBuilder<IdsdpBloc, IdsdpState>(
+                builder: (context, state) {
+                  if (state is IdsdpError) {
+                    return Text(state.message);
+                  }
+
+                  if (state is IdsdpLoaded) {
+                    return const  Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:   [
                         ProjectLocationMapCard(),
                         SizedBox(height: 24),
                         ApprovedProjectCard(),
                         SizedBox(height: 24),
                         UnApprovedProjectCard(),
                       ],
+                    );
+                  }
+                  return Center(child: defaultLoadingIndication);
+                },
               ),
             ),
           ],

@@ -1,6 +1,17 @@
-import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
+import 'package:fpdart/fpdart.dart';
+
+import 'package:my_utils/my_utils.dart';
+
+import '../../../../common/app_style.dart';
+import '../../data/models/project_type.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
+
+import '../../../../locator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../domain/entities/project_details.dart';
 
 /// DashboardItems
 /// returns a list of items for the dashboard using [Column] widget
@@ -52,7 +63,45 @@ class DashboardListView extends StatelessWidget {
     return Column(
       children: [
         header,
+        getItem(itemTitle),
       ],
     );
   }
+}
+
+Widget getItem(String title) {
+  final type = projectTypeFromTitle(title);
+  final future = locator.get<DashboardProjectRepoImpl>().fromType(type);
+
+  return FutureBuilder<List<ProjectDetails>>(
+    future: future,
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      if (snapshot.hasError) {
+        logger.e('getItem: ${snapshot.error.toString()}');
+        return const Center(child: Text('Something went wrong'));
+      }
+
+      if (snapshot.hasData) {
+        logger.d('getItem: ${snapshot.data}');
+
+        // return ListView.builder(
+        //   shrinkWrap: true,
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   itemCount: (snapshot.data as Right).value.length,
+        //   itemBuilder: (context, index) {
+        //     final project = (snapshot.data as Right).value[index] as ProjectDetails;
+
+        return Text("s");
+        // return ProjectPlanInfoCard(projectDetails: project);
+        // },
+        // );
+      }
+
+      return const Center(child: Text('NA state'));
+    },
+  );
 }

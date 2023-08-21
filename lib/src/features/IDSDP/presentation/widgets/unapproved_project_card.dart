@@ -34,13 +34,14 @@ class UnApprovedProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final unApprovedRepo = locator<DashboardProjectRepoImpl>().unApprovedRepo;
     //todo: get data from api
     final List<int> data = [
-      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInPreparationProjectCount(),
-      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedForRecastProjectCount(),
-      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInMinistryProjectCount(),
-      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
-      locator<DashboardProjectRepoImpl>().unApprovedRepo.unapprovedInEcnecProjectCount(),
+      unApprovedRepo.unapprovedInPreparationProjectCount(),
+      unApprovedRepo.unapprovedForRecastProjectCount(),
+      unApprovedRepo.unapprovedInMinistryProjectCount(),
+      unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
+      unApprovedRepo.unapprovedInEcnecProjectCount(),
     ];
 
     const label = Padding(

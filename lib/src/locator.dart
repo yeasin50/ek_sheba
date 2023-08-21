@@ -6,6 +6,7 @@ import 'features/Auth/data/repositories/auth_repository.dart';
 import 'features/Auth/presentation/bloc/auth_bloc.dart';
 import 'features/IDSDP/data/repositories/dashboard_projects_repo_impl.dart';
 import 'features/IDSDP/domain/repositories/dashboard_project_repo.dart';
+import 'features/IDSDP/presentation/bloc/idsdp_bloc.dart';
 import 'features/helpDesk/data/repositories/faq_repository_impl.dart';
 import 'features/helpDesk/data/repositories/guideline_repository_impl.dart';
 import 'features/helpDesk/data/repositories/helpline_repo_impl.dart';
@@ -43,4 +44,6 @@ void setup() {
         approvedRepo: DashboardApprovedProjectRepoImpl(),
         unApprovedRepo: DashboardUnapprovedProjectRepoImpl(),
       ));
+
+  locator.registerLazySingleton(() => IdsdpBloc());
 }

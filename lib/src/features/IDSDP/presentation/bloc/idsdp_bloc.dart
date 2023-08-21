@@ -16,7 +16,11 @@ class IdsdpBloc extends Bloc<IdsdpEvent, IdsdpState> {
 
   FutureOr<void> _onLoadProjects(LoadProjectsEvent event, Emitter<IdsdpState> emit) async {
     emit(IdsdpLoading());
-    await locator<DashboardProjectRepoImpl>().loadProjects();
-    emit(const IdsdpLoaded());
+    final result = await locator<DashboardProjectRepoImpl>().loadProjects();
+
+    result.fold(
+      (l) => emit(IdsdpError("Failed to load data. Please try system account.")),
+      (r) => emit(IdsdpLoaded(locator<DashboardProjectRepoImpl>())),
+    );
   }
 }

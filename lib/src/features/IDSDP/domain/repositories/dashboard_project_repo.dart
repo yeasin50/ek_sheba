@@ -21,5 +21,5 @@ abstract class DashBoardProjectRepo {
   /// returns   [Failure] or [Unit]
   Future<Either<Failure, Unit>> loadProjects();
 
-  Future<Either<Failure, List<ProjectDetails>>> fromType(ProjectType type);
+  Future<List<ProjectDetails>> fromType(ProjectType type);
 }

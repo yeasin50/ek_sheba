@@ -66,7 +66,7 @@ class ProjectDetails extends Equatable {
     return result;
   }
 
-  factory ProjectDetails.fromMap(Map<String, dynamic> map) {
+  factory ProjectDetails.fromMap(Map<dynamic, dynamic> map) {
     try {
       return ProjectDetails(
         id: map['id']?.toInt() ?? 0,
@@ -84,7 +84,7 @@ class ProjectDetails extends Equatable {
         ministryDivision: ProjectSubItemInfo.fromMap(map['ministryDivision']),
       );
     } catch (e) {
-      logger.e(e.toString());
+      logger.e("ProjectDetails.fromMap: ${e.toString()}");
       rethrow;
     }
   }
