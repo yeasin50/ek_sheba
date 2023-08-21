@@ -50,7 +50,9 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ProjectLocationMapCard(),
+                        ProjectLocationMapCard(
+                          title: 'Department of Agricultural Extension Ministry of Agriculture',
+                        ),
                         SizedBox(height: 24),
                         ApprovedProjectCard(),
                         SizedBox(height: 24),

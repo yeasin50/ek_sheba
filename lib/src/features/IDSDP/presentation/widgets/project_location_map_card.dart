@@ -22,7 +22,7 @@ class ProjectLocationMapCard extends StatelessWidget {
           flex: 3,
           child: Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Text(string2Raw(title)?? "No Title Found",
+            child: Text(string2Raw(title) ?? "No Title Found",
                 style: GoogleFonts.poppins(
                   color: const Color(0xFF282020),
                   fontSize: 13,
@@ -35,7 +35,7 @@ class ProjectLocationMapCard extends StatelessWidget {
           text: 'PROJECT LOCATION MAP',
           padding: const EdgeInsets.symmetric(
             horizontal: 8,
-            vertical: 6,
+            vertical: 8,
           ),
           textStyle: GoogleFonts.lexend(
             color: AppStyle.textWhite,

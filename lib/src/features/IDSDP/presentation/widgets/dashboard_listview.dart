@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:ek_sheba/src/common/utils/logger.dart';
+import '../../../../common/utils/logger.dart';
+import '../pages/project_details_page.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:my_utils/my_utils.dart';
 
@@ -97,7 +99,7 @@ Widget getItem(String title) {
                       sl: sl + 1,
                       projectDetails: e,
                       onTap: () {
-                        logger.d('getItem: ${e.id}');
+                        context.push(ProjectDetailsPage.routeName, extra: e);
                       },
                     ),
                   )
