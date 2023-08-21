@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../common/app_style.dart';
+import '../../../../common/widgets/card_decoration.dart';
 import '../../../../locator.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../pages/pages.dart';
@@ -57,16 +58,7 @@ class UnApprovedProjectCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(top: 12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppStyle.textWhite,
-          boxShadow: AppStyle.boxShadow,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: Colors.black.withAlpha(75),
-            width: 1,
-          ),
-        ),
+      child: CardDecoration(
         child: Column(
           children: [
             Transform.translate(

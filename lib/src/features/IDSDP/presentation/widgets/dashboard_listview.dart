@@ -1,5 +1,5 @@
+import 'package:collection/collection.dart';
 import 'package:ek_sheba/src/common/utils/logger.dart';
-import 'package:fpdart/fpdart.dart';
 
 import 'package:my_utils/my_utils.dart';
 
@@ -92,9 +92,13 @@ Widget getItem(String title) {
         return Column(
           children: snapshot.data != null
               ? snapshot.data!
-                  .map(
-                    (e) => ProjectPlanInfoCard(
+                  .mapIndexed(
+                    (sl, e) => ProjectPlanInfoCard(
+                      sl: sl + 1,
                       projectDetails: e,
+                      onTap: () {
+                        logger.d('getItem: ${e.id}');
+                      },
                     ),
                   )
                   .toList()

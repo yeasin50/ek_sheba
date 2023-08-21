@@ -54,7 +54,7 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
       ProjectType.inPlanningCommission => await unApprovedRepo.getUnapprovedProjectInPlanningCommission(),
       ProjectType.inECNEC => await unApprovedRepo.getUnapprovedProjectInEcnec(),
     };
-    logger.d('fromType: $data');
+    // logger.d('fromType: $data');
     return data.fold((l) => [], (r) => r);
   }
 }
