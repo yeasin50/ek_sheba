@@ -1,11 +1,17 @@
 import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:ek_sheba/src/common/utils/raw_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'label_decorator.dart';
 
 class ProjectLocationMapCard extends StatelessWidget {
-  const ProjectLocationMapCard({super.key});
+  const ProjectLocationMapCard({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class ProjectLocationMapCard extends StatelessWidget {
           flex: 3,
           child: Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Text('Department of Agricultural Extension Ministry of Agriculture',
+            child: Text(string2Raw(title)?? "No Title Found",
                 style: GoogleFonts.poppins(
                   color: const Color(0xFF282020),
                   fontSize: 13,
