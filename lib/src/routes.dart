@@ -10,7 +10,7 @@ import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
 
 final routes = GoRouter(
-  initialLocation: '/dashboard',
+  initialLocation: '/login',
   routes: [
     GoRoute(
       path: '/',
