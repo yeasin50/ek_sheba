@@ -14,7 +14,7 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
   Future<Either<Failure, Unit>> loadProjects() async {
     try {
       final url = Uri.parse(APIInfo.getDashboard);
-      final token = await TokenManager.getToken();
+      var token = await TokenManager.getToken();
       if (token == null) {
         logger.e('loadProjects: token is null');
         // return Left(NullFailure());

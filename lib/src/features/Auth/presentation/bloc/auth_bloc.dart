@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -22,10 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     switch (event.authType) {
       case AuthType.ekSheba:
-        final result = await _authRepository.ekShebaLogin(
-          email: event.email,
-          password: event.password,
-        );
+        final result = await _authRepository.ekShebaLogin(email: event.email, password: event.password);
         result.fold(
           (failure) => emit(const AuthFailureState(message: "Failed to login")),
           (user) async {
