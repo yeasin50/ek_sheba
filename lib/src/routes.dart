@@ -71,10 +71,12 @@ final _helpDeskPageRoutes = [
         final pdfUrl =
             data?['url'] == null ? "http://africau.edu/images/default/sample.pdf" : APIInfo.baseUrl + data?['url'];
         final title = data?['title'] ?? "showing default being ";
+        final String uid = data?['uid'] ?? "";
 
         return PDFViewPage(
           url: pdfUrl,
           title: title,
+          uid: uid,
         );
       }),
   GoRoute(

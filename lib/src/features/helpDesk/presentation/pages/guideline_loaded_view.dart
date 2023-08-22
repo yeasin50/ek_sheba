@@ -55,6 +55,7 @@ class OnGuidelineLoadView extends StatelessWidget {
                   context.push(
                     '/pdf_view',
                     extra: {
+                      'uid': element.uuid,
                       "url": element.attachmentUrl,
                       "title": element.title,
                     },
