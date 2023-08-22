@@ -55,11 +55,13 @@ class AuthRepositoryImpl implements AuthRepository {
             return left(AuthFailure());
           }
 
-          ekShebaUser = ekShebaUser.copyWith(
+          logger.d("_ekShebaVerify f ${f.toString()}");
+
+          EkShebaUser result = ekShebaUser.copyWith(
             token: f['access_token'],
             refreshToken: f['refresh_token'],
           );
-          return right(ekShebaUser);
+          return right(result);
         }
       } else {
         logger.e(response.body);
@@ -75,7 +77,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final url = Uri.parse("${APIInfo.baseUrl}api/users/userByUserIdAndUserType");
 
-      logger.i("Eksheba user Check ${body.toString()}");
+     
       final result = await http.post(
         url,
         body: jsonEncode(body),
@@ -96,9 +98,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Map?> _ekShebaVerify(Map<String, dynamic> data) async {
     try {
       // https://gwtraining.plandiv.gov.bd/sso/sso-user-verify
-
-      final url = Uri.parse("${APIInfo.baseUrl}api/users/userByUserIdAndUserType");
-
+      final url = Uri.parse("${APIInfo.baseUrl}sso/sso-user-verify");
       final response = await http.post(
         url,
         body: jsonEncode(data),
@@ -107,8 +107,9 @@ class AuthRepositoryImpl implements AuthRepository {
           "Authorization": data['token'],
         },
       );
+
+      logger.d("_ekShebaVerify ${response.body}");
       if (response.statusCode == 200) {
-        logger.d("_ekShebaVerify ${response.body}");
         return jsonDecode(response.body);
       } else {
         return null;
