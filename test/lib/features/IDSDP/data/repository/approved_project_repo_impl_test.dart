@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../fixture/fixture.dart';
 
-void main() {
+void main() { 
   group('approved_project_repo_impl', () {
     final data = jsonDecode(fixture('dashboard_projects.json'));
     DashboardApprovedProjectRepoImpl approvedProjectRepoImpl = DashboardApprovedProjectRepoImpl();

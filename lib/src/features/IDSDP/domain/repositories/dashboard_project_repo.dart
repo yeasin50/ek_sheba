@@ -22,4 +22,6 @@ abstract class DashBoardProjectRepo {
   Future<Either<Failure, Unit>> loadProjects();
 
   Future<List<ProjectDetails>> fromType(ProjectType type);
+
+  Future<ProjectDetails?> getProjectDetails(String uuid);
 }

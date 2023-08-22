@@ -57,4 +57,31 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
     // logger.d('fromType: $data');
     return data.fold((l) => [], (r) => r);
   }
+
+  @override
+  Future<ProjectDetails?> getProjectDetails(String uuid) async {
+    try {
+      final uri = Uri.parse(APIInfo.getProjectDetails(uuid: uuid));
+      final token = await TokenManager.getToken();
+      if (token == null) {
+        logger.e('getProjectDetails: token is null');
+        return null;
+      }
+
+      final response = await http.get(uri, headers: {
+        'Authorization': 'Bearer $token',
+      });
+
+      if (response.statusCode != 200) {
+        logger.e('getProjectDetails: ${response.body} ');
+        return null;
+      }
+
+      final data = jsonDecode(response.body);
+      return ProjectDetails.fromMap(data);
+    } catch (e) {
+      logger.e('getProjectDetails: ${e.toString()}');
+      return null;
+    }
+  }
 }

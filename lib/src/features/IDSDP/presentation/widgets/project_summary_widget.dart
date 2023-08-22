@@ -15,7 +15,7 @@ class ProjectSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.i('ProjectSummaryWidget: ${projectDetails.toString()}');
+    logger.i('ProjectSummaryWidget: ${projectDetails.uuid}');
 
     const TextStyle textStyle = TextStyle(
       fontSize: 12,
@@ -110,23 +110,24 @@ class ProjectSummaryWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildSmallButtonText(
-                          text: "সংস্থায় আছে",
-
-                          //  projectDetails.projectStatusEn,
-
-                          onTap: () {},
+                        Flexible(
+                          child: buildSmallButtonText(
+                            text: string2Raw(projectDetails.projectStatusBn),
+                            onTap: () {},
+                          ),
                         ),
                         const SizedBox(width: 4),
-                        buildSmallButtonText(
-                          // text: projectDetails.projectStageEn,
-                          text: "এজেন্সি ডেস্ক",
-                          onTap: () {},
+                        Flexible(
+                          child: buildSmallButtonText(
+                            text: string2Raw(projectDetails.projectStageBn),
+                            onTap: () {},
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 2),
-                    Text("অফিসারের নাম: Dr. Rezaul Huq Khan"),
+                    // if (projectDetails.showAssignedOfficer == true)
+                    Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
                   ],
                 ),
               ),
