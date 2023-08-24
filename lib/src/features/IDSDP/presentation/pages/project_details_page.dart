@@ -63,7 +63,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
-                    if (sectorDivision != null) ProjectLocationMapCard(title: sectorDivision),
+                   ProjectLocationMapCard(),
                     const SizedBox(height: 24),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

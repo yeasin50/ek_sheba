@@ -1,3 +1,5 @@
+import 'package:ek_sheba/src/features/IDSDP/presentation/bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
+
 import 'features/IDSDP/data/repositories/approved_project_repo_impl.dart';
 import 'features/IDSDP/data/repositories/unapproved_project_repo_impl.dart';
 import 'package:get_it/get_it.dart';
@@ -46,4 +48,5 @@ void setup() {
       ));
 
   locator.registerLazySingleton(() => IdsdpBloc());
+  locator.registerLazySingleton(() => AgencyAndMinistryNameBloc());
 }

@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -5,6 +6,7 @@ import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 
+import '../bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
 import '../bloc/idsdp_bloc.dart';
 import '../widgets/approved_project_card.dart';
 import '../widgets/project_location_map_card.dart';
@@ -23,6 +25,7 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
+    locator.get<AgencyAndMinistryNameBloc>().add(const GetAgencyAndMinistryName());
   }
 
   @override
@@ -51,7 +54,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ProjectLocationMapCard(
-                          title: 'Department of Agricultural Extension Ministry of Agriculture',
+                         
                         ),
                         SizedBox(height: 24),
                         ApprovedProjectCard(),

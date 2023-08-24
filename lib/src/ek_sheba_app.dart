@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'features/IDSDP/presentation/bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
 import 'features/IDSDP/presentation/bloc/idsdp_bloc.dart';
 import 'routes.dart';
 
@@ -16,6 +17,7 @@ class EkSheba extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<IdsdpBloc>(create: (context) => locator<IdsdpBloc>()),
+        BlocProvider<AgencyAndMinistryNameBloc>(create: (context) => locator<AgencyAndMinistryNameBloc>()),
       ],
       child: Material(
         //to remove the transparent background on status bar

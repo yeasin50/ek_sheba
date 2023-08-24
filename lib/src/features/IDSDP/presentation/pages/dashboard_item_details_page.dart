@@ -44,7 +44,7 @@ class DashBoardItemDetailsPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const ProjectLocationMapCard(title: 'Department of Agricultural Extension Ministry of Agriculture'),
+                const ProjectLocationMapCard( ),
                 SizedBox(height: 24),
                 label,
                 SizedBox(height: 12),
