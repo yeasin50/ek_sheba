@@ -77,7 +77,6 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final url = Uri.parse("${APIInfo.baseUrl}api/users/userByUserIdAndUserType");
 
-     
       final result = await http.post(
         url,
         body: jsonEncode(body),
@@ -127,14 +126,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     try {
       final body = {
+        "grant_type": "password",
         "username": email,
         "password": password,
-        "grant_type": "password",
       };
 
       final headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Transfer-Encoding': 'chunked',
         'Authorization': 'Basic aWJjc3BsYW5uaW5naWRzZHA6cGxhbm5pbmdJZHNkcHNoYSRAIzkyOSU=',
       };
       final response = await http.post(
