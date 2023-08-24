@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/common/utils/raw_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -49,7 +50,7 @@ class ResourceCard extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              text,
+              string2Raw(text) ?? "not found",
               style: descriptionTextStyle,
               maxLines: 2,
             ),
@@ -79,7 +80,7 @@ class ResourceCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    resourceInfo.title ?? "",
+                    string2Raw(resourceInfo.title) ?? "",
                     style: labelTextStyle,
                     maxLines: 1,
                   ),

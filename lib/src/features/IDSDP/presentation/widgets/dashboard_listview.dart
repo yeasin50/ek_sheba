@@ -1,6 +1,20 @@
-import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:collection/collection.dart';
+import '../../../../common/utils/logger.dart';
+import '../pages/project_details_page.dart';
+import 'package:go_router/go_router.dart';
+
+import 'package:my_utils/my_utils.dart';
+
+import '../../../../common/app_style.dart';
+import '../../data/models/project_type.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
+
+import '../../../../locator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../domain/entities/project_details.dart';
+import 'project_card.dart';
 
 /// DashboardItems
 /// returns a list of items for the dashboard using [Column] widget
@@ -52,7 +66,49 @@ class DashboardListView extends StatelessWidget {
     return Column(
       children: [
         header,
+        getItem(itemTitle),
       ],
     );
   }
+}
+
+Widget getItem(String title) {
+  final type = projectTypeFromTitle(title);
+  final future = locator.get<DashboardProjectRepoImpl>().fromType(type);
+
+  return FutureBuilder<List<ProjectDetails>>(
+    future: future,
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      if (snapshot.hasError) {
+        logger.e('getItem: ${snapshot.error.toString()}');
+        return const Center(child: Text('Something went wrong'));
+      }
+
+      if (snapshot.hasData) {
+        logger.d('getItem: ${snapshot.data}');
+
+        return Column(
+          children: snapshot.data != null
+              ? snapshot.data!
+                  .mapIndexed(
+                    (sl, e) => ProjectPlanInfoCard(
+                      sl: sl + 1,
+                      projectDetails: e,
+                      onTap: () {
+                        context.push(ProjectDetailsPage.routeName, extra: e);
+                      },
+                    ),
+                  )
+                  .toList()
+              : [],
+        );
+      }
+
+      return const Center(child: Text('NA state'));
+    },
+  );
 }

@@ -1,0 +1,61 @@
+{
+  "id": 1407,
+  "uuid": "67c26fb6-d4a0-48e0-a2d6-a6b490371df1",
+  "titleEn": "Rural Infrasructure Devilopment Project of Jamalpur and Sherpur District.",
+  "titleBn": "জামালপুর ও শেরপুর জেলার গ্রামীণ অবকাঠামো উন্নয়ন প্রকল্প।",
+  "commencementDate": "2023-07-16",
+  "completionDate": "2025-12-31",
+  "projectType": {
+    "id": 1,
+    "uuid": "f4e8c6ad-7748-410d-9d57-3220dfbc33cd",
+    "nameEn": "DPP",
+    "nameBn": "ডিপিপি",
+    "code": "1"
+  },
+  "sector": {
+    "id": 18,
+    "uuid": "ad866a34-564d-4607-b6c6-7d6d5d535051",
+    "nameEn": "Local Government and Rural Development",
+    "nameBn": "স্থানীয় সরকার ও পল্লী উন্নয়ন",
+    "code": "08"
+  },
+  "sectorDivision": {
+    "id": 2,
+    "uuid": "b2dd0665-b8da-4ab9-b593-bbe52076bf26",
+    "nameEn": "Agricultural, Water Resources and Rural Institutions Division",
+    "nameBn": "কৃষি, পানি সম্পদ ও পল্লী প্রতিষ্ঠান বিভাগ",
+    "code": "01"
+  },
+  "agency": {
+    "id": 713,
+    "uuid": "10712a54-49da-bb15-7b5c5b4ca46b",
+    "nameEn": "National Institute of Local Government",
+    "nameBn": "জাতীয় স্থানীয় সরকার ইনস্টিটিউট",
+    "code": "131012300"
+  },
+  "ministryDivision": {
+    "id": 10,
+    "uuid": "d2662d09-faed-453d-ac7e-0d0a25b058aa",
+    "nameEn": "Local Government Division",
+    "nameBn": "স্থানীয় সরকার বিভাগ",
+    "code": "137"
+  },
+  "status": "AGENCY_DESK",
+  "totalAmount": 0.0,
+  "currentProjectMovementStage": null,
+  "subSector": {
+    "id": 30,
+    "uuid": "6d6b3eb0-7dd0-4529-b313-df0261a67696",
+    "nameEn": "Rural Development and Cooperatives",
+    "nameBn": "পল্লী উন্নয়ন ও সমবায়",
+    "code": "41"
+  },
+  "projectStatusEn": "AGENCY DESK",
+  "projectStatusBn": "এজেন্সী এর ডেস্ক",
+  "projectStageEn": "IN AGENCY",
+  "projectStageBn": "সংস্থায় আছে",
+  "showAssignedOfficer": true,
+  "assignedOfficer": "NILG Desk Officer",
+  "nothiStatusEn": "Draft",
+  "nothiStatusBn": "খসড়া"
+}

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:ek_sheba/src/common/utils/api_config.dart';
-import 'package:ek_sheba/src/common/utils/failures.dart';
 import 'package:ek_sheba/src/common/utils/logger.dart';
 
 import 'package:fpdart/src/either.dart';

@@ -1,4 +1,5 @@
 import 'package:ek_sheba/src/common/app_style.dart';
+import 'package:ek_sheba/src/common/utils/token_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -210,8 +211,9 @@ class AppDrawer extends StatelessWidget {
           Material(
             color: Color.fromARGB(255, 155, 87, 32),
             child: InkWell(
-              onTap: () {
+              onTap: () async {
                 context.replace('/login');
+                await TokenManager.deleteSecureToken();
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(

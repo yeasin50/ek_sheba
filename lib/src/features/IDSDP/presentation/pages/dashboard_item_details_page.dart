@@ -12,6 +12,7 @@ class DashBoardItemDetailsPage extends StatelessWidget {
     required this.itemTitle,
   });
 
+  static const String routeName = '/dashboard_item';
   final String itemTitle;
 
   @override
@@ -30,22 +31,24 @@ class DashBoardItemDetailsPage extends StatelessWidget {
     );
 
     return BackgroundDecoration(
-      body: ListView( // may shift to CustomScrollView
+      body: ListView(
+        // may shift to CustomScrollView
         children: [
-          const IDSDPAppBar(),
+          const IDSDPAppBar(
+            hasDrawer: true,
+            hasHomeButton: true,
+          ),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ProjectLocationMapCard(),
+                const ProjectLocationMapCard( ),
                 SizedBox(height: 24),
                 label,
                 SizedBox(height: 12),
-                DashboardListView(
-                  itemTitle: itemTitle,
-                ),
+                DashboardListView(itemTitle: itemTitle),
               ],
             ),
           ),

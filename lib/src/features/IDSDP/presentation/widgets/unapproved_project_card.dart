@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/app_style.dart';
+import '../../../../common/widgets/card_decoration.dart';
+import '../../../../locator.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
+import '../pages/pages.dart';
 import 'label_decorator.dart';
 import 'progress_item_card.dart';
 
@@ -11,10 +16,34 @@ class UnApprovedProjectCard extends StatelessWidget {
 
   ///provide data on order of [In Preparation, For Recast, In Ministry , In Planning Commission, For Recast]
 
+  void _onDetailsPage(BuildContext context, int index) {
+    context.pushNamed(
+      DashBoardItemDetailsPage.routeName,
+      extra: {
+        'itemTitle': index == 0
+            ? "In Preparation"
+            : index == 1
+                ? "For Recast"
+                : index == 2
+                    ? "In Ministry"
+                    : index == 3
+                        ? "In Planning Commission"
+                        : "For Recast",
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final unApprovedRepo = locator<DashboardProjectRepoImpl>().unApprovedRepo;
     //todo: get data from api
-    final List<int> data = [5, 5, 0, 4, 0];
+    final List<int> data = [
+      unApprovedRepo.unapprovedInPreparationProjectCount(),
+      unApprovedRepo.unapprovedForRecastProjectCount(),
+      unApprovedRepo.unapprovedInMinistryProjectCount(),
+      unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
+      unApprovedRepo.unapprovedInEcnecProjectCount(),
+    ];
 
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),
@@ -29,16 +58,7 @@ class UnApprovedProjectCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(top: 12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppStyle.textWhite,
-          boxShadow: AppStyle.boxShadow,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: Colors.black.withAlpha(75),
-            width: 1,
-          ),
-        ),
+      child: CardDecoration(
         child: Column(
           children: [
             Transform.translate(
@@ -57,7 +77,9 @@ class UnApprovedProjectCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ProgressItemCard(
-                          onTap: () {},
+                          onTap: () {
+                            _onDetailsPage(context, 0);
+                          },
                           title: "In Preparation",
                           count: data[0],
                         ),
@@ -65,7 +87,9 @@ class UnApprovedProjectCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(
-                          onTap: () {},
+                          onTap: () {
+                            _onDetailsPage(context, 1);
+                          },
                           title: "For Recast",
                           count: data[1],
                         ),
@@ -73,7 +97,9 @@ class UnApprovedProjectCard extends StatelessWidget {
                       const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(
-                          onTap: () {},
+                          onTap: () {
+                            _onDetailsPage(context, 2);
+                          },
                           title: "In Ministry",
                           count: data[2],
                         ),
@@ -85,19 +111,27 @@ class UnApprovedProjectCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ProgressItemCard(
-                          onTap: () {},
+                          onTap: () {
+                            _onDetailsPage(context, 3);
+                          },
                           title: "In Planning Commission",
                           count: data[3],
                         ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
-                        child: ProgressItemCard(onTap: () {}, title: "For Recast", count: data[4]),
+                        child: ProgressItemCard(
+                            onTap: () {
+                              _onDetailsPage(context, 4);
+                            },
+                            title: "For Recast",
+                            count: data[4]),
                       ),
                       const SizedBox(width: 8),
                       const Expanded(
-                          //maintain the size
-                          child: SizedBox()),
+                        //maintain the size
+                        child: SizedBox(),
+                      ),
                     ],
                   ),
                 ],

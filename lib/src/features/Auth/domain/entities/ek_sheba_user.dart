@@ -8,21 +8,25 @@ class EkShebaUser extends Equatable {
   const EkShebaUser({
     required this.user,
     required this.token,
+    this.refreshToken,
   });
 
   final User user;
   final String token;
+  final String? refreshToken ;
 
   @override
-  List<Object?> get props => [user, token];
+  List<Object?> get props => [user, token,refreshToken];
 
   EkShebaUser copyWith({
     User? user,
     String? token,
+    String? refreshToken,
   }) {
     return EkShebaUser(
       user: user ?? this.user,
       token: token ?? this.token,
+      refreshToken: refreshToken ?? this.refreshToken,
     );
   }
 
@@ -31,6 +35,7 @@ class EkShebaUser extends Equatable {
 
     result.addAll({'user': user.toMap()});
     result.addAll({'access_token': token});
+    result.addAll({'refresh_token': refreshToken});
 
     return result;
   }
@@ -39,6 +44,7 @@ class EkShebaUser extends Equatable {
     return EkShebaUser(
       user: User.fromMap(map['user']),
       token: map['access_token'] ?? '',
+      refreshToken: map['refresh_token'] ?? '',
     );
   }
 
@@ -47,5 +53,5 @@ class EkShebaUser extends Equatable {
   factory EkShebaUser.fromJson(String source) => EkShebaUser.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EkShebaUser(user: $user, token: $token)';
+  String toString() => 'EkShebaUser(user: $user, token: $token refresh_token: $refreshToken)';
 }

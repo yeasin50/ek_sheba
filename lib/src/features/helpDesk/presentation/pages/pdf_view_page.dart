@@ -11,10 +11,12 @@ class PDFViewPage extends StatelessWidget {
     super.key,
     required this.url,
     required this.title,
+    required this.uid,
   });
 
   final String url;
   final String title;
+  final String uid;
   static const routeName = "/pdf_view";
 
   @override

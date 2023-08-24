@@ -6,3 +6,5 @@ abstract class IdsdpEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class LoadProjectsEvent extends IdsdpEvent {}
