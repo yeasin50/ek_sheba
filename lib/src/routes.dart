@@ -8,10 +8,16 @@ import 'features/IDSDP/presentation/pages/project_details_page.dart';
 import 'features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
+import 'test_page.dart';
 
 final routes = GoRouter(
-  initialLocation: '/login',
+  initialLocation: TestPDFPage.routeName,
+  // '/login',
   routes: [
+    GoRoute(
+      path: TestPDFPage.routeName,
+      builder: (context, state) => const TestPDFPage(),
+    ),
     GoRoute(
       path: '/',
       builder: (context, state) => const HomePage(),
@@ -37,7 +43,9 @@ final routes = GoRouter(
         path: ProjectDetailsPage.routeName,
         builder: (context, state) {
           final ProjectDetails projectDetails = state.extra as ProjectDetails;
-        return     ProjectDetailsPage(projectDetails: projectDetails,);
+          return ProjectDetailsPage(
+            projectDetails: projectDetails,
+          );
         }
         // ProjectDetailsPage(projectDetails: state.extra as ProjectDetails),
         ),
