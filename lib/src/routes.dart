@@ -8,6 +8,7 @@ import 'features/IDSDP/presentation/pages/project_details_page.dart';
 import 'features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
+import 'pspdf_test.dart';
 import 'test_page.dart';
 
 final routes = GoRouter(
@@ -16,7 +17,7 @@ final routes = GoRouter(
   routes: [
     GoRoute(
       path: TestPDFPage.routeName,
-      builder: (context, state) => const TestPDFPage(),
+      builder: (context, state) => const DummyPDFTest(),
     ),
     GoRoute(
       path: '/',

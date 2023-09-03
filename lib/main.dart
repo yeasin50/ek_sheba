@@ -16,7 +16,7 @@ void main() async {
       startLocale: const Locale('bn'),
       fallbackLocale: const Locale('bn'),
       child: Expirable(
-        expireDate: DateTime(2023, 9, 1),
+        expireDate: DateTime(2023, 11, 1),
         message: "Contact the developer for new version",
         child: const EkSheba(),
       ),
