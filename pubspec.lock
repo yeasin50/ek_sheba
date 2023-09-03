@@ -241,6 +241,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.3"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.2"
   easy_localization:
     dependency: "direct main"
     description:
@@ -638,6 +646,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  mockito:
+    dependency: transitive
+    description:
+      name: mockito
+      sha256: "7d5b53bcd556c1bc7ffbe4e4d5a19c3e112b7e925e9e172dd7c6ad0630812616"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.2"
   my_utils:
     dependency: "direct main"
     description:
@@ -767,6 +783,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  pspdfkit_flutter:
+    dependency: "direct dev"
+    description:
+      name: pspdfkit_flutter
+      sha256: a842a88d0bb0df8c9b9d5588fc3ddae4e13a30e22a03c67367379468b8845077
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.0"
   pub_semver:
     dependency: transitive
     description:
@@ -876,6 +900,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  source_gen:
+    dependency: transitive
+    description:
+      name: source_gen
+      sha256: fc0da689e5302edb6177fdd964efcb7f58912f43c28c2047a808f5bfff643d16
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   source_span:
     dependency: transitive
     description:

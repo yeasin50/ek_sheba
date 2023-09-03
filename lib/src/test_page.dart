@@ -52,8 +52,11 @@ class _TestPDFPageState extends State<TestPDFPage> {
 
       final url = "https://report.plandiv.gov.bd/public/index.php/api/pdf-generate-post";
 
-      final encodedData = Uri.encodeFull(testBody.entries.map((e) => '${e.key}=${e.value}').join('&'));
-
+      final encodedData = testBody.entries.map((entry) {
+        final key = Uri.encodeComponent(entry.key);
+        final value = Uri.encodeComponent(entry.value.toString());
+        return '$key=$value';
+      }).join('&');
       //json with url encoded
       var response = await http.post(
         Uri.parse(url),
@@ -63,30 +66,34 @@ class _TestPDFPageState extends State<TestPDFPage> {
         },
       );
 
-      logger.i('pdf getPDF response: ${response.contentLength}, ${response.bodyBytes}, ${response.body}');
-      logger.i('pdf getPDF response: ${response.request}');
-
+      if (response.statusCode == 200) {
+        logger.i('pdf getPDF response: ${response.contentLength}');
+        logger.i('pdf getPDF response: ${response.body}');
+      } else {
+        logger.e('pdf getPDF response: ${response.statusCode}');
+        logger.e('pdf getPDF response: ${response.body}');
+      }
       return response;
     } catch (e) {
-      logger.e("pdf getPDF Error: ${e.toString()}");
+      logger.e("pdf getPDF Error: ${e.toString().substring(0, 100)}");
     }
   }
 
   Future<File?> createFileFromPdfUrl(http.Response response) async {
     try {
       logger.d("response contentLength: ${response.contentLength}");
-      final bytes = response.bodyBytes;
+      final bytes = response.body;
 
       /// on download folder path
       // final dir = await getDownloadsDirectory();
-//       Directory dir = Directory('/storage/emulated/0/Download');
-//       final filePath = dir!.path + "/report.pdf";
+      Directory dir = Directory('/storage/emulated/0/Download');
+      final filePath = dir!.path + "/report.pdf";
 //
 //       // Write the file content to a file
-//       File file = File(filePath);
-//       await file.writeAsBytes(response.bodyBytes);
-//
-//       return file;
+      File file = File(filePath);
+      await file.writeAsBytes(response.bodyBytes);
+
+      return file;
     } catch (e) {
       logger.e(" createFileFromPdfUrl Error: ${e.toString()}");
       throw e;
@@ -123,8 +130,8 @@ class _TestPDFPageState extends State<TestPDFPage> {
         onPressed: () async {
           final response = await getPDF();
 
-          // final file = await createFileFromPdfUrl(response!);
-          // logger.i('downloaded file: ${file}');
+          final file = await createFileFromPdfUrl(response!);
+          logger.i('downloaded file: ${file}');
         },
       ),
     );

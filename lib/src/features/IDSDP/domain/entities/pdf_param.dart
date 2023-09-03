@@ -1,47 +1,47 @@
 import 'dart:convert';
 
 class PDFParams {
-  final String fileName;
-  final String templateName;
-  final String lng;
-  final String agency;
-  final String sectorDivision;
-  final String projectSummary;
-  final String getByProjectConcept;
-  final String estimatedProjectCost;
+  final fileName;
+  final templateName;
+  final lng;
+  final agency;
+  final sectorDivision;
+  final projectSummary;
+  final getByProjectConcept;
+  final estimatedProjectCost;
 
-  final String totalAmount;
-  final String gobAmount;
-  final String gobFeAmount;
-  final String paAmount;
-  final String paRpaAmount;
-  final String ownFundAmount;
-  final String ownFeAmount;
+  final totalAmount;
+  final gobAmount;
+  final gobFeAmount;
+  final paAmount;
+  final paRpaAmount;
+  final ownFundAmount;
+  final ownFeAmount;
 
   ///
-  final String othersAmount;
-  final String otherFeAmount;
+  final othersAmount;
+  final otherFeAmount;
 
-  final String fiscalYearsList;
-  final String upazilas;
-  var projectAreaJustification;
+  final fiscalYearsList;
+  final upazilas;
+  final projectAreaJustification;
 
-  final String revenueList;
+  final revenueList;
 
-  var revenueTotal;
-  final String capitalList;
-  var capitalTotal;
-  var physicalContingencyTotal;
-  var priceContingencyTotal;
-  var grantTotal;
-  final  String projectManagement;
+  final revenueTotal;
+  final capitalList;
+  final capitalTotal;
+  final physicalContingencyTotal;
+  final priceContingencyTotal;
+  final grantTotal;
+  final projectManagement;
 
-  final String getLogFrame;
-  final String view;
-  final String print_r;
-  final String key;
+  final getLogFrame;
+  final view;
+  final print_r;
+  final key;
 
-  PDFParams({
+  const PDFParams({
     required this.fileName,
     required this.templateName,
     required this.lng,
@@ -76,6 +76,7 @@ class PDFParams {
     required this.key,
   });
 
+  //generate to map
   Map<String, dynamic> toMap() {
     return {
       'fileName': fileName,
@@ -113,44 +114,52 @@ class PDFParams {
     };
   }
 
+  //generate to json
+  String toJson() => json.encode(toMap());
+
+  //generate from json
+  factory PDFParams.fromJson(String source) => PDFParams.fromMap(json.decode(source));
+
+  //generate from map
   factory PDFParams.fromMap(Map<String, dynamic> map) {
     return PDFParams(
-      fileName: "${map['fileName']}",
-      templateName: "${map['templateName']}",
-      lng: "${map['lng']}",
-      agency: "${map['agency']}",
-      sectorDivision: "${map['sectorDivision']}",
-      projectSummary: "${map['projectSummary']}",
-      getByProjectConcept: "${map['getByProjectConcept']}",
-      estimatedProjectCost: "${map['estimatedProjectCost']}",
-      totalAmount: "${map['totalAmount']}",
-      gobAmount: "${map['gobAmount']}",
-      gobFeAmount: "${map['gobFeAmount']}",
-      paAmount: "${map['paAmount']}",
-      paRpaAmount: "${map['paRpaAmount']}",
-      ownFundAmount: "${map['ownFundAmount']}",
-      ownFeAmount: "${map['ownFeAmount']}",
-      othersAmount: "${map['othersAmount']}",
-      otherFeAmount: "${map['otherFeAmount']}",
-      fiscalYearsList: "${map['fiscalYearsList']}",
-      upazilas: "${map['upazilas']}",
-      projectAreaJustification: "${map['projectAreaJustification']}",
-      revenueList: "${map['revenueList']}",
-      revenueTotal: "${map['revenueTotal']}",
-      capitalList: "${map['capitalList']}",
-      capitalTotal: "${map['capitalTotal']}",
-      physicalContingencyTotal: "${map['physicalContingencyTotal']}",
-      priceContingencyTotal: "${map['priceContingencyTotal']}",
-      grantTotal: "${map['grantTotal']}",
-      projectManagement: "${map['projectManagement']}",
-      getLogFrame: "${map['getLogFrame']}",
-      view: "${map['view']}",
-      print_r: "${map['print_r']}",
-      key: "${map['key']}",
+      ownFundAmount: map['ownFundAmount'],
+      ownFeAmount: map['ownFeAmount'],
+      othersAmount: map['othersAmount'],
+      otherFeAmount: map['otherFeAmount'],
+      fiscalYearsList: map['fiscalYearsList'],
+      upazilas: map['upazilas'],
+      projectAreaJustification: map['projectAreaJustification'],
+      revenueList: map['revenueList'],
+      revenueTotal: map['revenueTotal'],
+      capitalList: map['capitalList'],
+      capitalTotal: map['capitalTotal'],
+      physicalContingencyTotal: map['physicalContingencyTotal'],
+      priceContingencyTotal: map['priceContingencyTotal'],
+      grantTotal: map['grantTotal'],
+      projectManagement: map['projectManagement'],
+      getLogFrame: map['getLogFrame'],
+      view: map['view'],
+      print_r: map['print_r'],
+      key: map['key'],
+      fileName: map['fileName'],
+      templateName: map['templateName'],
+      lng: map['lng'],
+      agency: map['agency'],
+      sectorDivision: map['sectorDivision'],
+      projectSummary: map['projectSummary'],
+      getByProjectConcept: map['getByProjectConcept'],
+      estimatedProjectCost: map['estimatedProjectCost'],
+      totalAmount: map['totalAmount'],
+      gobAmount: map['gobAmount'],
+      gobFeAmount: map['gobFeAmount'],
+      paAmount: map['paAmount'],
+      paRpaAmount: map['paRpaAmount'],
     );
   }
 
-  String toJson() => json.encode(toMap());
-
-  factory PDFParams.fromJson(String source) => PDFParams.fromMap(json.decode(source));
+  //encoded for url on http body POST, handle if value is nested Map
+  String toUrlEncoded() {
+    return "fileName=${this.fileName}&templateName=${this.templateName}&lng=${this.lng}&agency=${this.agency}&sectorDivision=${this.sectorDivision}&projectSummary=${this.projectSummary}&getByProjectConcept=${this.getByProjectConcept}&estimatedProjectCost=${this.estimatedProjectCost}&totalAmount=${this.totalAmount}&gobAmount=${this.gobAmount}&gobFeAmount=${this.gobFeAmount}&paAmount=${this.paAmount}&paRpaAmount=${this.paRpaAmount}&ownFundAmount=${this.ownFundAmount}&ownFeAmount=${this.ownFeAmount}&othersAmount=${this.othersAmount}&otherFeAmount=${this.otherFeAmount}&fiscalYearsList=${this.fiscalYearsList}&upazilas=${this.upazilas}&projectAreaJustification=${this.projectAreaJustification}&revenueList=${this.revenueList}&revenueTotal=${this.revenueTotal}&capitalList=${this.capitalList}&capitalTotal=${this.capitalTotal}&physicalContingencyTotal=${this.physicalContingencyTotal}&priceContingencyTotal=${this.priceContingencyTotal}&grantTotal=${this.grantTotal}&projectManagement=${this.projectManagement}&getLogFrame=${this.getLogFrame}&view=${this.view}&print_r=${this.print_r}&key=${this.key}";
+  }
 }
