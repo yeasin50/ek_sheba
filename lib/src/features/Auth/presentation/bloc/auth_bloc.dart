@@ -25,13 +25,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       case AuthType.ekSheba:
         final result = await _authRepository.ekShebaLogin(email: event.email, password: event.password);
         result.fold(
-          (failure) => emit(const AuthFailureState(message: "Failed to login")),
+          (failure) => emit(AuthFailureState(message: "Failed to login ${failure.message}")),
           (user) async {
             emit(AuthSuccess(ekShebaUser: user));
 
-            if (event.rememberMe) {
-              await TokenManager.setToken(user.token);
-            }
+            await TokenManager.setToken(user.token, save: event.rememberMe);
           },
         );
 
@@ -48,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
           (user) async {
             emit(AuthSuccess(systemUser: user));
-            await TokenManager.setToken(user.accessToken);
+            TokenManager.setToken(user.accessToken, save: event.rememberMe);
           },
         );
         break;

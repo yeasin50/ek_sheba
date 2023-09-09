@@ -29,7 +29,7 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
 
       if (response.statusCode != 200) {
         logger.e('loadProjects: ${response.body}  $token');
-        return Left(NullFailure());
+        return Left(NetworkFailure());
       }
       logger.i('loadProjects: ${response.body}');
       final data = jsonDecode(response.body);
