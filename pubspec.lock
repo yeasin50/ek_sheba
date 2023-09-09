@@ -273,15 +273,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
-  expirable:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: "8a3ff76544f49418bed21b512ec68611cdcbd1ac"
-      url: "https://github.com/yeasin50/expirable.git"
-    source: git
-    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -679,6 +670,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  patch_pal:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: e1c446d98edd55379d495eed27bf3938ce99c8ae
+      url: "https://github.com/yeasin50/patch_pal.git"
+    source: git
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
@@ -1157,5 +1157,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.1.0-185.0.dev <4.0.0"
+  dart: ">=3.1.0 <4.0.0"
   flutter: ">=3.10.0"
