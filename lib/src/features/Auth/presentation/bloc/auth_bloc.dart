@@ -28,7 +28,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           (failure) => emit(const AuthFailureState(message: "Failed to login")),
           (user) async {
             emit(AuthSuccess(ekShebaUser: user));
-            await TokenManager.setToken(user.token);
+
+            if (event.rememberMe) {
+              await TokenManager.setToken(user.token);
+            }
           },
         );
 

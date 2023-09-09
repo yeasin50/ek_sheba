@@ -12,7 +12,6 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
-import 'test_pdf_test_body.dart';
 import 'test_pdf_variable.dart';
 
 class TestPDFPage extends StatefulWidget {
@@ -52,15 +51,15 @@ class _TestPDFPageState extends State<TestPDFPage> {
 
       final url = "https://report.plandiv.gov.bd/public/index.php/api/pdf-generate-post";
 
-      final encodedData = testBody.entries.map((entry) {
-        final key = Uri.encodeComponent(entry.key);
-        final value = Uri.encodeComponent(entry.value.toString());
-        return '$key=$value';
-      }).join('&');
+      // final encodedData = testBody.entries.map((entry) {
+      //   final key = Uri.encodeComponent(entry.key);
+      //   final value = Uri.encodeComponent(entry.value.toString());
+      //   return '$key=$value';
+      // }).join('&');
       //json with url encoded
       var response = await http.post(
         Uri.parse(url),
-        body: encodedData,
+        // body: encodedData,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
