@@ -9,11 +9,11 @@ import 'features/IDSDP/presentation/pages/project_details_page.dart';
 import 'features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
-import 'pspdf_test.dart';
-import 'test_page.dart';
+import 'features/html_pdf_dashboard/html_pdf_dashboard.dart';
 
 final routes = GoRouter(
-  initialLocation: '/login',
+  initialLocation: HtmlPDFDashboard.routeName,
+  //  '/login',
   redirect: (context, state) async {
     if (state.location == '/login') {
       final token = await TokenManager.getToken();
@@ -26,8 +26,8 @@ final routes = GoRouter(
   },
   routes: [
     GoRoute(
-      path: TestPDFPage.routeName,
-      builder: (context, state) => const DummyPDFTest(),
+      path: HtmlPDFDashboard.routeName,
+      builder: (context, state) => const HtmlPDFDashboard(),
     ),
     GoRoute(
       path: '/',

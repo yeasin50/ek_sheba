@@ -1,14 +1,24 @@
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:ek_sheba/src/common/utils/token_storage.dart';
 import 'package:ek_sheba/src/locator.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:patch_pal/patch_pal.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'src/ek_sheba_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  try {
+    await FlutterDownloader.initialize();
+    await Permission.storage.request();
+  } catch (e) {
+    logger.e(e);
+  }
 
   await PatchPal().setUp('https://raw.githubusercontent.com/yeasin50/AssetsFor_/master/apps/patch_pal/ek_sheba.json');
   await TokenManager.setUp();

@@ -6,6 +6,7 @@ import 'package:pspdfkit_flutter/pspdfkit.dart';
 import 'package:flutter/material.dart';
 
 class DummyPDFTest extends StatefulWidget {
+  static const routeName = '/test_pdf_page';
   const DummyPDFTest({super.key});
 
   @override
