@@ -1,7 +1,13 @@
 import 'dart:convert';
 
+import 'package:ek_sheba/src/common/utils/random_uuid.dart';
+import 'package:ek_sheba/src/features/html_pdf_dashboard/auth/auth_hanlder.dart';
+import 'package:ek_sheba/src/features/html_pdf_dashboard/domain/entities/session_param.dart';
+import 'package:ek_sheba/src/locator.dart';
+
 import '../../../../common/utils/api_config.dart';
 import '../../../../common/utils/logger.dart';
+import '../../../../common/utils/token_storage.dart';
 import '../../domain/entities/system_user.dart';
 
 import '../../domain/entities/ek_sheba_user.dart';
@@ -38,6 +44,7 @@ class AuthRepositoryImpl implements AuthRepository {
           "userType": "NOTHI",
           'password': password,
         };
+
         final isUser = await _checkEkShebaUser(data);
 
         if (!isUser) {
@@ -54,7 +61,29 @@ class AuthRepositoryImpl implements AuthRepository {
             logger.e("_ekShebaVerify User not found");
             return left(AuthFailure());
           }
+          //! pdf handler
+          try {
+            String doptorToken = ekShebaUser.token;
+            final sessionId = generateRandomUUID();
+            final String pdfToken = f['access_token'];
 
+            final param = SeasonParams(
+              sessionId: sessionId,
+              accessToken: pdfToken,
+              doptorToken: doptorToken,
+            );
+
+            final result = await locator.get<PDfHandler>().createSession(param);
+
+            if (result != null) {
+              ///save session id
+              await TokenManager.setSession(sessionId: sessionId, doptorToken: doptorToken);
+            } else {
+              logger.e("Session not created");
+            }
+          } catch (e) {
+            logger.e(e);
+          }
           logger.d("_ekShebaVerify f ${f.toString()}");
 
           EkShebaUser result = ekShebaUser.copyWith(
@@ -141,7 +170,23 @@ class AuthRepositoryImpl implements AuthRepository {
         body: body,
       );
       if (response.statusCode == 200) {
-        return right(SystemUser.fromJson(response.body));
+        final user = SystemUser.fromJson(response.body);
+        final sessionId = generateRandomUUID();
+        final param = SeasonParams(
+          sessionId: sessionId,
+          accessToken: user.accessToken,
+          doptorToken: '',
+        );
+
+        final result = await locator.get<PDfHandler>().createSession(param);
+
+        if (result != null) {
+          ///save session id
+          await TokenManager.setSession(sessionId: sessionId, doptorToken: '');
+        } else {
+          logger.e("Session not created");
+        }
+        return right(user);
       } else {
         logger.e(response.body);
         return left(AuthFailure());

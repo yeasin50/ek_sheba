@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenManager {
@@ -26,5 +27,28 @@ class TokenManager {
       await deleteSecureToken();
       await _storage.write(key: "access_token", value: token);
     }
+  }
+
+  static Future<void> setSession({
+    required String sessionId,
+    required String doptorToken,
+  }) async {
+    try {
+      await _storage.delete(key: "session_id");
+      await _storage.delete(key: "doptor_token");
+    } catch (e) {}
+    await _storage.write(key: "session_id", value: sessionId);
+    await _storage.write(key: "doptor_token", value: doptorToken);
+  }
+
+  static Future<(String sessionID, String doptorToken)> getSessionId() async {
+    final se = await _storage.read(key: "session_id");
+    final doptorToken = await _storage.read(key: "doptor_token");
+    if (se == null) {
+      logger.e("Session id is null");
+      return ("b886f8dc-5282-4a67-816c-bf95272d3265", "");
+    }
+
+    return (se, doptorToken ?? "");
   }
 }

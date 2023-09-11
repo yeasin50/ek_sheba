@@ -29,7 +29,7 @@ class PDfHandler implements IPDfHandler {
         return SessionResponse.fromJson(response.body);
       } else {
         logger.e('createSession: ${response.statusCode}');
-        throw Exception('createSession: ${response.statusCode}');
+        // throw Exception('createSession: ${response.statusCode}');
       }
     } catch (e) {
       logger.e(e);

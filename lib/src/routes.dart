@@ -1,5 +1,5 @@
-import 'package:ek_sheba/src/common/utils/api_config.dart';
-import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_details.dart';
+import 'common/utils/api_config.dart';
+import 'features/IDSDP/domain/entities/project_details.dart';
 import 'package:go_router/go_router.dart';
 
 import 'common/utils/token_storage.dart';
@@ -12,8 +12,8 @@ import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
 import 'features/html_pdf_dashboard/html_pdf_dashboard.dart';
 
 final routes = GoRouter(
-  initialLocation: HtmlPDFDashboard.routeName,
-  //  '/login',
+  initialLocation: //HtmlPDFDashboard.routeName,
+   '/login',
   redirect: (context, state) async {
     if (state.location == '/login') {
       final token = await TokenManager.getToken();

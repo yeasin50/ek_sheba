@@ -18,7 +18,7 @@ dependencies:
   google_fonts: ^5.1.0
   loading_animation_widget: ^1.2.0+4
   collection: ^1.17.1
-  url_launcher: ^6.1.11
+  url_launcher: ^6.1.14
   get_it: ^7.6.0
   http: ^1.1.0
   flutter_cached_pdfview: ^0.4.2
@@ -38,6 +38,8 @@ dependencies:
   flutter_downloader: ^1.11.1
   flutter_inappwebview: ^5.7.2+3
   permission_handler: ^11.0.0
+  webview_flutter_android: ^3.10.0
+  webview_flutter_wkwebview: ^3.7.4
  
 
   
