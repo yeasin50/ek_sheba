@@ -18,14 +18,13 @@ class PDfHandler implements IPDfHandler {
 
       final response = await http.post(
         uri,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
         },
         body: params.toJson(),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return SessionResponse.fromJson(response.body);
       } else {
         logger.e('createSession: ${response.statusCode}');
@@ -33,7 +32,6 @@ class PDfHandler implements IPDfHandler {
       }
     } catch (e) {
       logger.e(e);
-       
     }
   }
 
@@ -44,7 +42,6 @@ class PDfHandler implements IPDfHandler {
       return "https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$pdfId&p=$sessionId";
     } catch (e) {
       logger.e(e);
-       
     }
   }
 }
