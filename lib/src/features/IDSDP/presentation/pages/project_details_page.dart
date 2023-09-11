@@ -1,17 +1,17 @@
-import 'package:ek_sheba/src/common/utils/logger.dart';
-import 'package:ek_sheba/src/common/utils/raw_text.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/project_download_option.dart';
-import 'package:ek_sheba/src/features/IDSDP/presentation/widgets/project_summary_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/widgets/app_button.dart';
+import '../../../../common/utils/logger.dart';
+import '../../../../common/utils/raw_text.dart';
+import '../../../../common/widgets/app_drawer.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../common/widgets/icon_button.dart';
 import '../../../../locator.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
+import '../widgets/project_download_option.dart';
 import '../widgets/project_location_map_card.dart';
+import '../widgets/project_summary_widget.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
   const ProjectDetailsPage({Key? key, required this.projectDetails}) : super(key: key);
@@ -38,9 +38,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
     //skipping futureBuilder for now,while we already have some data
     future.then((value) {
       if (value != null) {
-       
-          projectDetails = value;
-        setState(() { });
+        projectDetails = value;
+        setState(() {});
         logger.i('projectDetails: ${projectDetails.assignedOfficer}');
       }
     });
@@ -50,6 +49,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   Widget build(BuildContext context) {
     final sectorDivision = string2Raw(projectDetails.sectorDivision.nameEn);
     return Scaffold(
+      drawer: AppDrawer(),
       body: BackgroundDecoration(
           hasDrawer: true,
           body: ListView(
@@ -63,7 +63,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
-                   ProjectLocationMapCard(),
+                    ProjectLocationMapCard(),
                     const SizedBox(height: 24),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

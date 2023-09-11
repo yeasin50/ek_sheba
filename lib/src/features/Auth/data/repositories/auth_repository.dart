@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:ek_sheba/src/common/utils/random_uuid.dart';
-import 'package:ek_sheba/src/features/html_pdf_dashboard/auth/auth_hanlder.dart';
-import 'package:ek_sheba/src/features/html_pdf_dashboard/domain/entities/session_param.dart';
-import 'package:ek_sheba/src/locator.dart';
+import '../../../../common/utils/random_uuid.dart';
+import '../../../html_pdf_dashboard/auth/auth_hanlder.dart';
+import '../../../html_pdf_dashboard/domain/entities/session_param.dart';
+import '../../../../locator.dart';
 
 import '../../../../common/utils/api_config.dart';
 import '../../../../common/utils/logger.dart';

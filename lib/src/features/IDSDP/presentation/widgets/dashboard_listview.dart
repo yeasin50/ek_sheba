@@ -98,7 +98,7 @@ Widget getItem(String title) {
                       onTap: () async {
                         ///launch to a webpage on chrome
                         final uuid = e.uuid;
-                        final sessionId = await TokenManager.getSessionId();
+                        final sessionId = await TokenManager.getSession();
                         final url =
                             'https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$uuid&p=${sessionId.$1}';
 

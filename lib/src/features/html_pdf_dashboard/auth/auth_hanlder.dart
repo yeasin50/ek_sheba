@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/common/utils/token_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_utils/my_utils.dart';
 
@@ -8,6 +9,8 @@ abstract class IPDfHandler {
   Future<SessionResponse?> createSession(SeasonParams params);
 
   Future<String?> getPDFUrl(SessionResponse sessionResponse, String pdfId);
+
+  Future<String?> getPDFUrl2(String pdfId);
 }
 
 class PDfHandler implements IPDfHandler {
@@ -38,8 +41,18 @@ class PDfHandler implements IPDfHandler {
   @override
   Future<String?> getPDFUrl(SessionResponse sessionResponse, String pdfId) async {
     try {
-      const sessionId = '3ced8919-18e1-4a5e-adfd-8e99da94c781';
-      return "https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$pdfId&p=$sessionId";
+      return "https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$pdfId&p=${sessionResponse.sessionId}}";
+    } catch (e) {
+      logger.e(e);
+    }
+  }
+
+  @override
+  Future<String?> getPDFUrl2(String pdfId) async {
+    try {
+      final sessionId = await TokenManager.getSession();
+
+      return "https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$pdfId&p=${sessionId.$1}";
     } catch (e) {
       logger.e(e);
     }

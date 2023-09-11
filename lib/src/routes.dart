@@ -10,9 +10,10 @@ import 'features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
 import 'features/html_pdf_dashboard/html_pdf_dashboard.dart';
+import 'temp/pdf_season_test.dart';
 
 final routes = GoRouter(
-  initialLocation: //HtmlPDFDashboard.routeName,
+  initialLocation: //CreateSessionTest.routeName,
    '/login',
   redirect: (context, state) async {
     if (state.location == '/login') {
@@ -25,6 +26,10 @@ final routes = GoRouter(
     return null;
   },
   routes: [
+    GoRoute(
+      path: CreateSessionTest.routeName,
+      builder: (context, state) => const CreateSessionTest(),
+    ),
     GoRoute(
       path: HtmlPDFDashboard.routeName,
       builder: (context, state) => const HtmlPDFDashboard(),

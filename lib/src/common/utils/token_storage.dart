@@ -11,6 +11,9 @@ class TokenManager {
   }
 
   static Future<String?> getToken() async {
+    if (_token == null) {
+      await setUp();
+    }
     return _token;
   }
 
@@ -41,7 +44,7 @@ class TokenManager {
     await _storage.write(key: "doptor_token", value: doptorToken);
   }
 
-  static Future<(String sessionID, String doptorToken)> getSessionId() async {
+  static Future<(String sessionID, String doptorToken)> getSession() async {
     final se = await _storage.read(key: "session_id");
     final doptorToken = await _storage.read(key: "doptor_token");
     if (se == null) {
