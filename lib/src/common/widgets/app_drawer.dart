@@ -212,8 +212,8 @@ class AppDrawer extends StatelessWidget {
             color: Color.fromARGB(255, 155, 87, 32),
             child: InkWell(
               onTap: () async {
-                context.replace('/login');
                 await TokenManager.deleteSecureToken();
+                context.replace('/login');
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(

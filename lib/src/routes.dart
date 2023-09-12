@@ -1,17 +1,39 @@
-import 'package:ek_sheba/src/common/utils/api_config.dart';
-import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_details.dart';
+import 'common/utils/api_config.dart';
+import 'features/IDSDP/domain/entities/project_details.dart';
 import 'package:go_router/go_router.dart';
 
+import 'common/utils/token_storage.dart';
 import 'features/Auth/presentation/pages/login_page.dart';
 import 'features/IDSDP/presentation/pages/pages.dart';
 import 'features/IDSDP/presentation/pages/project_details_page.dart';
 import 'features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
+import 'features/html_pdf_dashboard/html_pdf_dashboard.dart';
+import 'temp/pdf_season_test.dart';
 
 final routes = GoRouter(
-  initialLocation: '/login',
+  initialLocation: //CreateSessionTest.routeName,
+   '/login',
+  redirect: (context, state) async {
+    if (state.location == '/login') {
+      final token = await TokenManager.getToken();
+
+      if (token != null) {
+        return '/';
+      }
+    }
+    return null;
+  },
   routes: [
+    GoRoute(
+      path: CreateSessionTest.routeName,
+      builder: (context, state) => const CreateSessionTest(),
+    ),
+    GoRoute(
+      path: HtmlPDFDashboard.routeName,
+      builder: (context, state) => const HtmlPDFDashboard(),
+    ),
     GoRoute(
       path: '/',
       builder: (context, state) => const HomePage(),
@@ -37,7 +59,9 @@ final routes = GoRouter(
         path: ProjectDetailsPage.routeName,
         builder: (context, state) {
           final ProjectDetails projectDetails = state.extra as ProjectDetails;
-        return     ProjectDetailsPage(projectDetails: projectDetails,);
+          return ProjectDetailsPage(
+            projectDetails: projectDetails,
+          );
         }
         // ProjectDetailsPage(projectDetails: state.extra as ProjectDetails),
         ),

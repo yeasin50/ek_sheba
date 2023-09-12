@@ -45,7 +45,17 @@ class _DashboardPageState extends State<DashboardPage> {
               child: BlocBuilder<IdsdpBloc, IdsdpState>(
                 builder: (context, state) {
                   if (state is IdsdpError) {
-                    return Text(state.message);
+                    return Column(
+                      children: [
+                        Text(state.message),
+                        ElevatedButton(
+                          onPressed: () {
+                            BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
+                          },
+                          child: const Text('Retry'),
+                        ),
+                      ],
+                    );
                   }
 
                   if (state is IdsdpLoaded) {
@@ -53,9 +63,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ProjectLocationMapCard(
-                         
-                        ),
+                        ProjectLocationMapCard(),
                         SizedBox(height: 24),
                         ApprovedProjectCard(),
                         SizedBox(height: 24),

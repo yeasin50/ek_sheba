@@ -1,18 +1,15 @@
 import 'package:collection/collection.dart';
-import '../../../../common/utils/logger.dart';
-import '../pages/project_details_page.dart';
-import 'package:go_router/go_router.dart';
-
-import 'package:my_utils/my_utils.dart';
-
-import '../../../../common/app_style.dart';
-import '../../data/models/project_type.dart';
-import '../../data/repositories/dashboard_projects_repo_impl.dart';
-
-import '../../../../locator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_utils/my_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../common/app_style.dart';
+import '../../../../common/utils/logger.dart';
+import '../../../../common/utils/token_storage.dart';
+import '../../../../locator.dart';
+import '../../data/models/project_type.dart';
+import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
 import 'project_card.dart';
 
@@ -98,8 +95,32 @@ Widget getItem(String title) {
                     (sl, e) => ProjectPlanInfoCard(
                       sl: sl + 1,
                       projectDetails: e,
-                      onTap: () {
-                        context.push(ProjectDetailsPage.routeName, extra: e);
+                      onTap: () async {
+                        ///launch to a webpage on chrome
+                        final uuid = e.uuid;
+                        final sessionId = await TokenManager.getSession();
+                        final url =
+                            'https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$uuid&p=${sessionId.$1}';
+
+                        try {
+                          final uri = Uri.parse(url);
+                          final result = await canLaunchUrl(uri);
+                          if (result) {
+                            await launchUrl(
+                              uri,
+                              mode: LaunchMode.externalApplication,
+                              webViewConfiguration: WebViewConfiguration(
+                                enableJavaScript: true,
+                                enableDomStorage: true,
+                              ),
+                            );
+                          } else {
+                            logger.e('launchURL: $result');
+                          }
+                        } catch (e) {
+                          logger.e('launchURL: $e');
+                        }
+                        // context.push(ProjectDetailsPage.routeName, extra: e);
                       },
                     ),
                   )

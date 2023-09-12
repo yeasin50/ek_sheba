@@ -17,7 +17,7 @@ void main() {
       print('setUp');
     });
 
-    test('should return completed project count', () {
+    test('should return  completed project count', () {
       // arrange
 
       // act
