@@ -18,9 +18,7 @@ class NoticePlanPage extends StatelessWidget {
     DateTime? fromDate;
     DateTime? toDate;
 
-    return BlocProvider(
-      create: (context) => locator.get<NoticePlanBloc>(),
-      child: Builder(
+    return  Builder(
         builder: (context) {
           return BackgroundDecoration(
             body: Column(
@@ -82,7 +80,7 @@ class NoticePlanPage extends StatelessWidget {
             ),
           );
         },
-      ),
+      
     );
   }
 }
