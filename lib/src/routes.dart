@@ -14,7 +14,7 @@ import 'temp/pdf_season_test.dart';
 
 final routes = GoRouter(
   initialLocation: //CreateSessionTest.routeName,
-   '/login',
+      '/login',
   redirect: (context, state) async {
     if (state.location == '/login') {
       final token = await TokenManager.getToken();
@@ -31,9 +31,11 @@ final routes = GoRouter(
       builder: (context, state) => const CreateSessionTest(),
     ),
     GoRoute(
-      path: HtmlPDFDashboard.routeName,
-      builder: (context, state) => const HtmlPDFDashboard(),
-    ),
+        path: HtmlPDFDashboard.routeName,
+        builder: (context, state) {
+          final url = state.extra as String? ?? "";
+          return HtmlPDFDashboard(url: url);
+        }),
     GoRoute(
       path: '/',
       builder: (context, state) => const HomePage(),

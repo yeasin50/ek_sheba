@@ -77,12 +77,11 @@ class UnApprovedProjectCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ProgressItemCard(
-                          onTap: () {
-                            _onDetailsPage(context, 0);
-                          },
-                          title: "In Preparation",
-                          count: data[0],
-                        ),
+                            onTap: () {
+                              _onDetailsPage(context, 4);
+                            },
+                            title: "For Recast",
+                            count: data[4]),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
@@ -111,6 +110,18 @@ class UnApprovedProjectCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ProgressItemCard(
+                          extraHeight: 10,
+                          onTap: () {
+                            _onDetailsPage(context, 0);
+                          },
+                          title: "In Preparation",
+                          count: data[0],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: ProgressItemCard(
+                          extraHeight: 10,
                           onTap: () {
                             _onDetailsPage(context, 3);
                           },
@@ -118,20 +129,10 @@ class UnApprovedProjectCard extends StatelessWidget {
                           count: data[3],
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: ProgressItemCard(
-                            onTap: () {
-                              _onDetailsPage(context, 4);
-                            },
-                            title: "For Recast",
-                            count: data[4]),
-                      ),
-                      const SizedBox(width: 8),
-                      const Expanded(
-                        //maintain the size
-                        child: SizedBox(),
-                      ),
+                      // const Expanded(
+                      //   //maintain the size
+                      //   child: SizedBox(),
+                      // ),
                     ],
                   ),
                 ],

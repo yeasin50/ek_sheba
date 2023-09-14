@@ -11,6 +11,7 @@ class ProgressItemCard extends StatelessWidget {
     this.color,
     this.textColor,
     this.onTap,
+    this.extraHeight = 0,
   });
   final String title;
   final int count;
@@ -18,6 +19,8 @@ class ProgressItemCard extends StatelessWidget {
   final Color? color;
   //default color is black
   final Color? textColor;
+
+  final double  extraHeight;
 
   final VoidCallback? onTap;
   @override
@@ -33,7 +36,7 @@ class ProgressItemCard extends StatelessWidget {
         ),
       ),
       child: SizedBox(
-        height: 80,
+        height: 80+extraHeight,
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: onTap,
@@ -41,12 +44,10 @@ class ProgressItemCard extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
