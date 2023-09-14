@@ -22,8 +22,10 @@ class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController(); //also used on username
   final _passwordController = TextEditingController();
 
-  void _toggleLoginType() {
-    isEkSheba = !isEkSheba;
+  void _toggleLoginType(bool _isEkSheba) {
+    if (isEkSheba == _isEkSheba) return;
+    isEkSheba = _isEkSheba;
+
     _emailController.clear();
     _passwordController.clear();
     setState(() {});
@@ -83,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
                 Expanded(
                   child: AppButton(
                     text: "ek-sheba",
-                    onPressed: _toggleLoginType,
+                    onPressed: () => _toggleLoginType(true),
                     isFilled: isEkSheba == true,
                   ),
                 ),
@@ -91,7 +93,7 @@ class _LoginFormState extends State<LoginForm> {
                 Expanded(
                   child: AppButton(
                     text: "SystemAdmin",
-                    onPressed: _toggleLoginType,
+                    onPressed: () => _toggleLoginType(false),
                     isFilled: isEkSheba == false,
                   ),
                 ),

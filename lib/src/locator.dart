@@ -1,13 +1,11 @@
-import 'package:ek_sheba/src/features/IDSDP/presentation/bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
-
-import 'features/IDSDP/data/repositories/approved_project_repo_impl.dart';
-import 'features/IDSDP/data/repositories/unapproved_project_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/Auth/data/repositories/auth_repository.dart';
 import 'features/Auth/presentation/bloc/auth_bloc.dart';
+import 'features/IDSDP/data/repositories/approved_project_repo_impl.dart';
 import 'features/IDSDP/data/repositories/dashboard_projects_repo_impl.dart';
-import 'features/IDSDP/domain/repositories/dashboard_project_repo.dart';
+import 'features/IDSDP/data/repositories/unapproved_project_repo_impl.dart';
+import 'features/IDSDP/presentation/bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
 import 'features/IDSDP/presentation/bloc/idsdp_bloc.dart';
 import 'features/helpDesk/data/repositories/faq_repository_impl.dart';
 import 'features/helpDesk/data/repositories/guideline_repository_impl.dart';
@@ -18,6 +16,7 @@ import 'features/helpDesk/presentation/bloc/faq/faq_bloc.dart';
 import 'features/helpDesk/presentation/bloc/guideline/guideline_bloc.dart';
 import 'features/helpDesk/presentation/bloc/notice_plan/notice_plan_bloc.dart';
 import 'features/helpDesk/presentation/bloc/resource/resource_bloc.dart';
+import 'features/html_pdf_dashboard/auth/auth_hanlder.dart';
 
 export 'features/IDSDP/data/repositories/approved_project_repo_impl.dart';
 export 'features/IDSDP/data/repositories/unapproved_project_repo_impl.dart';
@@ -49,4 +48,6 @@ void setup() {
 
   locator.registerLazySingleton(() => IdsdpBloc());
   locator.registerLazySingleton(() => AgencyAndMinistryNameBloc());
+
+  locator.registerLazySingleton(() => PDfHandler());
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:ek_sheba/src/locator.dart';
 import 'package:equatable/equatable.dart';
 
@@ -19,7 +20,7 @@ class IdsdpBloc extends Bloc<IdsdpEvent, IdsdpState> {
     final result = await locator<DashboardProjectRepoImpl>().loadProjects();
 
     result.fold(
-      (l) => emit(IdsdpError("Failed to load data. Please try system account.")),
+      (l) => emit(IdsdpError("Failed to load data. ${l.message}")),
       (r) => emit(IdsdpLoaded(locator<DashboardProjectRepoImpl>())),
     );
   }

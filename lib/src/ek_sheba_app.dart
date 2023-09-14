@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'features/IDSDP/presentation/bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
 import 'features/IDSDP/presentation/bloc/idsdp_bloc.dart';
+import 'features/helpDesk/presentation/bloc/notice_plan/notice_plan_bloc.dart';
 import 'routes.dart';
 
 class EkSheba extends StatelessWidget {
@@ -18,6 +19,7 @@ class EkSheba extends StatelessWidget {
       providers: [
         BlocProvider<IdsdpBloc>(create: (context) => locator<IdsdpBloc>()),
         BlocProvider<AgencyAndMinistryNameBloc>(create: (context) => locator<AgencyAndMinistryNameBloc>()),
+        BlocProvider<NoticePlanBloc>(create: (context) => locator.get<NoticePlanBloc>())
       ],
       child: Material(
         //to remove the transparent background on status bar

@@ -1,11 +1,14 @@
+import 'package:ek_sheba/src/common/utils/token_storage.dart';
 import 'package:ek_sheba/src/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 
+import '../../../Auth/presentation/pages/login_page.dart';
 import '../bloc/agency_and_ministry__name/agency_and_ministry_name_bloc.dart';
 import '../bloc/idsdp_bloc.dart';
 import '../widgets/approved_project_card.dart';
@@ -45,7 +48,28 @@ class _DashboardPageState extends State<DashboardPage> {
               child: BlocBuilder<IdsdpBloc, IdsdpState>(
                 builder: (context, state) {
                   if (state is IdsdpError) {
-                    return Text(state.message);
+                    return Column(
+                      children: [
+                        Text(state.message),
+                        ElevatedButton(
+                          onPressed: () {
+                            BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
+                          },
+                          child: const Text('Retry'),
+                        ),
+
+                        Text('Or'),
+
+                        //login
+                        ElevatedButton(
+                          onPressed: () async {
+                            await TokenManager.deleteSecureToken();
+                            if (context.mounted) context.pushReplacementNamed(LoginPage.routeName);
+                          },
+                          child: const Text('Login'),
+                        ),
+                      ],
+                    );
                   }
 
                   if (state is IdsdpLoaded) {
@@ -53,9 +77,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ProjectLocationMapCard(
-                         
-                        ),
+                        ProjectLocationMapCard(),
                         SizedBox(height: 24),
                         ApprovedProjectCard(),
                         SizedBox(height: 24),
