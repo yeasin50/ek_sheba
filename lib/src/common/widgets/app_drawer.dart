@@ -172,39 +172,40 @@ class AppDrawer extends StatelessWidget {
       ],
     );
 
+    var listView = ListView(
+      children: [
+        Material(
+          color: const Color.fromARGB(255, 32, 155, 132),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: 16,
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.now_widgets_outlined,
+                  color: Colors.white,
+                ),
+                const SizedBox(width: 8),
+                Text("Dashboard", style: labelStyle),
+              ],
+            ),
+          ),
+        ),
+        // preliminaryTile,
+        // feasibilityStudyTile,
+        dPPTAPPTile,
+        rdppRtapp,
+      ],
+    );
     return Drawer(
       //offwhite
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       child: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                Material(
-                  color: const Color.fromARGB(255, 32, 155, 132),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 24,
-                      horizontal: 16,
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.now_widgets_outlined,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 8),
-                        Text("Dashboard", style: labelStyle),
-                      ],
-                    ),
-                  ),
-                ),
-                preliminaryTile,
-                feasibilityStudyTile,
-                dPPTAPPTile,
-                rdppRtapp,
-              ],
-            ),
+            child: listView,
           ),
 
           //logout
