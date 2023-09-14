@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_utils/my_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +9,7 @@ import '../../../../common/app_style.dart';
 import '../../../../common/utils/logger.dart';
 import '../../../../common/utils/token_storage.dart';
 import '../../../../locator.dart';
+import '../../../html_pdf_dashboard/html_pdf_dashboard.dart';
 import '../../data/models/project_type.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
@@ -108,7 +110,7 @@ Widget getItem(String title) {
                           if (result) {
                             await launchUrl(
                               uri,
-                              mode: LaunchMode.externalApplication,
+                              mode: LaunchMode.inAppWebView,
                               webViewConfiguration: WebViewConfiguration(
                                 enableJavaScript: true,
                                 enableDomStorage: true,
@@ -120,7 +122,10 @@ Widget getItem(String title) {
                         } catch (e) {
                           logger.e('launchURL: $e');
                         }
-                        // context.push(ProjectDetailsPage.routeName, extra: e);
+                        //!FIxme: this is not working
+                        // if (context.mounted) {
+                        //   context.push(HtmlPDFDashboard.routeName, extra: url);
+                        // }
                       },
                     ),
                   )
