@@ -125,9 +125,11 @@ class ProjectSummaryWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 2),
-                    // if (projectDetails.showAssignedOfficer == true)
-                    Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
+                    if ((projectDetails.assignedOfficer ?? "").isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      // if (projectDetails.showAssignedOfficer == true)
+                      Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
+                    ],
                   ],
                 ),
               ),
