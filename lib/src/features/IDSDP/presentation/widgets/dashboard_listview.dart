@@ -13,6 +13,7 @@ import '../../../html_pdf_dashboard/html_pdf_dashboard.dart';
 import '../../data/models/project_type.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
+import '../pages/project_details_page.dart';
 import 'project_card.dart';
 
 /// DashboardItems
@@ -71,6 +72,38 @@ class DashboardListView extends StatelessWidget {
   }
 }
 
+///
+/// final uuid = e.uuid;
+/// final sessionId = await TokenManager.getSession();
+/// await urlViewPDF(uuid, sessionId.$1);
+//!FIxme: this is not working
+/// if (context.mounted) {
+///   context.push(HtmlPDFDashboard.routeName, extra: url);
+/// }
+@Deprecated('use [ProjectDetailsPage] instead')
+Future<void> urlViewPDF(String uuid, String sessionId) async {
+  final url = 'https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$uuid&p=${sessionId}';
+
+  try {
+    final uri = Uri.parse(url);
+    final result = await canLaunchUrl(uri);
+    if (result) {
+      await launchUrl(
+        uri,
+        mode: LaunchMode.inAppWebView,
+        webViewConfiguration: WebViewConfiguration(
+          enableJavaScript: true,
+          enableDomStorage: true,
+        ),
+      );
+    } else {
+      logger.e('launchURL: $result');
+    }
+  } catch (e) {
+    logger.e('launchURL: $e');
+  }
+}
+
 Widget getItem(String title) {
   final type = projectTypeFromTitle(title);
   final future = locator.get<DashboardProjectRepoImpl>().fromType(type);
@@ -97,35 +130,18 @@ Widget getItem(String title) {
                     (sl, e) => ProjectPlanInfoCard(
                       sl: sl + 1,
                       projectDetails: e,
-                      onTap: () async {
+                      onTap: () {
                         ///launch to a webpage on chrome
-                        final uuid = e.uuid;
-                        final sessionId = await TokenManager.getSession();
-                        final url =
-                            'https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$uuid&p=${sessionId.$1}';
-
-                        try {
-                          final uri = Uri.parse(url);
-                          final result = await canLaunchUrl(uri);
-                          if (result) {
-                            await launchUrl(
-                              uri,
-                              mode: LaunchMode.inAppWebView,
-                              webViewConfiguration: WebViewConfiguration(
-                                enableJavaScript: true,
-                                enableDomStorage: true,
-                              ),
-                            );
-                          } else {
-                            logger.e('launchURL: $result');
-                          }
-                        } catch (e) {
-                          logger.e('launchURL: $e');
-                        }
+                        // final uuid = e.uuid;
+                        // final sessionId = await TokenManager.getSession();
+                        // await urlViewPDF(uuid, sessionId.$1);
                         //!FIxme: this is not working
                         // if (context.mounted) {
                         //   context.push(HtmlPDFDashboard.routeName, extra: url);
                         // }
+                        if (context.mounted) {
+                          context.push(ProjectDetailsPage.routeName, extra: e);
+                        }
                       },
                     ),
                   )
