@@ -37,8 +37,9 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
           } else {
             return PDFView(
               filePath: snapshot.data!,
-              // onCreated: (PDFViewController pdfController) {
-              //   pdfViewController = pdfController;
+
+              onViewCreated: (controller) => pdfViewController = controller,
+
               // },
             );
           }
