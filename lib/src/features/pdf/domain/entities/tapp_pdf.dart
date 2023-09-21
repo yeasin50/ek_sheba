@@ -1,23 +1,25 @@
 import 'button_info.dart';
 
 enum _TappPDF {
-  partA('get-tapp-report/part-a/'),
-  partB('get-tapp-report/part-b/'),
-  annexure1A('get-tapp-report/annexure-1a/'),
-  annexure1B('get-tapp-report/annexure-1b/'),
-  annexure2('get-tapp-report/annexure-2/'),
-  annexure3('get-tapp-report/annexure-3/'),
-  annexure4('get-tapp-report/annexure-4/'),
-  annexure5('get-tapp-report/annexure-5/'),
-  annexure6('get-tapp-report/annexure-6/'),
-  annexure7('get-tapp-report/annexure-7/'),
-  annexure8A('get-tapp-report/annexure-8a/'),
-  annexure8B('get-tapp-report/annexure-8b/');
+  partA('${_baseUrl}get-tapp-report/part-a/'),
+  partB('${_baseUrl}get-tapp-report/part-b/'),
+  annexure1A('${_baseUrl}get-tapp-report/annexure-1a/'),
+  annexure1B('${_baseUrl}get-tapp-report/annexure-1b/'),
+  annexure2('${_baseUrl}get-tapp-report/annexure-2/'),
+  annexure3('${_baseUrl}get-tapp-report/annexure-3/'),
+  annexure4('${_baseUrl}get-tapp-report/annexure-4/'),
+  annexure5('${_baseUrl}get-tapp-report/annexure-5/'),
+  annexure6('${_baseUrl}get-tapp-report/annexure-6/'),
+  annexure7('${_baseUrl}get-tapp-report/annexure-7/'),
+  annexure8A('${_baseUrl}get-tapp-report/annexure-8a/'),
+  annexure8B('${_baseUrl}get-tapp-report/annexure-8b/');
 
   const _TappPDF(this.path);
 
   final String path;
 }
+
+const String _baseUrl = 'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
 
 List<PDFButton> tappButtons = [
   PDFButton(
