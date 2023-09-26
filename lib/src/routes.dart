@@ -40,8 +40,8 @@ final routes = GoRouter(
           );
         }),
     GoRoute(
-      path: DPPTAPPPAge.routeName,
-      builder: (context, state) => const DPPTAPPPAge(),
+      path: DPPTAPPPage.routeName,
+      builder: (context, state) => const DPPTAPPPage(),
     ),
     GoRoute(
         path: HtmlPDFDashboard.routeName,

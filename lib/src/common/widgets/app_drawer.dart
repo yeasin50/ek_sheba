@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../features/IDSDP/presentation/pages/dpp_tapp_page.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -112,7 +114,9 @@ class AppDrawer extends StatelessWidget {
       ),
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            context.push(DPPTAPPPage.routeName);
+          },
           child: Padding(
             padding: const EdgeInsets.only(
               left: 16 + 16,
