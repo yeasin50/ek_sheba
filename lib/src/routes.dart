@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'common/utils/token_storage.dart';
 import 'features/Auth/presentation/pages/login_page.dart';
+import 'features/IDSDP/presentation/pages/dpp_tapp_page.dart';
 import 'features/IDSDP/presentation/pages/pages.dart';
 import 'features/IDSDP/presentation/pages/project_details_page.dart';
 import 'features/helpDesk/presentation/pages/faq_details_page.dart';
@@ -38,6 +39,10 @@ final routes = GoRouter(
             title: title,
           );
         }),
+    GoRoute(
+      path: DPPTAPPPAge.routeName,
+      builder: (context, state) => const DPPTAPPPAge(),
+    ),
     GoRoute(
         path: HtmlPDFDashboard.routeName,
         builder: (context, state) {

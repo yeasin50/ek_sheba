@@ -196,7 +196,7 @@ class AppDrawer extends StatelessWidget {
         // preliminaryTile,
         // feasibilityStudyTile,
         dPPTAPPTile,
-        rdppRtapp,
+        // rdppRtapp,
       ],
     );
     return Drawer(
