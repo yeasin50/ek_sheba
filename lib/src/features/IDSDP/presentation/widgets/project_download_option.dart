@@ -18,9 +18,7 @@ class ProjectDownloadOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<PDFButton> items =
-        project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase()
-            ? dppPdfButtons
-            : tappButtons;
+        project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase() ? dppPdfButtons : tappButtons;
 
     const String testUUId = '5119f081-55a1-48cb-a046-fb65e48d2f7f';
     return Column(
@@ -36,8 +34,7 @@ class ProjectDownloadOptions extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            AppIconButton(
-                onTap: () {}, icon: Icons.chat, label: "মন্তব্য / পর্যবেক্ষণ"),
+            AppIconButton(onTap: () {}, icon: Icons.chat, label: "মন্তব্য / পর্যবেক্ষণ"),
           ],
         ),
         const SizedBox(height: 16),
@@ -50,7 +47,13 @@ class ProjectDownloadOptions extends StatelessWidget {
                   title: items[i].title,
                   onTap: () {
                     final path = "${items[i].path}${project.uuid}";
-                    context.push(PDFPage.routeName, extra: path);
+                    context.push(
+                      PDFPage.routeName,
+                      extra: {
+                        "path": path,
+                        "title": items[i].title,
+                      },
+                    );
                   },
                 ),
                 const SizedBox(width: 4),
@@ -58,7 +61,13 @@ class ProjectDownloadOptions extends StatelessWidget {
                   title: items[6 + i].title,
                   onTap: () {
                     final path = "${items[6 + i].path}${project.uuid}";
-                    context.push(PDFPage.routeName, extra: path);
+                    context.push(
+                      PDFPage.routeName,
+                      extra: {
+                        "path": path,
+                        "title": items[6 + i].title,
+                      },
+                    );
                   },
                 ),
               ],

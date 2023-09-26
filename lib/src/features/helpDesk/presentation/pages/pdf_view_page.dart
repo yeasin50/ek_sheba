@@ -3,7 +3,7 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
 import '../../../../common/utils/logger.dart';
 import '../../../../common/widgets/background.dart';
-import '../widgets/minimal_appbar.dart';
+import '../../../../common/widgets/minimal_appbar.dart';
 
 /// preview pdf from url
 class PDFViewPage extends StatelessWidget {

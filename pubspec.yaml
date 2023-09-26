@@ -42,6 +42,7 @@ dependencies:
   permission_handler: ^11.0.0
   webview_flutter_android: ^3.10.0
   webview_flutter_wkwebview: ^3.7.4
+  file_picker: ^5.5.0
  
 
   

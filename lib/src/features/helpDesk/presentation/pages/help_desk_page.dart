@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common/widgets/background.dart';
-import '../widgets/minimal_appbar.dart';
+import '../../../../common/widgets/minimal_appbar.dart';
 
 class HelpDeskPage extends StatelessWidget {
   const HelpDeskPage({super.key});

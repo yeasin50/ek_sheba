@@ -13,15 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  // try {
-  //   await FlutterDownloader.initialize();
-  //   await Permission.storage.request();
-  // } catch (e) {
-  //   logger.e(e);
-  // }
-
-  await PatchPal().setUp(
-      'https://raw.githubusercontent.com/yeasin50/AssetsFor_/master/apps/patch_pal/ek_sheba.json');
+  await PatchPal().setUp('https://raw.githubusercontent.com/yeasin50/AssetsFor_/master/apps/patch_pal/ek_sheba.json');
   await TokenManager.setUp();
   setup();
   runApp(

@@ -5,9 +5,14 @@ import 'package:my_utils/my_utils.dart';
 import '../widgets/pdf_viewer.dart';
 
 class PDFPage extends StatelessWidget {
-  const PDFPage({super.key, required this.path});
+  const PDFPage({
+    super.key,
+    required this.path,
+    required this.title,
+  });
 
   final String path;
+  final String title;
   static const String routeName = '/pdf';
 
   @override
@@ -31,6 +36,7 @@ class PDFPage extends StatelessWidget {
                   } else {
                     return PDFViewerScreen(
                       pdfUrl: path,
+                      title: title,
                       token: snapshot.data!,
                     );
                   }
