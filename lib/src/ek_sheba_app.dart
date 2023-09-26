@@ -18,8 +18,10 @@ class EkSheba extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<IdsdpBloc>(create: (context) => locator<IdsdpBloc>()),
-        BlocProvider<AgencyAndMinistryNameBloc>(create: (context) => locator<AgencyAndMinistryNameBloc>()),
-        BlocProvider<NoticePlanBloc>(create: (context) => locator.get<NoticePlanBloc>())
+        BlocProvider<AgencyAndMinistryNameBloc>(
+            create: (context) => locator<AgencyAndMinistryNameBloc>()),
+        BlocProvider<NoticePlanBloc>(
+            create: (context) => locator.get<NoticePlanBloc>())
       ],
       child: Material(
         //to remove the transparent background on status bar

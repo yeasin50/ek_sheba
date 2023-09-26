@@ -30,8 +30,19 @@ class ResourceInfo extends Equatable {
   final bool? isActive;
 
   @override
-  List<Object?> get props =>
-      [id, uuid, title, category, summary, year, month, publishedDate, attachmentName, attachmentUrl, isActive];
+  List<Object?> get props => [
+        id,
+        uuid,
+        title,
+        category,
+        summary,
+        year,
+        month,
+        publishedDate,
+        attachmentName,
+        attachmentUrl,
+        isActive
+      ];
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -87,7 +98,8 @@ class ResourceInfo extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory ResourceInfo.fromJson(String source) => ResourceInfo.fromMap(json.decode(source));
+  factory ResourceInfo.fromJson(String source) =>
+      ResourceInfo.fromMap(json.decode(source));
 
   ResourceInfo copyWith({
     int? id,

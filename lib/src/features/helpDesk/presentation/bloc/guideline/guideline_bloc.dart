@@ -18,7 +18,8 @@ class GuidelineBloc extends Bloc<GuidelineEvent, GuidelineState> {
   }
 
   ///initial fetch
-  FutureOr<void> _onFetchGuideline(GuidelineFetchEvent event, Emitter<GuidelineState> emit) async {
+  FutureOr<void> _onFetchGuideline(
+      GuidelineFetchEvent event, Emitter<GuidelineState> emit) async {
     emit(const GuidelineLoading());
     final result = await _guidelineRepository.getGuidelines();
     result.fold(
@@ -33,13 +34,15 @@ class GuidelineBloc extends Bloc<GuidelineEvent, GuidelineState> {
           guidelines: guidelineList,
           isListLoading: true,
         ));
-        if (guidelineList.isNotEmpty) add(GuidelineSelectEvent(imsModuleId: guidelineList.first.uuid));
+        if (guidelineList.isNotEmpty)
+          add(GuidelineSelectEvent(imsModuleId: guidelineList.first.uuid));
       },
     );
   }
 
   ///get module list by module id
-  FutureOr<void> _onSelectGuideline(GuidelineSelectEvent event, Emitter<GuidelineState> emit) async {
+  FutureOr<void> _onSelectGuideline(
+      GuidelineSelectEvent event, Emitter<GuidelineState> emit) async {
     _loadDataOnGuidelineLoaded() async {
       if (event.imsModuleId == null) return;
       emit((state as GuidelineLoaded).copyWith(
@@ -47,7 +50,8 @@ class GuidelineBloc extends Bloc<GuidelineEvent, GuidelineState> {
         selectedGuidelineId: event.imsModuleId ?? "",
       ));
 
-      final result = await _guidelineRepository.getGuidelinesByModule(imsModuleId: event.imsModuleId);
+      final result = await _guidelineRepository.getGuidelinesByModule(
+          imsModuleId: event.imsModuleId);
       result.fold(
         (failure) => emit(const GuidelineError("Failed to load guidelines")),
         (guidelineList) async {

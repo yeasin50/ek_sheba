@@ -8,7 +8,8 @@ import '../../domain/repositories/dashboard_project_repo.dart';
 import '../models/project_type.dart';
 
 class DashboardProjectRepoImpl extends DashBoardProjectRepo {
-  DashboardProjectRepoImpl({required super.approvedRepo, required super.unApprovedRepo});
+  DashboardProjectRepoImpl(
+      {required super.approvedRepo, required super.unApprovedRepo});
 
   @override
   Future<Either<Failure, Unit>> loadProjects() async {
@@ -48,10 +49,14 @@ class DashboardProjectRepoImpl extends DashBoardProjectRepo {
       ProjectType.total => await approvedRepo.getApprovedProjects(),
       ProjectType.onGoing => await approvedRepo.getApprovedProjectOnGoing(),
       ProjectType.completed => await approvedRepo.getApprovedProjectCompleted(),
-      ProjectType.inPreparation => await unApprovedRepo.getUnapprovedProjectInPreparation(),
-      ProjectType.forRecast => await unApprovedRepo.getUnapprovedProjectForRecast(),
-      ProjectType.inMinistry => await unApprovedRepo.getUnapprovedProjectInMinistry(),
-      ProjectType.inPlanningCommission => await unApprovedRepo.getUnapprovedProjectInPlanningCommission(),
+      ProjectType.inPreparation =>
+        await unApprovedRepo.getUnapprovedProjectInPreparation(),
+      ProjectType.forRecast =>
+        await unApprovedRepo.getUnapprovedProjectForRecast(),
+      ProjectType.inMinistry =>
+        await unApprovedRepo.getUnapprovedProjectInMinistry(),
+      ProjectType.inPlanningCommission =>
+        await unApprovedRepo.getUnapprovedProjectInPlanningCommission(),
       ProjectType.inECNEC => await unApprovedRepo.getUnapprovedProjectInEcnec(),
     };
     // logger.d('fromType: $data');

@@ -13,10 +13,10 @@ class EkShebaUser extends Equatable {
 
   final User user;
   final String token;
-  final String? refreshToken ;
+  final String? refreshToken;
 
   @override
-  List<Object?> get props => [user, token,refreshToken];
+  List<Object?> get props => [user, token, refreshToken];
 
   EkShebaUser copyWith({
     User? user,
@@ -50,8 +50,10 @@ class EkShebaUser extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EkShebaUser.fromJson(String source) => EkShebaUser.fromMap(json.decode(source));
+  factory EkShebaUser.fromJson(String source) =>
+      EkShebaUser.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EkShebaUser(user: $user, token: $token refresh_token: $refreshToken)';
+  String toString() =>
+      'EkShebaUser(user: $user, token: $token refresh_token: $refreshToken)';
 }

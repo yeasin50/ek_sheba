@@ -56,7 +56,8 @@ final routes = GoRouter(
       path: DashBoardItemDetailsPage.routeName,
       builder: (context, state) {
         final itemTitle = state.extra as Map?;
-        return DashBoardItemDetailsPage(itemTitle: itemTitle?['itemTitle'] ?? "in Preparation");
+        return DashBoardItemDetailsPage(
+            itemTitle: itemTitle?['itemTitle'] ?? "in Preparation");
       },
     ),
     GoRoute(
@@ -96,8 +97,9 @@ final _helpDeskPageRoutes = [
       path: '/pdf_view',
       builder: (context, state) {
         final data = state.extra as Map?;
-        final pdfUrl =
-            data?['url'] == null ? "http://africau.edu/images/default/sample.pdf" : APIInfo.baseUrl + data?['url'];
+        final pdfUrl = data?['url'] == null
+            ? "http://africau.edu/images/default/sample.pdf"
+            : APIInfo.baseUrl + data?['url'];
         final title = data?['title'] ?? "showing default being ";
         final String uid = data?['uid'] ?? "";
 

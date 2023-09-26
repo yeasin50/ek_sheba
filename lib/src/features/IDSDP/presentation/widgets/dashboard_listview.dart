@@ -82,7 +82,8 @@ class DashboardListView extends StatelessWidget {
 /// }
 @Deprecated('use [ProjectDetailsPage] instead')
 Future<void> urlViewPDF(String uuid, String sessionId) async {
-  final url = 'https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$uuid&p=${sessionId}';
+  final url =
+      'https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$uuid&p=${sessionId}';
 
   try {
     final uri = Uri.parse(url);

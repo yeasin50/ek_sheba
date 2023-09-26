@@ -44,7 +44,8 @@ class NoticeRepositoryImpl implements INoticePlanRepository {
       );
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body) ?? [];
-        final List<NoticeInfo> noticeList = List.from(data.map((e) => NoticeInfo.fromMap(e)));
+        final List<NoticeInfo> noticeList =
+            List.from(data.map((e) => NoticeInfo.fromMap(e)));
         return right(noticeList);
       } else {
         logger.e(response.body);

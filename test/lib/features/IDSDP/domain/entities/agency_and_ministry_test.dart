@@ -15,7 +15,8 @@ void main() {
       expect(agencyAndMinistryInfo, isA<AgencyAndMinistryInfo>());
       expect(agencyAndMinistryInfo.agency, isA<Agency>());
       expect(agencyAndMinistryInfo.agency.id, 713);
-      expect(agencyAndMinistryInfo.agency.ministryDivision, isA<MinistryDivision>());
+      expect(agencyAndMinistryInfo.agency.ministryDivision,
+          isA<MinistryDivision>());
     });
   });
 }

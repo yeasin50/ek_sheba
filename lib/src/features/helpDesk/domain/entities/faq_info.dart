@@ -131,7 +131,8 @@ class FAQModule extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory FAQModule.fromJson(String source) => FAQModule.fromMap(json.decode(source));
+  factory FAQModule.fromJson(String source) =>
+      FAQModule.fromMap(json.decode(source));
 
   FAQModule copyWith({
     int? id,

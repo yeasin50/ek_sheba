@@ -23,7 +23,8 @@ class ProjectPlanInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final filedTextStyle = TextStyle(color: AppStyle.textGreen);
-    final titleTextStyle = TextStyle(color: AppStyle.buttonGreen, fontWeight: FontWeight.w600);
+    final titleTextStyle =
+        TextStyle(color: AppStyle.buttonGreen, fontWeight: FontWeight.w600);
 
     var expanded = Expanded(
       child: Column(
@@ -35,7 +36,9 @@ class ProjectPlanInfoCard extends StatelessWidget {
             child: Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(text: string2Raw(projectDetails.titleEn), style: titleTextStyle),
+                  TextSpan(
+                      text: string2Raw(projectDetails.titleEn),
+                      style: titleTextStyle),
                   TextSpan(
                       text: " (${projectDetails.projectType.nameEn})",
                       style: filedTextStyle.copyWith(color: Color(0xFF6C95BA))),
@@ -47,7 +50,9 @@ class ProjectPlanInfoCard extends StatelessWidget {
             TextSpan(
               children: [
                 const TextSpan(text: 'Sector Division: '),
-                TextSpan(text: projectDetails.ministryDivision.nameEn, style: filedTextStyle),
+                TextSpan(
+                    text: projectDetails.ministryDivision.nameEn,
+                    style: filedTextStyle),
               ],
             ),
           ),
@@ -55,7 +60,9 @@ class ProjectPlanInfoCard extends StatelessWidget {
             TextSpan(
               children: [
                 const TextSpan(text: 'Commencement Date: '),
-                TextSpan(text: projectDetails.commencementDate, style: filedTextStyle),
+                TextSpan(
+                    text: projectDetails.commencementDate,
+                    style: filedTextStyle),
               ],
             ),
           ),
@@ -63,7 +70,8 @@ class ProjectPlanInfoCard extends StatelessWidget {
             TextSpan(
               children: [
                 const TextSpan(text: 'Completion Date: '),
-                TextSpan(text: projectDetails.completionDate, style: filedTextStyle),
+                TextSpan(
+                    text: projectDetails.completionDate, style: filedTextStyle),
               ],
             ),
           ),
@@ -73,7 +81,8 @@ class ProjectPlanInfoCard extends StatelessWidget {
                 const TextSpan(text: 'Status: '),
                 TextSpan(
                     text: projectDetails.status.replaceAll("_", " "),
-                    style: filedTextStyle.copyWith(color: Color(0xFFEF8C23), fontWeight: FontWeight.w600)),
+                    style: filedTextStyle.copyWith(
+                        color: Color(0xFFEF8C23), fontWeight: FontWeight.w600)),
               ],
             ),
           ),

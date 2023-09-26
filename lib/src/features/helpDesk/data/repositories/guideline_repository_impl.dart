@@ -13,12 +13,14 @@ class GuidelineRepositoryImpl implements IGuidelineRepository {
   @override
   Future<Either<Failure, List<GuideLineInfo>>> getGuidelines() async {
     try {
-      final uri = Uri.parse("${APIInfo.baseUrl}api/ims-module/get-development_module-list");
+      final uri = Uri.parse(
+          "${APIInfo.baseUrl}api/ims-module/get-development_module-list");
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
         final List<GuideLineInfo> guidelineList = [];
-        final List<dynamic> guidelineListJson = jsonDecode(response.body) as List<dynamic>? ?? [];
+        final List<dynamic> guidelineListJson =
+            jsonDecode(response.body) as List<dynamic>? ?? [];
         for (var element in guidelineListJson) {
           guidelineList.add(GuideLineInfo.fromMap(element));
         }
@@ -44,7 +46,8 @@ class GuidelineRepositoryImpl implements IGuidelineRepository {
         return Left(NullFailure());
       }
 
-      final uri = Uri.parse("${APIInfo.baseUrl}api/guideline/get-active-list-by-module-id");
+      final uri = Uri.parse(
+          "${APIInfo.baseUrl}api/guideline/get-active-list-by-module-id");
       final body = {"imsModuleId": imsModuleId};
       final response = await http.post(
         uri,
@@ -56,7 +59,8 @@ class GuidelineRepositoryImpl implements IGuidelineRepository {
 
       if (response.statusCode == 200) {
         final List<GuideLineInfo> guidelineList = [];
-        final List<dynamic> guidelineListJson = jsonDecode(response.body) as List<dynamic>? ?? [];
+        final List<dynamic> guidelineListJson =
+            jsonDecode(response.body) as List<dynamic>? ?? [];
         for (var element in guidelineListJson) {
           guidelineList.add(GuideLineInfo.fromMap(element));
         }

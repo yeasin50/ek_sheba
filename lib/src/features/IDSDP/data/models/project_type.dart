@@ -4,14 +4,22 @@ enum ProjectType {
   onGoing(title: "On Going", key: "onGoingProjectList", isApproved: true),
   completed(title: "Completed", key: "completedProjectList", isApproved: true),
 
-  inPreparation(title: "In Preparation", key: "inPreparationProjectList", isApproved: true),
+  inPreparation(
+      title: "In Preparation",
+      key: "inPreparationProjectList",
+      isApproved: true),
   forRecast(title: "For Recast", key: "forRecastProjectList", isApproved: true),
-  inMinistry(title: "In Ministry", key: "inMinistryProjectList", isApproved: true),
-  inPlanningCommission(title: "In Planning Commission", key: "inPlanningCommissionProjectList", isApproved: true),
+  inMinistry(
+      title: "In Ministry", key: "inMinistryProjectList", isApproved: true),
+  inPlanningCommission(
+      title: "In Planning Commission",
+      key: "inPlanningCommissionProjectList",
+      isApproved: true),
   inECNEC(title: "In ECNEC", key: "inEcnecProjectList", isApproved: true),
   ;
 
-  const ProjectType({required this.title, required this.key, required this.isApproved});
+  const ProjectType(
+      {required this.title, required this.key, required this.isApproved});
 
   final String title;
   final String key;

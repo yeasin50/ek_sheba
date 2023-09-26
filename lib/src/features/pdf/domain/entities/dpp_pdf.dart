@@ -1,7 +1,8 @@
 import 'button_info.dart';
 
 class _DppPDFPath {
-  static const String baseUrl = 'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
+  static const String baseUrl =
+      'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
 
   String get partA => '${baseUrl}get-dpp-report/part-a/';
   String get partB => '${baseUrl}get-dpp-report/part-b/';
@@ -40,17 +41,20 @@ List<PDFButton> dppPdfButtons = [
   ),
   PDFButton(
     name: 'annexure3A',
-    title: 'সংযোজনী-৩ (ক) পন্য (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
+    title:
+        'সংযোজনী-৩ (ক) পন্য (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
     path: _DppPDFPath().annexure3A,
   ),
   PDFButton(
     name: 'annexure3B',
-    title: 'সংযোজনী-৩ (খ) পুর্ত কাজ (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
+    title:
+        'সংযোজনী-৩ (খ) পুর্ত কাজ (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
     path: _DppPDFPath().annexure3B,
   ),
   PDFButton(
     name: 'annexure3C',
-    title: 'সংযোজনী-৩ (গ) সেবা (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
+    title:
+        'সংযোজনী-৩ (গ) সেবা (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
     path: _DppPDFPath().annexure3C,
   ),
   PDFButton(

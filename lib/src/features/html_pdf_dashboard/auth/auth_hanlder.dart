@@ -17,7 +17,8 @@ class PDfHandler implements IPDfHandler {
   @override
   Future<SessionResponse?> createSession(SeasonParams params) async {
     try {
-      final uri = Uri.parse('https://gwtraining.plandiv.gov.bd/api/create-session');
+      final uri =
+          Uri.parse('https://gwtraining.plandiv.gov.bd/api/create-session');
 
       final response = await http.post(
         uri,
@@ -39,7 +40,8 @@ class PDfHandler implements IPDfHandler {
   }
 
   @override
-  Future<String?> getPDFUrl(SessionResponse sessionResponse, String pdfId) async {
+  Future<String?> getPDFUrl(
+      SessionResponse sessionResponse, String pdfId) async {
     try {
       return "https://ppstraining.plandiv.gov.bd/dpp-tapp/public-dashboard?id=$pdfId&p=${sessionResponse.sessionId}}";
     } catch (e) {

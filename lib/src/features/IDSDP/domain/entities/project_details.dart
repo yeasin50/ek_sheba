@@ -60,7 +60,16 @@ class ProjectDetails extends Equatable {
   final String? nothiStatusBn;
 
   @override
-  List<Object?> get props => [id, uuid, titleEn, titleBn, commencementDate, completionDate, status, totalAmount];
+  List<Object?> get props => [
+        id,
+        uuid,
+        titleEn,
+        titleBn,
+        commencementDate,
+        completionDate,
+        status,
+        totalAmount
+      ];
 
   @override
   String toString() {
@@ -84,7 +93,8 @@ class ProjectDetails extends Equatable {
     result.addAll({'agency': agency.toMap()});
     result.addAll({'ministryDivision': ministryDivision.toMap()});
     if (currentProjectMovementStage != null) {
-      result.addAll({'currentProjectMovementStage': currentProjectMovementStage});
+      result
+          .addAll({'currentProjectMovementStage': currentProjectMovementStage});
     }
     if (subSector != null) {
       result.addAll({'subSector': subSector!.toMap()});
@@ -133,7 +143,9 @@ class ProjectDetails extends Equatable {
       agency: ProjectSubItemInfo.fromMap(map['agency']),
       ministryDivision: ProjectSubItemInfo.fromMap(map['ministryDivision']),
       currentProjectMovementStage: map['currentProjectMovementStage'],
-      subSector: map['subSector'] != null ? ProjectSubItemInfo.fromMap(map['subSector']) : null,
+      subSector: map['subSector'] != null
+          ? ProjectSubItemInfo.fromMap(map['subSector'])
+          : null,
       projectStatusEn: map['projectStatusEn'],
       projectStatusBn: map['projectStatusBn'],
       projectStageEn: map['projectStageEn'],
@@ -147,7 +159,8 @@ class ProjectDetails extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory ProjectDetails.fromJson(String source) => ProjectDetails.fromMap(json.decode(source));
+  factory ProjectDetails.fromJson(String source) =>
+      ProjectDetails.fromMap(json.decode(source));
 
   ProjectDetails copyWith({
     int? id,
@@ -188,7 +201,8 @@ class ProjectDetails extends Equatable {
       sectorDivision: sectorDivision ?? this.sectorDivision,
       agency: agency ?? this.agency,
       ministryDivision: ministryDivision ?? this.ministryDivision,
-      currentProjectMovementStage: currentProjectMovementStage ?? this.currentProjectMovementStage,
+      currentProjectMovementStage:
+          currentProjectMovementStage ?? this.currentProjectMovementStage,
       subSector: subSector ?? this.subSector,
       projectStatusEn: projectStatusEn ?? this.projectStatusEn,
       projectStatusBn: projectStatusBn ?? this.projectStatusBn,

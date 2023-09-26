@@ -14,7 +14,8 @@ import '../widgets/project_location_map_card.dart';
 import '../widgets/project_summary_widget.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
-  const ProjectDetailsPage({Key? key, required this.projectDetails}) : super(key: key);
+  const ProjectDetailsPage({Key? key, required this.projectDetails})
+      : super(key: key);
 
   final ProjectDetails projectDetails;
 
@@ -33,7 +34,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   void initState() {
     super.initState();
     projectDetails = widget.projectDetails;
-    future = locator.get<DashboardProjectRepoImpl>().getProjectDetails(widget.projectDetails.uuid);
+    future = locator
+        .get<DashboardProjectRepoImpl>()
+        .getProjectDetails(widget.projectDetails.uuid);
 
     //skipping futureBuilder for now,while we already have some data
     future.then((value) {

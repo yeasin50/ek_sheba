@@ -31,7 +31,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
   }
 
   //initial list
-  FutureOr<void> _onActiveListRequest(ResourceActiveListRequested event, Emitter<ResourceState> emit) async {
+  FutureOr<void> _onActiveListRequest(
+      ResourceActiveListRequested event, Emitter<ResourceState> emit) async {
     final result = await _repo.getActiveList();
 
     result.fold(
@@ -43,7 +44,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     );
   }
 
-  FutureOr<void> _onFilterListRequest(ResourceFilterRequested event, Emitter<ResourceState> emit) async {
+  FutureOr<void> _onFilterListRequest(
+      ResourceFilterRequested event, Emitter<ResourceState> emit) async {
     final result = await _repo.getFilterList();
 
     result.fold(
@@ -55,7 +57,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     );
   }
 
-  FutureOr<void> _onCategoryChange(OnCategoryChange event, Emitter<ResourceState> emit) async {
+  FutureOr<void> _onCategoryChange(
+      OnCategoryChange event, Emitter<ResourceState> emit) async {
     logger.e("_onCategoryChange ${event.category}");
 
     if (event.category?.toLowerCase() == "all") {
@@ -92,7 +95,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     result.fold(
       (l) => logger.e(l.toString()),
       (r) {
-        emit(state.copyWith(resourceInfo: state.resourceInfo?.copyWith(yearList: r)));
+        emit(state.copyWith(
+            resourceInfo: state.resourceInfo?.copyWith(yearList: r)));
 
         ///! this is a hack to get the search result
         add(const ResourceSearchRequested());
@@ -100,7 +104,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     );
   }
 
-  FutureOr<void> _onYearChange(OnYearChange event, Emitter<ResourceState> emit) async {
+  FutureOr<void> _onYearChange(
+      OnYearChange event, Emitter<ResourceState> emit) async {
     if (event.year?.toLowerCase() == "all") {
       emit(
         state.copyWith(
@@ -130,7 +135,8 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
       (l) => logger.e(l.toString()),
       (r) {
         logger.e(r.toString());
-        emit(state.copyWith(resourceInfo: state.resourceInfo?.copyWith(monthList: r)));
+        emit(state.copyWith(
+            resourceInfo: state.resourceInfo?.copyWith(monthList: r)));
 
         ///! this is a hack to get the search result
         add(const ResourceSearchRequested());
@@ -138,12 +144,14 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     );
   }
 
-  FutureOr<void> _onMonthChange(OnMonthChange event, Emitter<ResourceState> emit) async {
+  FutureOr<void> _onMonthChange(
+      OnMonthChange event, Emitter<ResourceState> emit) async {
     if (event.month?.toLowerCase() == "all") {
       emit(
         state.copyWith(
           selectedMonth: () => "All",
-          resourceInfo: state.resourceInfo?.copyWith(categoryList: [..._filterInfo?.categoryList ?? []]),
+          resourceInfo: state.resourceInfo
+              ?.copyWith(categoryList: [..._filterInfo?.categoryList ?? []]),
         ),
       );
 
@@ -158,8 +166,10 @@ class ResourceBloc extends Bloc<ResourceEvent, ResourceState> {
     add(const ResourceSearchRequested());
   }
 
-  FutureOr<void> _onSearch(ResourceSearchRequested event, Emitter<ResourceState> emit) async {
-    logger.d("_onSearch ${state.selectedCategory} ${state.selectedYear} ${state.selectedMonth}");
+  FutureOr<void> _onSearch(
+      ResourceSearchRequested event, Emitter<ResourceState> emit) async {
+    logger.d(
+        "_onSearch ${state.selectedCategory} ${state.selectedYear} ${state.selectedMonth}");
 
     final result = await _repo.searchResource(
       category: state.selectedCategory == "All" ? null : state.selectedCategory,

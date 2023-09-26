@@ -164,7 +164,8 @@ class SystemUser extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory SystemUser.fromJson(String source) => SystemUser.fromMap(json.decode(source));
+  factory SystemUser.fromJson(String source) =>
+      SystemUser.fromMap(json.decode(source));
 
   @override
   String toString() {

@@ -40,7 +40,8 @@ class _HealLineFormWidgetState extends State<HealLineFormWidget> {
     } else if (_messageController.text.isEmpty) {
       showSampleDialog(context: context, message: 'Message is required');
     } else {
-      showSampleDialog(context: context, message: 'Sending Message', hasLoading: true);
+      showSampleDialog(
+          context: context, message: 'Sending Message', hasLoading: true);
       final result = await locator.get<HelplineRepositoryImpl>().sendMessage({
         'firstName': _firstNameController.text,
         'lastName': _lastNameController.text,
@@ -50,9 +51,12 @@ class _HealLineFormWidgetState extends State<HealLineFormWidget> {
       });
       if (context.mounted) Navigator.pop(context);
       result.fold(
-        (l) => showSampleDialog(context: context, message: 'Failed to send message'),
+        (l) => showSampleDialog(
+            context: context, message: 'Failed to send message'),
         (r) {
-          showSampleDialog(context: context, message: 'Message sent successfully').then(
+          showSampleDialog(
+                  context: context, message: 'Message sent successfully')
+              .then(
             (value) => _clearAllFiled(),
           );
         },

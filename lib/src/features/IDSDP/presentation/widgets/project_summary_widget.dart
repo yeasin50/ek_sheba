@@ -128,7 +128,8 @@ class ProjectSummaryWidget extends StatelessWidget {
                     if ((projectDetails.assignedOfficer ?? "").isNotEmpty) ...[
                       const SizedBox(height: 2),
                       // if (projectDetails.showAssignedOfficer == true)
-                      Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
+                      Text(
+                          "অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
                     ],
                   ],
                 ),
@@ -145,17 +146,32 @@ class ProjectSummaryWidget extends StatelessWidget {
       children: [
         Text("প্রকল্পের সারসংক্ষেপ"),
         const SizedBox(height: 12),
-        buildRow(title: 'প্রকল্পের নাম\n(ইংরেজি)', value: string2Raw(projectDetails.titleEn)),
-        buildRow(title: 'প্রকল্পের নাম\n(বাংলা)', value: string2Raw(projectDetails.titleBn)),
-        buildRow(title: 'প্রকল্পের ধরণ', value: string2Raw(projectDetails.projectType.nameBn)),
-        buildRow(title: 'উদ্যোগী মন্ত্রণালয়/বিভাগ', value: string2Raw(projectDetails.ministryDivision.nameBn)),
-        buildRow(title: 'সংস্থার নাম', value: string2Raw(projectDetails.agency.nameBn)),
-        buildRow(title: 'সেক্টর বিভাগ', value: string2Raw(projectDetails.sector.nameBn)),
-        buildRow(title: 'এডিপি সাবসেক্টর', value: string2Raw(projectDetails.subSector?.nameBn ?? 'Nan')),
+        buildRow(
+            title: 'প্রকল্পের নাম\n(ইংরেজি)',
+            value: string2Raw(projectDetails.titleEn)),
+        buildRow(
+            title: 'প্রকল্পের নাম\n(বাংলা)',
+            value: string2Raw(projectDetails.titleBn)),
+        buildRow(
+            title: 'প্রকল্পের ধরণ',
+            value: string2Raw(projectDetails.projectType.nameBn)),
+        buildRow(
+            title: 'উদ্যোগী মন্ত্রণালয়/বিভাগ',
+            value: string2Raw(projectDetails.ministryDivision.nameBn)),
+        buildRow(
+            title: 'সংস্থার নাম',
+            value: string2Raw(projectDetails.agency.nameBn)),
+        buildRow(
+            title: 'সেক্টর বিভাগ',
+            value: string2Raw(projectDetails.sector.nameBn)),
+        buildRow(
+            title: 'এডিপি সাবসেক্টর',
+            value: string2Raw(projectDetails.subSector?.nameBn ?? 'Nan')),
         buildProjectStatusRow(),
         buildRow(
             title: 'বাস্তবায়নের সময়কাল',
-            value: "${projectDetails.commencementDate} থেকে ${projectDetails.completionDate}"),
+            value:
+                "${projectDetails.commencementDate} থেকে ${projectDetails.completionDate}"),
       ],
     );
   }

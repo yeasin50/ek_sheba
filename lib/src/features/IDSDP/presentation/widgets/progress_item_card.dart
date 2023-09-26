@@ -20,7 +20,7 @@ class ProgressItemCard extends StatelessWidget {
   //default color is black
   final Color? textColor;
 
-  final double  extraHeight;
+  final double extraHeight;
 
   final VoidCallback? onTap;
   @override
@@ -36,7 +36,7 @@ class ProgressItemCard extends StatelessWidget {
         ),
       ),
       child: SizedBox(
-        height: 80+extraHeight,
+        height: 80 + extraHeight,
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: onTap,

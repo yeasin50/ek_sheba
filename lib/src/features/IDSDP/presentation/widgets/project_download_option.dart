@@ -18,7 +18,9 @@ class ProjectDownloadOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<PDFButton> items =
-        project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase() ? dppPdfButtons : tappButtons;
+        project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase()
+            ? dppPdfButtons
+            : tappButtons;
 
     const String testUUId = '5119f081-55a1-48cb-a046-fb65e48d2f7f';
     return Column(
@@ -34,7 +36,8 @@ class ProjectDownloadOptions extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            AppIconButton(onTap: () {}, icon: Icons.chat, label: "মন্তব্য / পর্যবেক্ষণ"),
+            AppIconButton(
+                onTap: () {}, icon: Icons.chat, label: "মন্তব্য / পর্যবেক্ষণ"),
           ],
         ),
         const SizedBox(height: 16),

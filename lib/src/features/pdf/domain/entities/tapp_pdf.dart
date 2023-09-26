@@ -19,7 +19,8 @@ enum _TappPDF {
   final String path;
 }
 
-const String _baseUrl = 'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
+const String _baseUrl =
+    'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
 
 List<PDFButton> tappButtons = [
   PDFButton(
@@ -59,12 +60,14 @@ List<PDFButton> tappButtons = [
   ),
   PDFButton(
     name: 'annexure5',
-    title: 'সংযোজনী-৫ (Tasks and Qualifications of Counterpart Personnel with the Consultants)',
+    title:
+        'সংযোজনী-৫ (Tasks and Qualifications of Counterpart Personnel with the Consultants)',
     path: _TappPDF.annexure5.path,
   ),
   PDFButton(
     name: 'annexure6',
-    title: 'সংযোজনী-৬ (Tasks and Qualifications of Support Staff to be Recruited)',
+    title:
+        'সংযোজনী-৬ (Tasks and Qualifications of Support Staff to be Recruited)',
     path: _TappPDF.annexure6.path,
   ),
   PDFButton(

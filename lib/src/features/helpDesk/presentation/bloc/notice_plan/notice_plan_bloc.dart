@@ -16,7 +16,8 @@ class NoticePlanBloc extends Bloc<NoticePlanEvent, NoticePlanState> {
     on<OnSearch>(_onSearch);
   }
 
-  FutureOr<void> _onSearch(OnSearch event, Emitter<NoticePlanState> emit) async {
+  FutureOr<void> _onSearch(
+      OnSearch event, Emitter<NoticePlanState> emit) async {
     emit(NoticePlanLoading());
     final result = await _repo.search(
       query: event.searchText,
@@ -29,7 +30,8 @@ class NoticePlanBloc extends Bloc<NoticePlanEvent, NoticePlanState> {
     );
   }
 
-  FutureOr<void> _initialLoad(InitialLoad event, Emitter<NoticePlanState> emit) async {
+  FutureOr<void> _initialLoad(
+      InitialLoad event, Emitter<NoticePlanState> emit) async {
     await _onSearch(OnSearch(), emit);
   }
 }

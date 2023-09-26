@@ -2,7 +2,7 @@ part of 'agency_and_ministry_name_bloc.dart';
 
 sealed class AgencyAndMinistryNameState extends Equatable {
   const AgencyAndMinistryNameState();
-  
+
   @override
   List<Object> get props => [];
 }

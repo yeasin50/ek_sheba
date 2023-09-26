@@ -188,7 +188,9 @@ class _LoginFormState extends State<LoginForm> {
                 ? IconButton(
                     splashRadius: 16,
                     onPressed: onSuffixIconPressed,
-                    icon: Icon(isPasswordVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+                    icon: Icon(isPasswordVisible
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined),
                   )
                 : const Icon(Icons.email_outlined),
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),

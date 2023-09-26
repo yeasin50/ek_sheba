@@ -20,7 +20,8 @@ class OnGuidelineLoadView extends StatelessWidget {
   Widget build(BuildContext context) {
     final guidelines = loadedState.guidelines;
 
-    final titles = guidelines.map((e) => e.moduleName ?? e.imsModuleName ?? "NA").toList();
+    final titles =
+        guidelines.map((e) => e.moduleName ?? e.imsModuleName ?? "NA").toList();
     final ids = guidelines.map((e) => e.uuid).toList();
     final guidelineList = loadedState.guidelineList ?? [];
 
@@ -33,7 +34,9 @@ class OnGuidelineLoadView extends StatelessWidget {
             titles: titles,
             selectedIndex: ids.indexOf(loadedState.selectedGuidelineId),
             onTap: (index) {
-              locator.get<GuidelineBloc>().add(GuidelineSelectEvent(imsModuleId: ids[index]));
+              locator
+                  .get<GuidelineBloc>()
+                  .add(GuidelineSelectEvent(imsModuleId: ids[index]));
             },
           ),
         ),

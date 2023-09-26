@@ -85,9 +85,11 @@ class ResourceCard extends StatelessWidget {
                     maxLines: 1,
                   ),
                   const SizedBox(height: 8),
-                  buildCategorySummaryRow(true, resourceInfo.category ?? "NUll"),
+                  buildCategorySummaryRow(
+                      true, resourceInfo.category ?? "NUll"),
                   const SizedBox(height: 8),
-                  buildCategorySummaryRow(false, resourceInfo.summary ?? "Null"),
+                  buildCategorySummaryRow(
+                      false, resourceInfo.summary ?? "Null"),
                   const SizedBox(height: 8),
                   ViewDownloadRow(
                     onView: onView,

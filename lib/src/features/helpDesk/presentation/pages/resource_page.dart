@@ -15,7 +15,8 @@ class ResourcesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ResourceBloc(locator.get<ResourceRepositoryImpl>())..add(ResourceActiveListRequested()),
+      create: (context) => ResourceBloc(locator.get<ResourceRepositoryImpl>())
+        ..add(ResourceActiveListRequested()),
       child: BackgroundDecoration(
         body: Column(
           children: [
@@ -26,7 +27,8 @@ class ResourcesPage extends StatelessWidget {
               return Expanded(
                 child: BlocBuilder<ResourceBloc, ResourceState>(
                   builder: (context, state) {
-                    if (state.resourceList.isEmpty) return const Center(child: Text("Empty List"));
+                    if (state.resourceList.isEmpty)
+                      return const Center(child: Text("Empty List"));
 
                     return ListView.builder(
                       padding: const EdgeInsets.symmetric(
@@ -35,7 +37,8 @@ class ResourcesPage extends StatelessWidget {
                       ),
                       itemCount: state.resourceList.length,
                       itemBuilder: (context, index) {
-                        return ResourceCard(resourceInfo: state.resourceList[index]);
+                        return ResourceCard(
+                            resourceInfo: state.resourceList[index]);
                       },
                     );
                   },

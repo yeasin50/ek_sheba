@@ -12,11 +12,13 @@ class FAQRepositoryImpl implements IFaqRepository {
   @override
   Future<Either<Failure, List<FAQModule>>> getFaq() async {
     try {
-      final response = await http.get(Uri.parse("${APIInfo.baseUrl}api/ims-module/get-active-list"));
+      final response = await http
+          .get(Uri.parse("${APIInfo.baseUrl}api/ims-module/get-active-list"));
 
       if (response.statusCode == 200) {
         final List<FAQModule> faqList = [];
-        final List<dynamic> faqListJson = jsonDecode(response.body) as List<dynamic>? ?? [];
+        final List<dynamic> faqListJson =
+            jsonDecode(response.body) as List<dynamic>? ?? [];
         for (var element in faqListJson) {
           faqList.add(FAQModule.fromMap(element));
         }
@@ -55,7 +57,8 @@ class FAQRepositoryImpl implements IFaqRepository {
 
       if (response.statusCode == 200) {
         final List<FAQModule> faqList = [];
-        final List<dynamic> faqListJson = jsonDecode(response.body) as List<dynamic>? ?? [];
+        final List<dynamic> faqListJson =
+            jsonDecode(response.body) as List<dynamic>? ?? [];
         for (var element in faqListJson) {
           faqList.add(FAQModule.fromMap(element));
         }

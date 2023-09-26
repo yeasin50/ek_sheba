@@ -29,18 +29,15 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
         future: loadPDF(widget.pdfUrl, widget.token),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error loading PDF'));
+            return const Center(child: Text('Error loading PDF'));
           } else if (!snapshot.hasData || snapshot.data == null) {
-            return Center(child: Text('No PDF data available'));
+            return const Center(child: Text('No PDF data available'));
           } else {
             return PDFView(
               filePath: snapshot.data!,
-
               onViewCreated: (controller) => pdfViewController = controller,
-
-              // },
             );
           }
         },

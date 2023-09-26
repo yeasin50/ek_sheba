@@ -41,7 +41,8 @@ class GuidelineLoaded extends GuidelineState {
   ///used to preview on selected guideline
   final List<GuideLineInfo>? guidelineList;
   @override
-  List<Object?> get props => [selectedGuidelineId, guidelines, guidelineList, isListLoading];
+  List<Object?> get props =>
+      [selectedGuidelineId, guidelines, guidelineList, isListLoading];
 
   @override
   String toString() =>
