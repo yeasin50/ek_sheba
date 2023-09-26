@@ -1,16 +1,14 @@
-import 'package:ek_sheba/src/common/utils/logger.dart';
-import 'package:ek_sheba/src/common/utils/token_storage.dart';
-import 'package:ek_sheba/src/common/widgets/background.dart';
-import 'package:ek_sheba/src/common/widgets/minimal_appbar.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import '../../../../locator.dart';
-import '../../data/models/project_type.dart';
-import '../../data/repositories/dashboard_projects_repo_impl.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../../common/utils/logger.dart';
+import '../../../../common/utils/token_storage.dart';
+import '../../../../common/widgets/background.dart';
+import '../../../../common/widgets/custom_appbar.dart';
 import '../../domain/entities/project_details.dart';
-import '../widgets/dashboard_listview.dart';
+import '../widgets/project_list_widget_future.dart';
 
 class DPPTAPPPage extends StatelessWidget {
   const DPPTAPPPage({super.key});
@@ -18,32 +16,33 @@ class DPPTAPPPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final future = _searchProject();
     return BackgroundDecoration(
-        body: Column(
-      children: [
-        const MinimalAppBar(title: 'DPP/TAPP'),
-        Expanded(
-          child: FutureBuilder(
-            future: _searchProject(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final type = projectTypeFromTitle('');
-                final future = locator.get<DashboardProjectRepoImpl>().fromType(type);
-                return DashboardListView(
-                  itemTitle: '',
-                  future: future,
-                );
-              }
-              return Center(child: CircularProgressIndicator());
-            },
+      hasDrawer: true,
+      body: Column(
+        children: [
+          const IDSDPAppBar(
+            hasDrawer: true,
+            hasHomeButton: true,
           ),
-        ),
-      ],
-    ));
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 16,
+              ),
+              child: ProjectListFromFuture(
+                future: future,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
-Future<List> _searchProject() async {
+Future<List<ProjectDetails>> _searchProject() async {
   const url = 'https://gwtraining.plandiv.gov.bd/external/mobile-apps/search-project-list';
 
   final body = {
@@ -75,7 +74,7 @@ Future<List> _searchProject() async {
     final content = jsonDecode(result.body)['content'] as List;
     logger.d(content.length);
 
-    final projects = List.from(content.map((e) => ProjectDetails.fromMap(e)));
+    final projects = List<ProjectDetails>.from(content.map((e) => ProjectDetails.fromMap(e)));
 
     return projects;
   } catch (e) {

@@ -115,7 +115,12 @@ class AppDrawer extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            context.push(DPPTAPPPage.routeName);
+            final currentRoute = GoRouter.of(context).location;
+            if (currentRoute != DPPTAPPPage.routeName)
+              context.push(DPPTAPPPage.routeName);
+            else {
+              Navigator.of(context).pop();
+            }
           },
           child: Padding(
             padding: const EdgeInsets.only(
