@@ -131,13 +131,13 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 const Spacer(),
-                TextButton(
-                  onPressed: _onForgetPasswordPressed,
-                  child: const Text(
-                    "Forgot password?",
-                    style: TextStyle(fontSize: 14, color: AppStyle.textGreen),
-                  ),
-                ),
+                // TextButton(
+                //   onPressed: _onForgetPasswordPressed,
+                //   child: const Text(
+                //     "Forgot password?",
+                //     style: TextStyle(fontSize: 14, color: AppStyle.textGreen),
+                //   ),
+                // ),
               ],
             ),
             // SizedBox(height: 0),
