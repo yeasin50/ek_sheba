@@ -23,70 +23,61 @@ class ProjectPlanInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final filedTextStyle = TextStyle(color: AppStyle.textGreen);
-    final titleTextStyle =
-        TextStyle(color: AppStyle.buttonGreen, fontWeight: FontWeight.w600);
+    final titleTextStyle = TextStyle(color: AppStyle.buttonGreen, fontWeight: FontWeight.w600);
 
     var expanded = Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: onTap,
-            child: Text.rich(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(
-                      text: string2Raw(projectDetails.titleEn),
-                      style: titleTextStyle),
+                  TextSpan(text: string2Raw(projectDetails.titleEn), style: titleTextStyle),
                   TextSpan(
                       text: " (${projectDetails.projectType.nameEn})",
                       style: filedTextStyle.copyWith(color: Color(0xFF6C95BA))),
                 ],
               ),
             ),
-          ),
-          Text.rich(
-            TextSpan(
-              children: [
-                const TextSpan(text: 'Sector Division: '),
-                TextSpan(
-                    text: projectDetails.ministryDivision.nameEn,
-                    style: filedTextStyle),
-              ],
+            Text.rich(
+              TextSpan(
+                children: [
+                  const TextSpan(text: 'Sector Division: '),
+                  TextSpan(text: projectDetails.ministryDivision.nameEn, style: filedTextStyle),
+                ],
+              ),
             ),
-          ),
-          Text.rich(
-            TextSpan(
-              children: [
-                const TextSpan(text: 'Commencement Date: '),
-                TextSpan(
-                    text: projectDetails.commencementDate,
-                    style: filedTextStyle),
-              ],
+            Text.rich(
+              TextSpan(
+                children: [
+                  const TextSpan(text: 'Commencement Date: '),
+                  TextSpan(text: projectDetails.commencementDate, style: filedTextStyle),
+                ],
+              ),
             ),
-          ),
-          Text.rich(
-            TextSpan(
-              children: [
-                const TextSpan(text: 'Completion Date: '),
-                TextSpan(
-                    text: projectDetails.completionDate, style: filedTextStyle),
-              ],
+            Text.rich(
+              TextSpan(
+                children: [
+                  const TextSpan(text: 'Completion Date: '),
+                  TextSpan(text: projectDetails.completionDate, style: filedTextStyle),
+                ],
+              ),
             ),
-          ),
-          Text.rich(
-            TextSpan(
-              children: [
-                const TextSpan(text: 'Status: '),
-                TextSpan(
-                    text: projectDetails.status.replaceAll("_", " "),
-                    style: filedTextStyle.copyWith(
-                        color: Color(0xFFEF8C23), fontWeight: FontWeight.w600)),
-              ],
+            Text.rich(
+              TextSpan(
+                children: [
+                  const TextSpan(text: 'Status: '),
+                  TextSpan(
+                      text: projectDetails.status.replaceAll("_", " "),
+                      style: filedTextStyle.copyWith(color: Color(0xFFEF8C23), fontWeight: FontWeight.w600)),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
     return Padding(

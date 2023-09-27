@@ -23,12 +23,12 @@ class ProjectSummaryWidget extends StatelessWidget {
     );
     Widget buildText(String text) {
       return Material(
-        color: Color.fromARGB(214, 214, 211, 211),
+        color: const Color.fromARGB(214, 214, 211, 211),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        child: SizedBox(
-          height: 48,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 48),
           child: Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Align(
@@ -43,16 +43,18 @@ class ProjectSummaryWidget extends StatelessWidget {
     Widget buildRow({required String title, String? value}) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 1,
-              child: buildText(title),
-            ),
-            SizedBox(width: 1),
-            Expanded(flex: 3, child: buildText(value ?? 'Nan')),
-          ],
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: buildText(title),
+              ),
+              SizedBox(width: 1),
+              Expanded(flex: 3, child: buildText(value ?? 'Nan')),
+            ],
+          ),
         ),
       );
     }
@@ -128,8 +130,7 @@ class ProjectSummaryWidget extends StatelessWidget {
                     if ((projectDetails.assignedOfficer ?? "").isNotEmpty) ...[
                       const SizedBox(height: 2),
                       // if (projectDetails.showAssignedOfficer == true)
-                      Text(
-                          "অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
+                      Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
                     ],
                   ],
                 ),
@@ -146,32 +147,17 @@ class ProjectSummaryWidget extends StatelessWidget {
       children: [
         Text("প্রকল্পের সারসংক্ষেপ"),
         const SizedBox(height: 12),
-        buildRow(
-            title: 'প্রকল্পের নাম\n(ইংরেজি)',
-            value: string2Raw(projectDetails.titleEn)),
-        buildRow(
-            title: 'প্রকল্পের নাম\n(বাংলা)',
-            value: string2Raw(projectDetails.titleBn)),
-        buildRow(
-            title: 'প্রকল্পের ধরণ',
-            value: string2Raw(projectDetails.projectType.nameBn)),
-        buildRow(
-            title: 'উদ্যোগী মন্ত্রণালয়/বিভাগ',
-            value: string2Raw(projectDetails.ministryDivision.nameBn)),
-        buildRow(
-            title: 'সংস্থার নাম',
-            value: string2Raw(projectDetails.agency.nameBn)),
-        buildRow(
-            title: 'সেক্টর বিভাগ',
-            value: string2Raw(projectDetails.sector.nameBn)),
-        buildRow(
-            title: 'এডিপি সাবসেক্টর',
-            value: string2Raw(projectDetails.subSector?.nameBn ?? 'Nan')),
+        buildRow(title: 'প্রকল্পের নাম\n(ইংরেজি)', value: string2Raw(projectDetails.titleEn)),
+        buildRow(title: 'প্রকল্পের নাম\n(বাংলা)', value: string2Raw(projectDetails.titleBn)),
+        buildRow(title: 'প্রকল্পের ধরণ', value: string2Raw(projectDetails.projectType.nameBn)),
+        buildRow(title: 'উদ্যোগী মন্ত্রণালয়/বিভাগ', value: string2Raw(projectDetails.ministryDivision.nameBn)),
+        buildRow(title: 'সংস্থার নাম', value: string2Raw(projectDetails.agency.nameBn)),
+        buildRow(title: 'সেক্টর বিভাগ', value: string2Raw(projectDetails.sector.nameBn)),
+        buildRow(title: 'এডিপি সাবসেক্টর', value: string2Raw(projectDetails.subSector?.nameBn ?? 'Nan')),
         buildProjectStatusRow(),
         buildRow(
             title: 'বাস্তবায়নের সময়কাল',
-            value:
-                "${projectDetails.commencementDate} থেকে ${projectDetails.completionDate}"),
+            value: "${projectDetails.commencementDate} থেকে ${projectDetails.completionDate}"),
       ],
     );
   }
