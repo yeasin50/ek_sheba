@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../locator.dart';
+import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../data/datasources/notice_plan_temp_db.dart';
 import '../../domain/entities/notice_info.dart';
 import '../bloc/notice_plan/notice_plan_bloc.dart';
@@ -38,10 +40,7 @@ class NoticePlanPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: SearchWidget(onSearch: (searchText) {
-                  final event = OnSearch(
-                      searchText: searchText,
-                      fromDate: fromDate,
-                      toDate: toDate);
+                  final event = OnSearch(searchText: searchText, fromDate: fromDate, toDate: toDate);
                   context.read<NoticePlanBloc>().add(event);
                 }),
               ),
@@ -66,10 +65,22 @@ class NoticePlanPage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         itemCount: state.notices.length,
                         itemBuilder: (context, index) {
+                          final element = state.notices[index];
+                          final path = "https://gwtraining.plandiv.gov.bd/api/${element.attachmentUrl}";
+
                           return GeneralListTile(
                             title: state.notices[index].title ?? "NA",
                             description: state.notices[index].summary ?? "NA",
-                            onView: () {},
+                            onView: () {
+                              context.push(
+                                PDFPage.routeName,
+                                extra: {
+                                  "path": path,
+                                  "title": element.title,
+                                  'isTokenRequired': false,
+                                },
+                              );
+                            },
                             onDownload: () {},
                           );
                         },
