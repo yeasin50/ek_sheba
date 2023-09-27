@@ -15,6 +15,7 @@
   - [x] feat: apis for dropdown and search
 - [x] 16: hotfix: ProjectDetails card shifted from text to card level.
 - [x] 17: feat: added `isForeignAid` to toggle Bn/En on Project Details
+- [ ] 18: bugs: there is no APi for helpDesk pdf
 
 ## 26th September fix
 
