@@ -44,28 +44,28 @@ class ProjectDownloadOptions extends StatelessWidget {
             child: Row(
               children: [
                 _BuildDownOptionCard(
-                  title: items[i].title,
+                  title: project.isForeignAid ? items[i].title : items[i].titleBn ?? items[i].title,
                   onTap: () {
                     final path = "${items[i].path}${project.uuid}";
                     context.push(
                       PDFPage.routeName,
                       extra: {
                         "path": path,
-                        "title": items[i].title,
+                        "title": project.isForeignAid ? items[i].title : items[i].titleBn ?? items[i].title,
                       },
                     );
                   },
                 ),
                 const SizedBox(width: 4),
                 _BuildDownOptionCard(
-                  title: items[6 + i].title,
+                  title: project.isForeignAid ? items[6 + i].title : items[6 + i].titleBn ?? items[6 + i].title,
                   onTap: () {
                     final path = "${items[6 + i].path}${project.uuid}";
                     context.push(
                       PDFPage.routeName,
                       extra: {
                         "path": path,
-                        "title": items[6 + i].title,
+                        "title": project.isForeignAid ? items[6 + i].title : items[6 + i].titleBn ?? items[6 + i].title,
                       },
                     );
                   },

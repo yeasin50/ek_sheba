@@ -1,8 +1,7 @@
 import 'button_info.dart';
 
 class _DppPDFPath {
-  static const String baseUrl =
-      'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
+  static const String baseUrl = 'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
 
   String get partA => '${baseUrl}get-dpp-report/part-a/';
   String get partB => '${baseUrl}get-dpp-report/part-b/';
@@ -21,65 +20,74 @@ class _DppPDFPath {
 List<PDFButton> dppPdfButtons = [
   PDFButton(
     name: 'partA',
-    title: 'অংশ-ক (প্রকল্পের সার-সংক্ষেপ)',
+    title: "Part-A (Project Summary)",
+    titleBn: 'অংশ-ক (প্রকল্পের সার-সংক্ষেপ)',
     path: _DppPDFPath().partA,
   ),
   PDFButton(
     name: 'partB',
-    title: 'অংশ-খ (প্রকল্পের বিস্তারিত বর্ণনা)',
+    title: "Part-B (Project Details)",
+    titleBn: 'অংশ-খ (প্রকল্পের বিস্তারিত বর্ণনা)',
     path: _DppPDFPath().partB,
   ),
   PDFButton(
     name: 'annexure1',
-    title: 'সংযোজনী-১ (প্রকল্প এলাকাভিত্তিক ব্যয় বিভাজন)',
+    title: 'Annexure-I (Location cost wise breakdown)',
+    titleBn: 'সংযোজনী-১ (প্রকল্প এলাকাভিত্তিক ব্যয় বিভাজন)',
     path: _DppPDFPath().annexure1,
   ),
   PDFButton(
     name: 'annexure2',
-    title: 'সংযোজনী-২ (প্রকল্পের জনবল কাঠামো)',
+    title: 'Annexure-II (Project management setup)',
+    titleBn: 'সংযোজনী-২ (প্রকল্পের জনবল কাঠামো)',
     path: _DppPDFPath().annexure2,
   ),
   PDFButton(
     name: 'annexure3A',
-    title:
-        'সংযোজনী-৩ (ক) পন্য (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
+    title: 'Annexure-III GOODS (Total Procurement Plan for development project/programme)',
+    titleBn: 'সংযোজনী-৩ (ক) পন্য (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
     path: _DppPDFPath().annexure3A,
   ),
   PDFButton(
     name: 'annexure3B',
-    title:
-        'সংযোজনী-৩ (খ) পুর্ত কাজ (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
+    title: 'Annexure-III WORKS (Total Procurement Plan for development project/programme)',
+    titleBn: 'সংযোজনী-৩ (খ) পুর্ত কাজ (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
     path: _DppPDFPath().annexure3B,
   ),
   PDFButton(
     name: 'annexure3C',
-    title:
-        'সংযোজনী-৩ (গ) সেবা (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
+    title: 'Annexure-III SERVICES (Total Procurement Plan for development project/programme)',
+    titleBn: 'সংযোজনী-৩ (গ) সেবা (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)',
     path: _DppPDFPath().annexure3C,
   ),
   PDFButton(
     name: 'annexure4',
-    title: 'সংযোজনী-৪ (বছরভিত্তিক আর্থিক ও বাস্তব পরিকল্পনা)',
+    title: 'Annexure-IV Year wise Financial and Physical Target Plan',
+    titleBn: 'সংযোজনী-৪ (বছরভিত্তিক আর্থিক ও বাস্তব পরিকল্পনা)',
     path: _DppPDFPath().annexure4,
   ),
   PDFButton(
     name: 'annexure5A',
-    title: 'সংযোজনী-৫ (ক) (প্রাক্কলিত ব্যয়ের বিস্তারিত বিবরণী)',
+    title: 'Annexure-V (A) Detailed Cost Breakdown',
+    titleBn: 'সংযোজনী-৫ (ক) (প্রাক্কলিত ব্যয়ের বিস্তারিত বিবরণী)',
     path: _DppPDFPath().annexure5A,
   ),
   PDFButton(
     name: 'annexure5B',
-    title: 'সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী)',
+    title: 'Annexure-V (B) Detailed Annual Phasing of Cost',
+    titleBn: 'সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী)',
     path: _DppPDFPath().annexure5B,
   ),
   PDFButton(
     name: 'annexure6',
-    title: 'সংযোজনী-৬ (জিওবি গৃহীত ঋণ পরিশোধ সিডিউল)',
+    title: 'Annexure-VI Amortization Schedule',
+    titleBn: 'সংযোজনী-৬ (জিওবি গৃহীত ঋণ পরিশোধ সিডিউল)',
     path: _DppPDFPath().annexure6,
   ),
   PDFButton(
     name: 'annexure7',
-    title: 'সংযোজনী-৭ (মধ্যমেয়াদি বাজেট কাঠামো)',
+    title: 'Annexure-VII (Medium Term Budget Framework)',
+    titleBn: 'সংযোজনী-৭ (মধ্যমেয়াদি বাজেট কাঠামো)',
     path: _DppPDFPath().annexure7,
   ),
 ];

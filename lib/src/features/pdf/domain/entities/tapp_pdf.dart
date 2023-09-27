@@ -19,70 +19,79 @@ enum _TappPDF {
   final String path;
 }
 
-const String _baseUrl =
-    'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
+const String _baseUrl = 'https://gwtraining.plandiv.gov.bd/external/mobile-apps/';
 
 List<PDFButton> tappButtons = [
   PDFButton(
     name: 'partA',
-    title: 'অংশ-ক (প্রকল্পের সার-সংক্ষেপ)',
+    title: 'Part-A (Project Summary)',
+    titleBn: 'অংশ-ক (প্রকল্পের সার-সংক্ষেপ)',
     path: _TappPDF.partA.path,
   ),
   PDFButton(
     name: 'partB',
-    title: 'অংশ-খ (প্রকল্পের বিস্তারিত বর্ণনা)',
+    title: 'Part-B (Project Details)',
+    titleBn: 'অংশ-খ (প্রকল্পের বিস্তারিত বর্ণনা)',
     path: _TappPDF.partB.path,
   ),
   PDFButton(
     name: 'annexure1A',
-    title: 'সংযোজনী-১ (ক) (প্রাক্কলিত ব্যয়ের বিস্তারিত বিবরণী)',
+    title: 'TAPP Annexure-1 (a) (Detailed Total Estimated Cost)',
+    titleBn: 'সংযোজনী-১ (ক) (প্রাক্কলিত ব্যয়ের বিস্তারিত বিবরণী)',
     path: _TappPDF.annexure1A.path,
   ),
   PDFButton(
     name: 'annexure1B',
-    title: 'সংযোজনী-১ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী)',
+    title: 'TAPP Annexure-I (b) (Year Wise Breakdown of Component wise Estimated Cost)',
+    titleBn: 'সংযোজনী-১ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী)',
     path: _TappPDF.annexure1B.path,
   ),
   PDFButton(
     name: 'annexure2',
-    title: 'সংযোজনী-২ (Terms of Reference)',
+    title: 'TAPP Annexure-II (Terms of Reference)',
+    titleBn: 'সংযোজনী-২ (Terms of Reference)',
     path: _TappPDF.annexure2.path,
   ),
   PDFButton(
     name: 'annexure3',
-    title: 'সংযোজনী-৩ (Consultants)',
+    title: 'TAPP Annexure-III (Consultants)',
+    titleBn: 'সংযোজনী-৩ (Consultants)',
     path: _TappPDF.annexure3.path,
   ),
   PDFButton(
     name: 'annexure4',
-    title: 'সংযোজনী-৪ (Implementation/Work Schedule)',
+    title: 'TAPP Annexure-IV (Implementation/Work Schedule)',
+    titleBn: 'সংযোজনী-৪ (Implementation/Work Schedule)',
     path: _TappPDF.annexure4.path,
   ),
   PDFButton(
     name: 'annexure5',
-    title:
-        'সংযোজনী-৫ (Tasks and Qualifications of Counterpart Personnel with the Consultants)',
+    title: 'TAPP Annexure-VI (Tasks and Qualifications of Counterpart Personnel to be Attached with the Consultants)',
+    titleBn: 'সংযোজনী-৫ (Tasks and Qualifications of Counterpart Personnel with the Consultants)',
     path: _TappPDF.annexure5.path,
   ),
   PDFButton(
     name: 'annexure6',
-    title:
-        'সংযোজনী-৬ (Tasks and Qualifications of Support Staff to be Recruited)',
+    title: 'TAPP Annexure-VI (Tasks and Qualifications of Support Staff to be Recruited)',
+    titleBn: 'সংযোজনী-৬ (Tasks and Qualifications of Support Staff to be Recruited)',
     path: _TappPDF.annexure6.path,
   ),
   PDFButton(
     name: 'annexure7',
-    title: 'সংযোজনী-৭ (Letter of Agreement with Development Partner(s))',
+    title: 'TAPP Annexure-VII (Letter of Agreement with Development Partner(s))',
+    titleBn: 'সংযোজনী-৭ (Letter of Agreement with Development Partner(s))',
     path: _TappPDF.annexure7.path,
   ),
   PDFButton(
     name: 'annexure8A',
-    title: 'সংযোজনী-৮ (ক) পন্য (উন্নয়ন প্রকল্পের জনবল কাঠামো)',
+    title: 'TAPP Annexure-VIII (a) GOODS',
+    titleBn: 'সংযোজনী-৮ (ক) পন্য (উন্নয়ন প্রকল্পের জনবল কাঠামো)',
     path: _TappPDF.annexure8A.path,
   ),
   PDFButton(
     name: 'annexure8B',
-    title: 'সংযোজনী-৮ (খ) সেবা (উন্নয়ন প্রকল্পের জনবল কাঠামো)',
+    title: 'TAPP Annexure-VIII (b) SERVICES',
+    titleBn: 'সংযোজনী-৮ (খ) সেবা (উন্নয়ন প্রকল্পের জনবল কাঠামো)',
     path: _TappPDF.annexure8B.path,
   ),
 ];
