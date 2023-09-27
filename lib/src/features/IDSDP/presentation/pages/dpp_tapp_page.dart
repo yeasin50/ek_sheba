@@ -98,7 +98,26 @@ class _DPPTAPPPageState extends State<DPPTAPPPage> {
                 children: [
                   CriteriaBasedSearch(
                     onSearch: (value, sectorId, status) {
-                      logger.i('searching for $value, $sectorId, $status');
+                      projectsInfo.clear();
+                      page = 1;
+                      isLoading = true;
+                      projectName = value;
+                      this.sectorId = sectorId;
+                      this.status = status;
+                      setState(() {});
+
+                      searchProject(
+                        projectName: value,
+                        sectorId: sectorId,
+                        status: status,
+                      ).then((value) {
+                        setState(() {
+                          projectsInfo.addAll(value);
+                          isLoading = false;
+                        });
+                      }).catchError((e) {
+                        logger.e(e);
+                      });
                     },
                   ),
                   SizedBox(height: 16),
