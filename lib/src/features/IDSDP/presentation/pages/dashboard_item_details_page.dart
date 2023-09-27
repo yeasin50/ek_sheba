@@ -31,6 +31,7 @@ class DashBoardItemDetailsPage extends StatelessWidget {
     );
 
     return BackgroundDecoration(
+      hasDrawer: true,
       body: ListView(
         // may shift to CustomScrollView
         children: [

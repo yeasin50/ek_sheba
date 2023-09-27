@@ -1,0 +1,18 @@
+Future<List<String>> loadActiveStatus() async {
+  final list = [
+    "AGENCY DESK",
+    "AGENCY HEAD",
+    "MINISTRY HEAD",
+    "MINISTRY DESK",
+    "PLANNING COMMISSION HEAD",
+    "PLANNING COMMISSION DESK",
+    "PLANNING MINISTER",
+    "APPROVED BY PLANNING MINISTER",
+    "ECNEC",
+    "APPROVED BY ECNEC",
+    "APPROVED BY MINISTRY",
+    "MINISTERIAL MEETING NOTICE",
+    "MINISTERIAL MEETING HELD",
+  ];
+  return list;
+}
