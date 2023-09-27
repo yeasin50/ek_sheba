@@ -33,10 +33,11 @@ final routes = GoRouter(
           final data = state.extra as Map ?? {};
           final path = data['path'] ?? "";
           final title = data['title'] ?? "";
-
+          final isTokenRequired = data['isTokenRequired'] ?? true;
           return PDFPage(
             path: path,
             title: title,
+            isTokenRequired: isTokenRequired,
           );
         }),
     GoRoute(

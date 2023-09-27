@@ -6,6 +6,7 @@ import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/minimal_appbar.dart';
 
 /// preview pdf from url
+@Deprecated('Use PDFPage instead')
 class PDFViewPage extends StatelessWidget {
   const PDFViewPage({
     super.key,

@@ -9,10 +9,12 @@ class PDFPage extends StatelessWidget {
     super.key,
     required this.path,
     required this.title,
+    this.isTokenRequired = true,
   });
 
   final String path;
   final String title;
+  final bool isTokenRequired;
   static const String routeName = '/pdf';
 
   @override
@@ -24,25 +26,30 @@ class PDFPage extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: FutureBuilder(
-                future: TokenManager.getToken(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Error loading PDF'));
-                  } else if (!snapshot.hasData || snapshot.data == null) {
-                    return Center(child: Text('No PDF data available'));
-                  } else {
-                    return PDFViewerScreen(
-                      pdfUrl: path,
-                      title: title,
-                      token: snapshot.data!,
-                    );
-                  }
-                },
-              ),
-            ),
+                child: isTokenRequired
+                    ? FutureBuilder(
+                        future: TokenManager.getToken(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(child: Text('Error loading PDF'));
+                          } else if (!snapshot.hasData || snapshot.data == null) {
+                            return Center(child: Text('No PDF data available'));
+                          } else {
+                            return PDFViewerScreen(
+                              pdfUrl: path,
+                              title: title,
+                              token: snapshot.data!,
+                            );
+                          }
+                        },
+                      )
+                    : PDFViewerScreen(
+                        pdfUrl: path,
+                        title: title,
+                        token: null,
+                      )),
           ],
         ),
       ),

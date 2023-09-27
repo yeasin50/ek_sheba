@@ -1,10 +1,12 @@
 import 'package:collection/collection.dart';
+import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../common/utils/utils.dart';
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../../locator.dart';
+import '../../../pdf/data/repositories/pdf_repo_impl.dart';
+import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../bloc/guideline/guideline_bloc.dart';
 import '../widgets/widgets.dart';
 
@@ -20,8 +22,7 @@ class OnGuidelineLoadView extends StatelessWidget {
   Widget build(BuildContext context) {
     final guidelines = loadedState.guidelines;
 
-    final titles =
-        guidelines.map((e) => e.moduleName ?? e.imsModuleName ?? "NA").toList();
+    final titles = guidelines.map((e) => e.moduleName ?? e.imsModuleName ?? "NA").toList();
     final ids = guidelines.map((e) => e.uuid).toList();
     final guidelineList = loadedState.guidelineList ?? [];
 
@@ -34,9 +35,7 @@ class OnGuidelineLoadView extends StatelessWidget {
             titles: titles,
             selectedIndex: ids.indexOf(loadedState.selectedGuidelineId),
             onTap: (index) {
-              locator
-                  .get<GuidelineBloc>()
-                  .add(GuidelineSelectEvent(imsModuleId: ids[index]));
+              locator.get<GuidelineBloc>().add(GuidelineSelectEvent(imsModuleId: ids[index]));
             },
           ),
         ),
@@ -48,6 +47,8 @@ class OnGuidelineLoadView extends StatelessWidget {
           Center(child: Text("No guideline found")),
         ] else
           ...guidelineList.mapIndexed((index, element) {
+            final path = "https://gwtraining.plandiv.gov.bd/api/${element.attachmentUrl}";
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: GeneralListTile(
@@ -56,15 +57,22 @@ class OnGuidelineLoadView extends StatelessWidget {
                 onTap: null,
                 onView: () {
                   context.push(
-                    '/pdf_view',
+                    PDFPage.routeName,
                     extra: {
-                      'uid': element.uuid,
-                      "url": element.attachmentUrl,
-                      "title": element.title,
+                      "path": path,
+                      "title": element.attachmentName,
+                      'isTokenRequired': false,
                     },
                   );
                 },
-                onDownload: () {},
+                onDownload: () async {
+                  final data = await PdfRepositoryImpl.loadPDF(path, null);
+                  if (data == null) {
+                    logger.e('data is null');
+                    return;
+                  }
+                  await PdfRepositoryImpl.downloadPDF(data, element.attachmentName ?? "Null");
+                },
               ),
             );
           }),

@@ -1,3 +1,7 @@
+import 'package:ek_sheba/src/features/pdf/data/repositories/pdf_repo_impl.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../data/repositories/resouce_repository_impl.dart';
 import '../bloc/resource/resource_bloc.dart';
 import '../../../../locator.dart';
@@ -15,8 +19,7 @@ class ResourcesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ResourceBloc(locator.get<ResourceRepositoryImpl>())
-        ..add(ResourceActiveListRequested()),
+      create: (context) => ResourceBloc(locator.get<ResourceRepositoryImpl>())..add(ResourceActiveListRequested()),
       child: BackgroundDecoration(
         body: Column(
           children: [
@@ -27,8 +30,7 @@ class ResourcesPage extends StatelessWidget {
               return Expanded(
                 child: BlocBuilder<ResourceBloc, ResourceState>(
                   builder: (context, state) {
-                    if (state.resourceList.isEmpty)
-                      return const Center(child: Text("Empty List"));
+                    if (state.resourceList.isEmpty) return const Center(child: Text("Empty List"));
 
                     return ListView.builder(
                       padding: const EdgeInsets.symmetric(
@@ -37,8 +39,24 @@ class ResourcesPage extends StatelessWidget {
                       ),
                       itemCount: state.resourceList.length,
                       itemBuilder: (context, index) {
+                        final element = state.resourceList[index];
+                        final path = "https://gwtraining.plandiv.gov.bd/api/${element.attachmentUrl}";
                         return ResourceCard(
-                            resourceInfo: state.resourceList[index]);
+                          resourceInfo: state.resourceList[index],
+                          onDownload: () async {
+                            await PdfRepositoryImpl.directDownload(path, name: element.attachmentName ?? "file.pdf");
+                          },
+                          onView: () {
+                            context.push(
+                              PDFPage.routeName,
+                              extra: {
+                                'path': path,
+                                'title': element.attachmentName ?? "file",
+                                'isTokenRequired': false,
+                              },
+                            );
+                          },
+                        );
                       },
                     );
                   },

@@ -10,18 +10,19 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../helpDesk/presentation/widgets/widgets.dart';
+import '../../data/repositories/pdf_repo_impl.dart';
 // import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class PDFViewerScreen extends StatefulWidget {
   final String pdfUrl;
-  final String token;
+  final String? token;
 
   final String? title;
 
   const PDFViewerScreen({
     super.key,
     required this.pdfUrl,
-    required this.token,
+    this.token,
     this.title,
   });
 
@@ -48,14 +49,14 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
                 builder: (context, value, child) {
                   logger.d('PDFPage: $value');
                   return IconButton(
-                    onPressed: value ? () => downloadPDF(pdfData!, widget.title ?? 'PDF') : null,
+                    onPressed: value ? () => PdfRepositoryImpl.downloadPDF(pdfData!, widget.title ?? 'PDF') : null,
                     icon: Icon(Icons.download, color: value ? Colors.green : Colors.grey),
                   );
                 }),
           ),
           Expanded(
             child: FutureBuilder(
-              future: loadPDF(widget.pdfUrl, widget.token),
+              future: PdfRepositoryImpl.loadPDF(widget.pdfUrl, widget.token),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -80,68 +81,5 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
       ),
     );
   }
-
-  Future<Uint8List?> loadPDF(String pdfUrl, String token) async {
-    try {
-      final response = await http.get(
-        Uri.parse(pdfUrl),
-        headers: {
-          'Authorization': 'Bearer $token',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final tempDir = await getTemporaryDirectory();
-        final filePath = '${tempDir.path}/temp.pdf';
-
-        final File file = File(filePath);
-        await file.writeAsBytes(response.bodyBytes);
-
-        return response.bodyBytes;
-      } else {
-        throw Exception('Failed to load PDF');
-      }
-    } catch (e) {
-      print('Error: $e');
-      return null;
-    }
-  }
-
-  //download pdf
-  Future<bool?> downloadPDF(Uint8List data, String name) async {
-    logger.i('downloadPDF: $name');
-
-    bool isPermissionGranted = await Permission.storage.isGranted;
-    logger.d('isPermissionGranted: $isPermissionGranted');
-
-    if (!isPermissionGranted) {
-      final status = await Permission.storage.request();
-      if (status.isDenied) {
-        // Handle permission denied
-        logger.d('Permission denied');
-        return false;
-      }
-    }
-
-    String? path = await FilePicker.platform.getDirectoryPath();
-    if (path == null) return false;
-
-    logger.d('value: $path');
-    final file = File('$path/$name.pdf');
-    await file.writeAsBytes(data);
-    logger.d('File saved to ${file.path}');
-    return true;
-  }
 }
 
-@Deprecated('Not using')
-Future<Directory> _getDownloadsDirectoryPath() async {
-  final List<Directory>? externalStorageDirectories =
-      await getExternalStorageDirectories(type: StorageDirectory.downloads);
-
-  if (externalStorageDirectories != null && externalStorageDirectories.isNotEmpty) {
-    return externalStorageDirectories.first;
-  } else {
-    return Directory('/storage/emulated/0/Download');
-  }
-}
