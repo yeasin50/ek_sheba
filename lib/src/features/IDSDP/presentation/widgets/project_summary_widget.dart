@@ -23,12 +23,12 @@ class ProjectSummaryWidget extends StatelessWidget {
     );
     Widget buildText(String text) {
       return Material(
-        color: Color.fromARGB(214, 214, 211, 211),
+        color: const Color.fromARGB(214, 214, 211, 211),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        child: SizedBox(
-          height: 48,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 48),
           child: Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Align(
@@ -43,16 +43,18 @@ class ProjectSummaryWidget extends StatelessWidget {
     Widget buildRow({required String title, String? value}) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 1,
-              child: buildText(title),
-            ),
-            SizedBox(width: 1),
-            Expanded(flex: 3, child: buildText(value ?? 'Nan')),
-          ],
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: buildText(title),
+              ),
+              SizedBox(width: 1),
+              Expanded(flex: 3, child: buildText(value ?? 'Nan')),
+            ],
+          ),
         ),
       );
     }
@@ -125,9 +127,11 @@ class ProjectSummaryWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 2),
-                    // if (projectDetails.showAssignedOfficer == true)
-                    Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
+                    if ((projectDetails.assignedOfficer ?? "").isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      // if (projectDetails.showAssignedOfficer == true)
+                      Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
+                    ],
                   ],
                 ),
               ),

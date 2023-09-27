@@ -16,7 +16,8 @@ class SessionResponse extends Equatable {
   });
 
   @override
-  List<Object?> get props => [accessToken, sessionId, doptorToken, creationTime];
+  List<Object?> get props =>
+      [accessToken, sessionId, doptorToken, creationTime];
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -40,7 +41,8 @@ class SessionResponse extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory SessionResponse.fromJson(String source) => SessionResponse.fromMap(json.decode(source));
+  factory SessionResponse.fromJson(String source) =>
+      SessionResponse.fromMap(json.decode(source));
 
   SessionResponse copyWith({
     String? accessToken,

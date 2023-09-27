@@ -31,6 +31,7 @@ class DashBoardItemDetailsPage extends StatelessWidget {
     );
 
     return BackgroundDecoration(
+      hasDrawer: true,
       body: ListView(
         // may shift to CustomScrollView
         children: [
@@ -44,7 +45,7 @@ class DashBoardItemDetailsPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const ProjectLocationMapCard( ),
+                const ProjectLocationMapCard(),
                 SizedBox(height: 24),
                 label,
                 SizedBox(height: 12),

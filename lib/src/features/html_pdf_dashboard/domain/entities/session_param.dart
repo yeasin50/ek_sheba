@@ -18,7 +18,8 @@ class SeasonParams extends Equatable {
   });
 
   @override
-  List<Object?> get props => [sessionId, accessToken, doptorToken, isSystemUser];
+  List<Object?> get props =>
+      [sessionId, accessToken, doptorToken, isSystemUser];
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -40,7 +41,8 @@ class SeasonParams extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory SeasonParams.fromJson(String source) => SeasonParams.fromMap(json.decode(source));
+  factory SeasonParams.fromJson(String source) =>
+      SeasonParams.fromMap(json.decode(source));
 
   SeasonParams copyWith({
     String? sessionId,

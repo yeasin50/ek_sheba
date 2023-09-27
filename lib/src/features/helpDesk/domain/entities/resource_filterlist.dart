@@ -48,8 +48,10 @@ class ResourceFilterInfo extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory ResourceFilterInfo.fromJson(String source) => ResourceFilterInfo.fromMap(json.decode(source));
+  factory ResourceFilterInfo.fromJson(String source) =>
+      ResourceFilterInfo.fromMap(json.decode(source));
 
   @override
-  String toString() => 'ResourceFilterInfo(categoryList: $categoryList, yearList: $yearList, monthList: $monthList)';
+  String toString() =>
+      'ResourceFilterInfo(categoryList: $categoryList, yearList: $yearList, monthList: $monthList)';
 }

@@ -51,7 +51,8 @@ class ProjectSubItemInfo extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory ProjectSubItemInfo.fromJson(String source) => ProjectSubItemInfo.fromMap(json.decode(source));
+  factory ProjectSubItemInfo.fromJson(String source) =>
+      ProjectSubItemInfo.fromMap(json.decode(source));
 
   ProjectSubItemInfo copyWith({
     int? id,

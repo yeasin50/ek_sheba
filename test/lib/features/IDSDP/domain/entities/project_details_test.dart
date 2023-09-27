@@ -23,7 +23,8 @@ void main() {
         expect(projectDetails.nothiStatusBn, "খসড়া");
         expect(projectDetails.nothiStatusEn, "Draft");
         expect(projectDetails.subSector?.nameBn, "পল্লী উন্নয়ন ও সমবায়");
-        expect(projectDetails.subSector?.nameEn, "Rural Development and Cooperatives");
+        expect(projectDetails.subSector?.nameEn,
+            "Rural Development and Cooperatives");
         expect(projectDetails.subSector?.code, "41");
       });
     });

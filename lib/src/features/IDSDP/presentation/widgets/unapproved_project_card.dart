@@ -14,36 +14,9 @@ class UnApprovedProjectCard extends StatelessWidget {
     super.key,
   });
 
-  ///provide data on order of [In Preparation, For Recast, In Ministry , In Planning Commission, For Recast]
-
-  void _onDetailsPage(BuildContext context, int index) {
-    context.pushNamed(
-      DashBoardItemDetailsPage.routeName,
-      extra: {
-        'itemTitle': index == 0
-            ? "In Preparation"
-            : index == 1
-                ? "For Recast"
-                : index == 2
-                    ? "In Ministry"
-                    : index == 3
-                        ? "In Planning Commission"
-                        : "For Recast",
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final unApprovedRepo = locator<DashboardProjectRepoImpl>().unApprovedRepo;
-    //todo: get data from api
-    final List<int> data = [
-      unApprovedRepo.unapprovedInPreparationProjectCount(),
-      unApprovedRepo.unapprovedForRecastProjectCount(),
-      unApprovedRepo.unapprovedInMinistryProjectCount(),
-      unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
-      unApprovedRepo.unapprovedInEcnecProjectCount(),
-    ];
 
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),
@@ -77,30 +50,40 @@ class UnApprovedProjectCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ProgressItemCard(
-                            onTap: () {
-                              _onDetailsPage(context, 4);
-                            },
-                            title: "For Recast",
-                            count: data[4]),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: ProgressItemCard(
                           onTap: () {
-                            _onDetailsPage(context, 1);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': "In ECNEC"},
+                            );
                           },
-                          title: "For Recast",
-                          count: data[1],
+                          title: "In ECNEC",
+                          count: unApprovedRepo.unapprovedInEcnecProjectCount(),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(
                           onTap: () {
-                            _onDetailsPage(context, 2);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': "For Recast"},
+                            );
+                          },
+                          title: "For Recast",
+                          count: unApprovedRepo.unapprovedForRecastProjectCount(),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: ProgressItemCard(
+                          onTap: () {
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': "In Ministry"},
+                            );
                           },
                           title: "In Ministry",
-                          count: data[2],
+                          count: unApprovedRepo.unapprovedInMinistryProjectCount(),
                         ),
                       ),
                     ],
@@ -112,10 +95,13 @@ class UnApprovedProjectCard extends StatelessWidget {
                         child: ProgressItemCard(
                           extraHeight: 10,
                           onTap: () {
-                            _onDetailsPage(context, 0);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': "In Preparation"},
+                            );
                           },
                           title: "In Preparation",
-                          count: data[0],
+                          count: unApprovedRepo.unapprovedInPreparationProjectCount(),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -123,16 +109,15 @@ class UnApprovedProjectCard extends StatelessWidget {
                         child: ProgressItemCard(
                           extraHeight: 10,
                           onTap: () {
-                            _onDetailsPage(context, 3);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': "In Planning Commission"},
+                            );
                           },
                           title: "In Planning Commission",
-                          count: data[3],
+                          count: unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
                         ),
                       ),
-                      // const Expanded(
-                      //   //maintain the size
-                      //   child: SizedBox(),
-                      // ),
                     ],
                   ),
                 ],

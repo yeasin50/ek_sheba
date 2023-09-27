@@ -48,7 +48,8 @@ class User extends Equatable {
       active: active ?? this.active,
       employeeRecordId: employeeRecordId ?? this.employeeRecordId,
       lastPasswordChange: lastPasswordChange ?? this.lastPasswordChange,
-      failedAttemptLimitExceedTime: failedAttemptLimitExceedTime ?? this.failedAttemptLimitExceedTime,
+      failedAttemptLimitExceedTime:
+          failedAttemptLimitExceedTime ?? this.failedAttemptLimitExceedTime,
     );
   }
 
@@ -73,7 +74,8 @@ class User extends Equatable {
       result.addAll({'last_password_change': lastPasswordChange});
     }
     if (failedAttemptLimitExceedTime != null) {
-      result.addAll({'failed_attempt_limit_exceed_time': failedAttemptLimitExceedTime});
+      result.addAll(
+          {'failed_attempt_limit_exceed_time': failedAttemptLimitExceedTime});
     }
     return result;
   }
@@ -86,7 +88,8 @@ class User extends Equatable {
       active: map['active'] ?? false,
       employeeRecordId: map['employee_record_id'] ?? 0,
       lastPasswordChange: map['last_password_change'] ?? '',
-      failedAttemptLimitExceedTime: map['failed_attempt_limit_exceed_time'] ?? '',
+      failedAttemptLimitExceedTime:
+          map['failed_attempt_limit_exceed_time'] ?? '',
     );
   }
 

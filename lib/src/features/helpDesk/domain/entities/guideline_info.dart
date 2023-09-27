@@ -121,7 +121,8 @@ class GuideLineInfo extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory GuideLineInfo.fromJson(String source) => GuideLineInfo.fromMap(json.decode(source));
+  factory GuideLineInfo.fromJson(String source) =>
+      GuideLineInfo.fromMap(json.decode(source));
 
   GuideLineInfo copyWith({
     int? id,

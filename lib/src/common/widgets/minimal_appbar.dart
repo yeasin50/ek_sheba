@@ -2,17 +2,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../common/app_style.dart';
+import '../app_style.dart';
 
 class MinimalAppBar extends StatelessWidget {
   const MinimalAppBar({
     super.key,
     required this.title,
     this.onBackButtonPressed,
+    this.action,
   });
 
   final String title;
   final VoidCallback? onBackButtonPressed;
+
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,7 @@ class MinimalAppBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 48),
+          if (action != null) action!,
         ],
       ),
     );

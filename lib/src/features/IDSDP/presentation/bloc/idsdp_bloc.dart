@@ -15,7 +15,8 @@ class IdsdpBloc extends Bloc<IdsdpEvent, IdsdpState> {
     on<LoadProjectsEvent>(_onLoadProjects);
   }
 
-  FutureOr<void> _onLoadProjects(LoadProjectsEvent event, Emitter<IdsdpState> emit) async {
+  FutureOr<void> _onLoadProjects(
+      LoadProjectsEvent event, Emitter<IdsdpState> emit) async {
     emit(IdsdpLoading());
     final result = await locator<DashboardProjectRepoImpl>().loadProjects();
 

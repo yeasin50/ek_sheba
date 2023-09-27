@@ -20,7 +20,8 @@ class GuideLinePage extends StatelessWidget {
           const MinimalAppBar(title: 'Guideline'),
           Expanded(
             child: BlocBuilder<GuidelineBloc, GuidelineState>(
-              bloc: locator.get<GuidelineBloc>()..add(const GuidelineFetchEvent()),
+              bloc: locator.get<GuidelineBloc>()
+                ..add(const GuidelineFetchEvent()),
               builder: (context, state) {
                 if (state is GuidelineLoading) {
                   return defaultLoadingIndication;

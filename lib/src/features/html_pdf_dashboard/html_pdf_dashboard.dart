@@ -41,7 +41,6 @@ class _HtmlPDFDashboardState extends State<HtmlPDFDashboard> {
   void initState() {
     super.initState();
     _initController();
-  
   }
 
   _showErrDialog({String? msg}) {
@@ -75,7 +74,7 @@ class _HtmlPDFDashboardState extends State<HtmlPDFDashboard> {
     }
 
     controller = WebViewController.fromPlatformCreationParams(params);
- 
+
     final uri = Uri.parse(widget.url);
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)

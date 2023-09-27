@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:decimal/decimal.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:ek_sheba/src/common/utils/logger.dart';
 import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_subitem.dart';
 
 class ProjectDetails extends Equatable {
@@ -31,6 +30,7 @@ class ProjectDetails extends Equatable {
     this.assignedOfficer,
     this.nothiStatusEn,
     this.nothiStatusBn,
+    this.isForeignAid = false,
   });
 
   final int id;
@@ -59,12 +59,14 @@ class ProjectDetails extends Equatable {
   final String? nothiStatusEn;
   final String? nothiStatusBn;
 
+  final bool isForeignAid;
   @override
-  List<Object?> get props => [id, uuid, titleEn, titleBn, commencementDate, completionDate, status, totalAmount];
+  List<Object?> get props =>
+      [id, uuid, titleEn, titleBn, commencementDate, completionDate, status, totalAmount, isForeignAid];
 
   @override
   String toString() {
-    return 'ProjectDetails(id: $id, uuid: $uuid, titleEn: $titleEn, titleBn: $titleBn, commencementDate: $commencementDate, completionDate: $completionDate, status: $status, totalAmount: $totalAmount, projectType: $projectType, sector: $sector, sectorDivision: $sectorDivision, agency: $agency, ministryDivision: $ministryDivision, currentProjectMovementStage: $currentProjectMovementStage, subSector: $subSector, projectStatusEn: $projectStatusEn, projectStatusBn: $projectStatusBn, projectStageEn: $projectStageEn, projectStageBn: $projectStageBn, showAssignedOfficer: $showAssignedOfficer, assignedOfficer: $assignedOfficer, nothiStatusEn: $nothiStatusEn, nothiStatusBn: $nothiStatusBn)';
+    return 'ProjectDetails(id: $id, uuid: $uuid, titleEn: $titleEn, titleBn: $titleBn, commencementDate: $commencementDate, completionDate: $completionDate, status: $status, totalAmount: $totalAmount, projectType: $projectType, sector: $sector, sectorDivision: $sectorDivision, agency: $agency, ministryDivision: $ministryDivision, currentProjectMovementStage: $currentProjectMovementStage, subSector: $subSector, projectStatusEn: $projectStatusEn, projectStatusBn: $projectStatusBn, projectStageEn: $projectStageEn, projectStageBn: $projectStageBn, showAssignedOfficer: $showAssignedOfficer, assignedOfficer: $assignedOfficer, nothiStatusEn: $nothiStatusEn, nothiStatusBn: $nothiStatusBn , isForeignAid: $isForeignAid)';
   }
 
   Map<String, dynamic> toMap() {
@@ -113,6 +115,7 @@ class ProjectDetails extends Equatable {
     if (nothiStatusBn != null) {
       result.addAll({'nothiStatusBn': nothiStatusBn});
     }
+    result.addAll({'isForeignAid': isForeignAid});
 
     return result;
   }
@@ -142,6 +145,7 @@ class ProjectDetails extends Equatable {
       assignedOfficer: map['assignedOfficer'],
       nothiStatusEn: map['nothiStatusEn'],
       nothiStatusBn: map['nothiStatusBn'],
+      isForeignAid: map['isForeignAid'] ?? false,
     );
   }
 
@@ -173,6 +177,7 @@ class ProjectDetails extends Equatable {
     String? assignedOfficer,
     String? nothiStatusEn,
     String? nothiStatusBn,
+    bool? isForeignAid,
   }) {
     return ProjectDetails(
       id: id ?? this.id,
@@ -198,6 +203,7 @@ class ProjectDetails extends Equatable {
       assignedOfficer: assignedOfficer ?? this.assignedOfficer,
       nothiStatusEn: nothiStatusEn ?? this.nothiStatusEn,
       nothiStatusBn: nothiStatusBn ?? this.nothiStatusBn,
+      isForeignAid: isForeignAid ?? this.isForeignAid,
     );
   }
 }

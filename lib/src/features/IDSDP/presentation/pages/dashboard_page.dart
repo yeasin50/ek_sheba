@@ -28,7 +28,9 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
-    locator.get<AgencyAndMinistryNameBloc>().add(const GetAgencyAndMinistryName());
+    locator
+        .get<AgencyAndMinistryNameBloc>()
+        .add(const GetAgencyAndMinistryName());
   }
 
   @override
@@ -53,7 +55,8 @@ class _DashboardPageState extends State<DashboardPage> {
                         Text(state.message),
                         ElevatedButton(
                           onPressed: () {
-                            BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
+                            BlocProvider.of<IdsdpBloc>(context)
+                                .add(LoadProjectsEvent());
                           },
                           child: const Text('Retry'),
                         ),
@@ -64,7 +67,8 @@ class _DashboardPageState extends State<DashboardPage> {
                         ElevatedButton(
                           onPressed: () async {
                             await TokenManager.deleteSecureToken();
-                            if (context.mounted) context.pushReplacementNamed(LoginPage.routeName);
+                            if (context.mounted)
+                              context.pushReplacementNamed(LoginPage.routeName);
                           },
                           child: const Text('Login'),
                         ),

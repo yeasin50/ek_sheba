@@ -17,6 +17,7 @@ import 'features/helpDesk/presentation/bloc/guideline/guideline_bloc.dart';
 import 'features/helpDesk/presentation/bloc/notice_plan/notice_plan_bloc.dart';
 import 'features/helpDesk/presentation/bloc/resource/resource_bloc.dart';
 import 'features/html_pdf_dashboard/auth/auth_hanlder.dart';
+import 'features/pdf/data/repositories/pdf_repo_impl.dart';
 
 export 'features/IDSDP/data/repositories/approved_project_repo_impl.dart';
 export 'features/IDSDP/data/repositories/unapproved_project_repo_impl.dart';
@@ -25,21 +26,26 @@ final locator = GetIt.instance;
 
 void setup() {
   locator.registerLazySingleton(() => AuthRepositoryImpl());
-  locator.registerLazySingleton(() => AuthBloc(locator.get<AuthRepositoryImpl>()));
+  locator
+      .registerLazySingleton(() => AuthBloc(locator.get<AuthRepositoryImpl>()));
 
   locator.registerLazySingleton(() => FAQRepositoryImpl());
-  locator.registerLazySingleton(() => FaqBloc(locator.get<FAQRepositoryImpl>()));
+  locator
+      .registerLazySingleton(() => FaqBloc(locator.get<FAQRepositoryImpl>()));
 
   locator.registerLazySingleton(() => GuidelineRepositoryImpl());
-  locator.registerLazySingleton(() => GuidelineBloc(locator.get<GuidelineRepositoryImpl>()));
+  locator.registerLazySingleton(
+      () => GuidelineBloc(locator.get<GuidelineRepositoryImpl>()));
 
   locator.registerLazySingleton(() => ResourceRepositoryImpl());
-  locator.registerLazySingleton(() => ResourceBloc(locator.get<ResourceRepositoryImpl>()));
+  locator.registerLazySingleton(
+      () => ResourceBloc(locator.get<ResourceRepositoryImpl>()));
 
   locator.registerLazySingleton(() => HelplineRepositoryImpl());
 
   locator.registerLazySingleton(() => NoticeRepositoryImpl());
-  locator.registerLazySingleton(() => NoticePlanBloc(locator.get<NoticeRepositoryImpl>()));
+  locator.registerLazySingleton(
+      () => NoticePlanBloc(locator.get<NoticeRepositoryImpl>()));
 
   locator.registerLazySingleton(() => DashboardProjectRepoImpl(
         approvedRepo: DashboardApprovedProjectRepoImpl(),
@@ -50,4 +56,5 @@ void setup() {
   locator.registerLazySingleton(() => AgencyAndMinistryNameBloc());
 
   locator.registerLazySingleton(() => PDfHandler());
+  locator.registerLazySingleton(() => PdfRepositoryImpl());
 }

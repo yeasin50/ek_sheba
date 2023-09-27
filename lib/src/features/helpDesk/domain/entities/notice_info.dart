@@ -22,7 +22,8 @@ class NoticeInfo extends Equatable {
   final bool? isActive;
 
   @override
-  List<Object?> get props => [id, uuid, title, summary, publishedDate, attachmentUrl, isActive];
+  List<Object?> get props =>
+      [id, uuid, title, summary, publishedDate, attachmentUrl, isActive];
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -62,7 +63,8 @@ class NoticeInfo extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory NoticeInfo.fromJson(String source) => NoticeInfo.fromMap(json.decode(source));
+  factory NoticeInfo.fromJson(String source) =>
+      NoticeInfo.fromMap(json.decode(source));
 
   NoticeInfo copyWith({
     int? id,

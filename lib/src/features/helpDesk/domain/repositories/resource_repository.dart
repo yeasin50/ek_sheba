@@ -5,7 +5,7 @@ import '../entities/resource_filterlist.dart';
 import '../entities/resource_info.dart';
 
 abstract interface class IResourceRepository {
-  Future<Either<Failure,  ResourceFilterInfo>> getFilterList();
+  Future<Either<Failure, ResourceFilterInfo>> getFilterList();
   Future<Either<Failure, List<ResourceInfo>>> getActiveList();
 
   Future<Either<Failure, List<String>>> getYearListByCategory(String category);

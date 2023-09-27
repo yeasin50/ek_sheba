@@ -49,7 +49,6 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   Widget build(BuildContext context) {
     final sectorDivision = string2Raw(projectDetails.sectorDivision.nameEn);
     return Scaffold(
-      drawer: AppDrawer(),
       body: BackgroundDecoration(
           hasDrawer: true,
           body: ListView(

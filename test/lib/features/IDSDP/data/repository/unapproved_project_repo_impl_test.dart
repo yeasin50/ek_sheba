@@ -58,7 +58,7 @@ void main() {
       final data = result.asRight();
 
       expect(data, isA<List<ProjectDetails>>());
-     expect(data.length, 3);
+      expect(data.length, 3);
     });
 
     test('getUnapprovedProjectInMinistry', () async {

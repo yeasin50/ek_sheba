@@ -7,7 +7,8 @@ Either<Failure, List<ProjectDetails>> projectsFromMap({
   required data,
 }) {
   try {
-    final completedList = List<ProjectDetails>.from(data.map((e) => ProjectDetails.fromMap(e)));
+    final completedList =
+        List<ProjectDetails>.from(data.map((e) => ProjectDetails.fromMap(e)));
     return Right(completedList);
   } catch (e) {
     logger.e('projectsFromMap: ${e.toString()}');

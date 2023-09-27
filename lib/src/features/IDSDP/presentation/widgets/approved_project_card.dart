@@ -12,7 +12,8 @@ class ApprovedProjectCard extends StatelessWidget {
   const ApprovedProjectCard({super.key});
 
   void _navToProjectDetails(BuildContext context, String itemTitle) {
-    logger.i("ApprovedProjectCard: _navToProjectDetails: itemTitle: $itemTitle");
+    logger
+        .i("ApprovedProjectCard: _navToProjectDetails: itemTitle: $itemTitle");
     context.push(
       DashBoardItemDetailsPage.routeName,
       extra: {'itemTitle': itemTitle},
@@ -21,7 +22,8 @@ class ApprovedProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final approvedRepo = (locator<IdsdpBloc>().state as IdsdpLoaded).repo.approvedRepo;
+    final approvedRepo =
+        (locator<IdsdpBloc>().state as IdsdpLoaded).repo.approvedRepo;
 
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),

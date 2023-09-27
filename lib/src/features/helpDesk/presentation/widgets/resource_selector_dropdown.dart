@@ -10,7 +10,8 @@ class ResourceSelectorDropDown extends StatefulWidget {
   const ResourceSelectorDropDown({super.key});
 
   @override
-  State<ResourceSelectorDropDown> createState() => _ResourceSelectorDropDownState();
+  State<ResourceSelectorDropDown> createState() =>
+      _ResourceSelectorDropDownState();
 }
 
 class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
@@ -20,12 +21,10 @@ class _ResourceSelectorDropDownState extends State<ResourceSelectorDropDown> {
 
   List<String> _months = [];
 
-
   @override
   void initState() {
     super.initState();
     context.read<ResourceBloc>().add(ResourceFilterRequested());
-   
   }
 
   _onItemChanged() {}

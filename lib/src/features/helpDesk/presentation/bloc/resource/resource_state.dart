@@ -35,9 +35,11 @@ class ResourceState extends Equatable {
     return ResourceState(
       resourceInfo: resourceInfo ?? this.resourceInfo,
       resourceList: resourceList ?? this.resourceList,
-      selectedCategory: selectedCategory == null ? this.selectedCategory : selectedCategory(),
+      selectedCategory:
+          selectedCategory == null ? this.selectedCategory : selectedCategory(),
       selectedYear: selectedYear == null ? this.selectedYear : selectedYear(),
-      selectedMonth: selectedMonth == null ? this.selectedMonth : selectedMonth(),
+      selectedMonth:
+          selectedMonth == null ? this.selectedMonth : selectedMonth(),
     );
   }
 }

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/app_dialog.dart';
 
-typedef OnDateRangeSelected = void Function(DateTime? startDate, DateTime? endDate);
+typedef OnDateRangeSelected = void Function(
+    DateTime? startDate, DateTime? endDate);
 
 class NoticeDateRangeSelector extends StatefulWidget {
   const NoticeDateRangeSelector({
@@ -15,7 +16,8 @@ class NoticeDateRangeSelector extends StatefulWidget {
   final OnDateRangeSelected onDateRangeSelected;
 
   @override
-  State<NoticeDateRangeSelector> createState() => _NoticeDateRangeSelectorState();
+  State<NoticeDateRangeSelector> createState() =>
+      _NoticeDateRangeSelectorState();
 }
 
 class _NoticeDateRangeSelectorState extends State<NoticeDateRangeSelector> {

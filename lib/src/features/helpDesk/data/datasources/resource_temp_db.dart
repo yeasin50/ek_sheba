@@ -1,5 +1,5 @@
 // import '../../domain/entities/resource_info.dart';
-// 
+//
 // final tempResourcesData = [
 //   ResourceInfo(
 //     category: 'Category One',

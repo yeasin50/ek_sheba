@@ -9,8 +9,10 @@ void main() {
     const item1 = {
       "id": 1069,
       "uuid": "de7f63c2-a581-4625-9865-5f73d0964107",
-      "titleEn": "Development Project Proposal (DPP) For Training Phase 9 Recap",
-      "titleBn": "প্রশিক্ষণ পর্যায় ৯ এর জন্য উন্নয়ন প্রকল্প প্রস্তাব (ডিপিপি) সংকলন",
+      "titleEn":
+          "Development Project Proposal (DPP) For Training Phase 9 Recap",
+      "titleBn":
+          "প্রশিক্ষণ পর্যায় ৯ এর জন্য উন্নয়ন প্রকল্প প্রস্তাব (ডিপিপি) সংকলন",
       "commencementDate": "2023-02-02",
       "completionDate": "2025-06-11",
       "projectType": {
@@ -30,7 +32,8 @@ void main() {
       "sectorDivision": {
         "id": 2,
         "uuid": "b2dd0665-b8da-4ab9-b593-bbe52076bf26",
-        "nameEn": "Agricultural, Water Resources and Rural Institutions Division",
+        "nameEn":
+            "Agricultural, Water Resources and Rural Institutions Division",
         "nameBn": "কৃষি, পানি সম্পদ ও পল্লী প্রতিষ্ঠান বিভাগ",
         "code": "01"
       },

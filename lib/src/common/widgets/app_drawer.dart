@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../features/IDSDP/presentation/pages/dpp_tapp_page.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -112,7 +114,14 @@ class AppDrawer extends StatelessWidget {
       ),
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            final currentRoute = GoRouter.of(context).location;
+            if (currentRoute != DPPTAPPPage.routeName)
+              context.push(DPPTAPPPage.routeName);
+            else {
+              Navigator.of(context).pop();
+            }
+          },
           child: Padding(
             padding: const EdgeInsets.only(
               left: 16 + 16,
@@ -196,7 +205,7 @@ class AppDrawer extends StatelessWidget {
         // preliminaryTile,
         // feasibilityStudyTile,
         dPPTAPPTile,
-        rdppRtapp,
+        // rdppRtapp,
       ],
     );
     return Drawer(

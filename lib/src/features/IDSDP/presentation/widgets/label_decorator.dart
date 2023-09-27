@@ -35,7 +35,9 @@ class LabelDecoratorWidget extends StatelessWidget {
           text,
           style: textStyle ??
               GoogleFonts.poppins(
-                color: color == AppStyle.buttonGreen ? AppStyle.textWhite : AppStyle.buttonGreen,
+                color: color == AppStyle.buttonGreen
+                    ? AppStyle.textWhite
+                    : AppStyle.buttonGreen,
                 fontSize: 9,
                 fontWeight: FontWeight.w500,
               ),

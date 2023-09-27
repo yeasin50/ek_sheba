@@ -12,9 +12,12 @@ abstract interface class DashboardUnapprovedProjectRepo {
   int unapprovedInPlanningCommissionProjectCount();
   int unapprovedInEcnecProjectCount();
 
-  Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInPreparation();
+  Future<Either<Failure, List<ProjectDetails>>>
+      getUnapprovedProjectInPreparation();
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectForRecast();
-  Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInMinistry();
-  Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInPlanningCommission();
+  Future<Either<Failure, List<ProjectDetails>>>
+      getUnapprovedProjectInMinistry();
+  Future<Either<Failure, List<ProjectDetails>>>
+      getUnapprovedProjectInPlanningCommission();
   Future<Either<Failure, List<ProjectDetails>>> getUnapprovedProjectInEcnec();
 }
