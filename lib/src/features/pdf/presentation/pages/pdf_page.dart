@@ -31,11 +31,11 @@ class PDFPage extends StatelessWidget {
                         future: TokenManager.getToken(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
-                            return Center(child: Text('Error loading PDF'));
+                            return Center(child: Text('Error loading PDF $path'));
                           } else if (!snapshot.hasData || snapshot.data == null) {
-                            return Center(child: Text('No PDF data available'));
+                            return Center(child: Text('No PDF data available $path'));
                           } else {
                             return PDFViewerScreen(
                               pdfUrl: path,
