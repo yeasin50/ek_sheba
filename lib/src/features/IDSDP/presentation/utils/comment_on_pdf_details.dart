@@ -4,16 +4,11 @@ import 'package:flutter/material.dart';
 import '../../data/repositories/comment_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
 
-import 'package:http/http.dart' as http;
-
 Future<void> comment({
   required BuildContext context,
   required ProjectDetails project,
 }) async {
-  ///* https://gwtraining.plandiv.gov.bd/external/mobile-apps/comments/get-by-project-concept-uuid-and-project-type
-  ///
-
-  showDialog(
+  await showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
