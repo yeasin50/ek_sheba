@@ -77,7 +77,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
             if (result != null) {
               ///save session id
-              await TokenManager.setSession(sessionId: sessionId, doptorToken: doptorToken);
+              await TokenManager.setSession(
+                  sessionId: sessionId, doptorToken: doptorToken);
             } else {
               logger.e("Session not created");
             }
@@ -104,7 +105,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<bool> _checkEkShebaUser(Map<String, dynamic> body) async {
     try {
-      final url = Uri.parse("${APIInfo.baseUrl}api/users/userByUserIdAndUserType");
+      final url =
+          Uri.parse("${APIInfo.baseUrl}api/users/userByUserIdAndUserType");
 
       final result = await http.post(
         url,
@@ -162,7 +164,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
       final headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic aWJjc3BsYW5uaW5naWRzZHA6cGxhbm5pbmdJZHNkcHNoYSRAIzkyOSU=',
+        'Authorization':
+            'Basic aWJjc3BsYW5uaW5naWRzZHA6cGxhbm5pbmdJZHNkcHNoYSRAIzkyOSU=',
       };
       final response = await http.post(
         Uri.parse(APIInfo.systemLogin),

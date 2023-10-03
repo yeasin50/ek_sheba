@@ -19,8 +19,9 @@ class ProjectLocationMapCard extends StatelessWidget {
     );
     return BlocBuilder<AgencyAndMinistryNameBloc, AgencyAndMinistryNameState>(
       builder: (context, state) {
-        String title =
-            state is AgencyAndMinistryNameLoaded ? state.agencyAndMinistryInfo.agency.nameEn : "No Title Found";
+        String title = state is AgencyAndMinistryNameLoaded
+            ? state.agencyAndMinistryInfo.agency.nameEn
+            : "No Title Found";
         return Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

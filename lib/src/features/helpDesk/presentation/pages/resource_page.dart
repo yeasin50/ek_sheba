@@ -1,3 +1,7 @@
+import 'package:ek_sheba/src/features/pdf/data/repositories/pdf_repo_impl.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../data/repositories/resouce_repository_impl.dart';
 import '../bloc/resource/resource_bloc.dart';
 import '../../../../locator.dart';
@@ -35,7 +39,24 @@ class ResourcesPage extends StatelessWidget {
                       ),
                       itemCount: state.resourceList.length,
                       itemBuilder: (context, index) {
-                        return ResourceCard(resourceInfo: state.resourceList[index]);
+                        final element = state.resourceList[index];
+                        final path = "https://gwtraining.plandiv.gov.bd/api/${element.attachmentUrl}";
+                        return ResourceCard(
+                          resourceInfo: state.resourceList[index],
+                          onDownload: () async {
+                            await PdfRepositoryImpl.directDownload(path, name: element.attachmentName ?? "file.pdf");
+                          },
+                          onView: () {
+                            context.push(
+                              PDFPage.routeName,
+                              extra: {
+                                'path': path,
+                                'title': element.attachmentName ?? "file",
+                                'isTokenRequired': false,
+                              },
+                            );
+                          },
+                        );
                       },
                     );
                   },

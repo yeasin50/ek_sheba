@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class MinistryDivision extends Equatable {
-  
   const MinistryDivision({
     required this.id,
     required this.uuid,
@@ -78,7 +77,8 @@ class MinistryDivision extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory MinistryDivision.fromJson(String source) => MinistryDivision.fromMap(json.decode(source));
+  factory MinistryDivision.fromJson(String source) =>
+      MinistryDivision.fromMap(json.decode(source));
 
   @override
   List<Object?> get props => [

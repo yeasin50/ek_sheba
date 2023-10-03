@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   test('random', () {
-    final data  =  generateRandomUUID();
+    final data = generateRandomUUID();
     print(data);
   });
 }

@@ -21,10 +21,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _onLogin(LoginEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
 
-    const _failureMessage = "দুঃখিত আপনার ইমেইল  এড্রেস অথবা পাসওয়ার্ড সঠিক নয়!";
+    const _failureMessage =
+        "দুঃখিত আপনার ইমেইল  এড্রেস অথবা পাসওয়ার্ড সঠিক নয়!";
     switch (event.authType) {
       case AuthType.ekSheba:
-        final result = await _authRepository.ekShebaLogin(email: event.email, password: event.password);
+        final result = await _authRepository.ekShebaLogin(
+            email: event.email, password: event.password);
         result.fold(
           (failure) => emit(AuthFailureState(message: _failureMessage)),
           (user) async {

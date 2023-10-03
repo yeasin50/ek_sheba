@@ -1,7 +1,11 @@
-import 'package:collection/collection.dart';
-import 'package:ek_sheba/src/common/widgets/icon_button.dart';
-import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_details.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../common/widgets/icon_button.dart';
+import '../../../pdf/domain/entities/entities.dart';
+import '../../../pdf/presentation/pages/pdf_page.dart';
+import '../../domain/entities/project_details.dart';
+import '../utils/comment_on_pdf_details.dart';
 
 // this page is used on  [ProjectDetailsPage]
 class ProjectDownloadOptions extends StatelessWidget {
@@ -14,55 +18,81 @@ class ProjectDownloadOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> items = [
-      "অংশ-ক (প্রকল্পের সার-সংক্ষেপ)",
-      "অংশ-খ (প্রকল্পের বিস্তারিত বর্ণনা)",
-      "সংযোজনী-১ (প্রকল্প এলাকাভিত্তিক ব্যয় বিভাজন)",
-      "সংযোজনী-২ (প্রকল্পের জনবল কাঠামো)",
-      "সংযোজনী-৩ (ক) পন্য (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)",
-      "সংযোজনী-৩ (খ) পুর্ত কাজ (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)",
-      "সংযোজনী-৩ (গ) সেবা (উন্নয়ন প্রকল্প/কার্যক্রমের জন্য মোট ক্রয় পরিকল্পনা)",
-      "সংযোজনী-৪ (বছরভিত্তিক আর্থিক ও বাস্তব পরিকল্পনা)",
-      "সংযোজনী-৫ (ক) (প্রাক্কলিত ব্যয়ের বিস্তারিত বিবরণী)",
-      "সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী)",
-      "সংযোজনী-৬ (জিওবি গৃহীত ঋণ পরিশোধ সিডিউল)",
-      "সংযোজনী-৭ (মধ্যমেয়াদি বাজেট কাঠামো)",
-    ];
+    final List<PDFButton> items =
+        project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase() ? dppPdfButtons : tappButtons;
+
+    const String testUUId = '5119f081-55a1-48cb-a046-fb65e48d2f7f';
+
+    _comment() async {
+      await comment(
+        context: context,
+        project: project,
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Text(
+            const Text(
               "ডিপিপি প্রকল্পের অংশ ডাউনলোড করুন",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 14,
               ),
             ),
-            Spacer(),
-            AppIconButton(onTap: () {}, icon: Icons.chat, label: "মন্তব্য / পর্যবেক্ষণ"),
+            const Spacer(),
+            AppIconButton(
+              onTap: _comment,
+              icon: Icons.chat,
+              label: "মন্তব্য / পর্যবেক্ষণ",
+            ),
           ],
         ),
-        SizedBox(height: 16),
-        for (int i = 0; i < (items.length / 2 + items.length % 2); i++)
+        const SizedBox(height: 16),
+        for (int i = 0; i < (items.length / 2); i++)
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               children: [
-                _BuildDownOptionCard(title: items[i], onTap: () {}),
+                _BuildDownOptionCard(
+                  title: project.isForeignAid ? items[i].title : items[i].titleBn ?? items[i].title,
+                  onTap: () {
+                    final path = "${items[i].path}${project.uuid}";
+                    context.push(
+                      PDFPage.routeName,
+                      extra: {
+                        "path": path,
+                        "title": project.isForeignAid ? items[i].title : items[i].titleBn ?? items[i].title,
+                      },
+                    );
+                  },
+                ),
                 const SizedBox(width: 4),
-                _BuildDownOptionCard(title: items[i + 2], onTap: () {}),
+                _BuildDownOptionCard(
+                  title: project.isForeignAid ? items[6 + i].title : items[6 + i].titleBn ?? items[6 + i].title,
+                  onTap: () {
+                    final path = "${items[6 + i].path}${project.uuid}";
+                    context.push(
+                      PDFPage.routeName,
+                      extra: {
+                        "path": path,
+                        "title": project.isForeignAid ? items[6 + i].title : items[6 + i].titleBn ?? items[6 + i].title,
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),
         const SizedBox(height: 12),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF61AB9E),
+            backgroundColor: const Color(0xFF61AB9E),
           ),
           onPressed: () {},
-          child: Text("সম্ভাব্যতা যাচাই প্রতিবেদন ডাউনলোড করুন"),
+          child: const Text("সম্ভাব্যতা যাচাই প্রতিবেদন ডাউনলোড করুন"),
         ),
         const SizedBox(height: 12),
       ],
@@ -99,8 +129,8 @@ class _BuildDownOptionCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     top: 3,
                     right: 2,
                   ),
@@ -112,7 +142,7 @@ class _BuildDownOptionCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black,
                     ),

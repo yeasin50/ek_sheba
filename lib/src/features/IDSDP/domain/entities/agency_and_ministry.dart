@@ -72,7 +72,8 @@ class AgencyAndMinistryInfo extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory AgencyAndMinistryInfo.fromJson(String source) => AgencyAndMinistryInfo.fromMap(json.decode(source));
+  factory AgencyAndMinistryInfo.fromJson(String source) =>
+      AgencyAndMinistryInfo.fromMap(json.decode(source));
 
   AgencyAndMinistryInfo copyWith({
     int? id,

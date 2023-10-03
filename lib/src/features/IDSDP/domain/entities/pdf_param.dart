@@ -118,7 +118,8 @@ class PDFParams {
   String toJson() => json.encode(toMap());
 
   //generate from json
-  factory PDFParams.fromJson(String source) => PDFParams.fromMap(json.decode(source));
+  factory PDFParams.fromJson(String source) =>
+      PDFParams.fromMap(json.decode(source));
 
   //generate from map
   factory PDFParams.fromMap(Map<String, dynamic> map) {

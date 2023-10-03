@@ -17,7 +17,8 @@ class FaqBloc extends Bloc<FaqEvent, FaqState> {
     on<OnFaqDetailsEvent>(_onFaqTap);
   }
 
-  FutureOr<void> _onFetchFaq(FaqFetchEvent event, Emitter<FaqState> emit) async {
+  FutureOr<void> _onFetchFaq(
+      FaqFetchEvent event, Emitter<FaqState> emit) async {
     emit(FaqLoading());
     final result = await _faqRepository.getFaq();
     result.fold(
@@ -26,7 +27,8 @@ class FaqBloc extends Bloc<FaqEvent, FaqState> {
     );
   }
 
-  FutureOr<void> _onSearchFaq(FaqSearchEvent event, Emitter<FaqState> emit) async {
+  FutureOr<void> _onSearchFaq(
+      FaqSearchEvent event, Emitter<FaqState> emit) async {
     emit(FaqLoading());
     final result = await _faqRepository.searchFaq(event.query);
     result.fold(
@@ -35,7 +37,8 @@ class FaqBloc extends Bloc<FaqEvent, FaqState> {
     );
   }
 
-  FutureOr<void> _onFaqTap(OnFaqDetailsEvent event, Emitter<FaqState> emit) async {
+  FutureOr<void> _onFaqTap(
+      OnFaqDetailsEvent event, Emitter<FaqState> emit) async {
     emit(FaqLoading());
     final result = await _faqRepository.searchFaq("", imsModuleId: event.uuid);
     result.fold(

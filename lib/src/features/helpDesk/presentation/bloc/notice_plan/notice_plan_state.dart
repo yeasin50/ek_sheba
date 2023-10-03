@@ -2,7 +2,7 @@ part of 'notice_plan_bloc.dart';
 
 abstract class NoticePlanState extends Equatable {
   const NoticePlanState();
-  
+
   @override
   List<Object> get props => [];
 }

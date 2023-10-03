@@ -79,13 +79,15 @@ class HelpLineBottomInfo extends StatelessWidget {
             children: [
               TextSpan(
                 text: '+880 1911 054321',
-                recognizer: TapGestureRecognizer()..onTap = () => _onCall('+880 1911 054321'),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => _onCall('+880 1911 054321'),
               ),
               const TextSpan(text: '\n'),
               TextSpan(
                 text: '+880 1711 054321',
                 style: bodyTextStyle,
-                recognizer: TapGestureRecognizer()..onTap = () => _onCall('+880 1711 054321'),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => _onCall('+880 1711 054321'),
               ),
             ],
           ),

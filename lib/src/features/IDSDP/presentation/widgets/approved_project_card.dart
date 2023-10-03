@@ -1,5 +1,6 @@
 import '../../../../common/app_style.dart';
 import '../../../../common/utils/logger.dart';
+import '../../data/models/project_type.dart';
 import '../bloc/idsdp_bloc.dart';
 import 'progress_item_card.dart';
 import '../../../../locator.dart';
@@ -27,9 +28,7 @@ class ApprovedProjectCard extends StatelessWidget {
       padding: EdgeInsets.only(left: 7.0),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: LabelDecoratorWidget(
-          text: 'Approved Project',
-        ),
+        child: LabelDecoratorWidget(text: 'Approved Project'),
       ),
     );
     return Padding(
@@ -57,7 +56,7 @@ class ApprovedProjectCard extends StatelessWidget {
                   Expanded(
                     child: ProgressItemCard(
                       onTap: () {
-                        _navToProjectDetails(context, "Total");
+                        _navToProjectDetails(context, ProjectType.total.title);
                       },
                       title: "Total",
                       count: approvedRepo.approvedProjectCount(),
@@ -69,9 +68,9 @@ class ApprovedProjectCard extends StatelessWidget {
                   Expanded(
                     child: ProgressItemCard(
                       onTap: () {
-                        _navToProjectDetails(context, "In Preparation");
+                        _navToProjectDetails(context, ProjectType.onGoing.title);
                       },
-                      title: "On Going",
+                      title: ProjectType.onGoing.title,
                       count: approvedRepo.approvedOnGoingProjectCount(),
                       color: const Color(0xffFBE6FE),
                       textColor: const Color(0xff9333EA),

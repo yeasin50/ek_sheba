@@ -4,13 +4,14 @@ import 'package:go_router/go_router.dart';
 
 import 'common/utils/token_storage.dart';
 import 'features/Auth/presentation/pages/login_page.dart';
+import 'features/IDSDP/presentation/pages/dpp_tapp_page.dart';
 import 'features/IDSDP/presentation/pages/pages.dart';
 import 'features/IDSDP/presentation/pages/project_details_page.dart';
 import 'features/helpDesk/presentation/pages/faq_details_page.dart';
 import 'features/helpDesk/presentation/pages/pages.dart';
 import 'features/helpDesk/presentation/pages/pdf_view_page.dart';
 import 'features/html_pdf_dashboard/html_pdf_dashboard.dart';
-import 'temp/pdf_season_test.dart';
+import 'features/pdf/presentation/pages/pdf_page.dart';
 
 final routes = GoRouter(
   initialLocation: //CreateSessionTest.routeName,
@@ -27,8 +28,21 @@ final routes = GoRouter(
   },
   routes: [
     GoRoute(
-      path: CreateSessionTest.routeName,
-      builder: (context, state) => const CreateSessionTest(),
+        path: PDFPage.routeName,
+        builder: (context, state) {
+          final data = state.extra as Map ?? {};
+          final path = data['path'] ?? "";
+          final title = data['title'] ?? "";
+          final isTokenRequired = data['isTokenRequired'] ?? true;
+          return PDFPage(
+            path: path,
+            title: title,
+            isTokenRequired: isTokenRequired,
+          );
+        }),
+    GoRoute(
+      path: DPPTAPPPage.routeName,
+      builder: (context, state) => const DPPTAPPPage(),
     ),
     GoRoute(
         path: HtmlPDFDashboard.routeName,

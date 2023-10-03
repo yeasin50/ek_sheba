@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/features/IDSDP/data/repositories/comment_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/Auth/data/repositories/auth_repository.dart';
@@ -17,6 +18,7 @@ import 'features/helpDesk/presentation/bloc/guideline/guideline_bloc.dart';
 import 'features/helpDesk/presentation/bloc/notice_plan/notice_plan_bloc.dart';
 import 'features/helpDesk/presentation/bloc/resource/resource_bloc.dart';
 import 'features/html_pdf_dashboard/auth/auth_hanlder.dart';
+import 'features/pdf/data/repositories/pdf_repo_impl.dart';
 
 export 'features/IDSDP/data/repositories/approved_project_repo_impl.dart';
 export 'features/IDSDP/data/repositories/unapproved_project_repo_impl.dart';
@@ -50,4 +52,7 @@ void setup() {
   locator.registerLazySingleton(() => AgencyAndMinistryNameBloc());
 
   locator.registerLazySingleton(() => PDfHandler());
+  locator.registerLazySingleton(() => PdfRepositoryImpl());
+
+  locator.registerLazySingleton(() => CommentRepoImpl());
 }

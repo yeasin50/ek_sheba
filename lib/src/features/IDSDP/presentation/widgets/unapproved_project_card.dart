@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../common/app_style.dart';
 import '../../../../common/widgets/card_decoration.dart';
 import '../../../../locator.dart';
+import '../../data/models/project_type.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../pages/pages.dart';
 import 'label_decorator.dart';
@@ -14,36 +15,9 @@ class UnApprovedProjectCard extends StatelessWidget {
     super.key,
   });
 
-  ///provide data on order of [In Preparation, For Recast, In Ministry , In Planning Commission, For Recast]
-
-  void _onDetailsPage(BuildContext context, int index) {
-    context.pushNamed(
-      DashBoardItemDetailsPage.routeName,
-      extra: {
-        'itemTitle': index == 0
-            ? "In Preparation"
-            : index == 1
-                ? "For Recast"
-                : index == 2
-                    ? "In Ministry"
-                    : index == 3
-                        ? "In Planning Commission"
-                        : "For Recast",
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final unApprovedRepo = locator<DashboardProjectRepoImpl>().unApprovedRepo;
-    //todo: get data from api
-    final List<int> data = [
-      unApprovedRepo.unapprovedInPreparationProjectCount(),
-      unApprovedRepo.unapprovedForRecastProjectCount(),
-      unApprovedRepo.unapprovedInMinistryProjectCount(),
-      unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
-      unApprovedRepo.unapprovedInEcnecProjectCount(),
-    ];
 
     const label = Padding(
       padding: EdgeInsets.only(left: 7.0),
@@ -57,7 +31,7 @@ class UnApprovedProjectCard extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(top: 12),
+      padding: const EdgeInsets.only(top: 12, bottom: 12),
       child: CardDecoration(
         child: Column(
           children: [
@@ -77,30 +51,29 @@ class UnApprovedProjectCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ProgressItemCard(
-                            onTap: () {
-                              _onDetailsPage(context, 4);
-                            },
-                            title: "For Recast",
-                            count: data[4]),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: ProgressItemCard(
                           onTap: () {
-                            _onDetailsPage(context, 1);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': ProjectType.inPreparation.title},
+                            );
                           },
-                          title: "For Recast",
-                          count: data[1],
+                          title: ProjectType.inPreparation.title,
+                          count: unApprovedRepo.unapprovedInPreparationProjectCount(),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: ProgressItemCard(
                           onTap: () {
-                            _onDetailsPage(context, 2);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {
+                                'itemTitle': ProjectType.forRecast.title,
+                              },
+                            );
                           },
-                          title: "In Ministry",
-                          count: data[2],
+                          title: ProjectType.forRecast.title,
+                          count: unApprovedRepo.unapprovedForRecastProjectCount(),
                         ),
                       ),
                     ],
@@ -112,10 +85,15 @@ class UnApprovedProjectCard extends StatelessWidget {
                         child: ProgressItemCard(
                           extraHeight: 10,
                           onTap: () {
-                            _onDetailsPage(context, 0);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {
+                                'itemTitle': ProjectType.inMinistry.title,
+                              },
+                            );
                           },
-                          title: "In Preparation",
-                          count: data[0],
+                          title: ProjectType.inMinistry.title,
+                          count: unApprovedRepo.unapprovedInMinistryProjectCount(),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -123,21 +101,33 @@ class UnApprovedProjectCard extends StatelessWidget {
                         child: ProgressItemCard(
                           extraHeight: 10,
                           onTap: () {
-                            _onDetailsPage(context, 3);
+                            context.pushNamed(
+                              DashBoardItemDetailsPage.routeName,
+                              extra: {'itemTitle': ProjectType.inPlanningCommission.title},
+                            );
                           },
-                          title: "In Planning Commission",
-                          count: data[3],
+                          title: ProjectType.inPlanningCommission.title,
+                          count: unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
                         ),
                       ),
-                      // const Expanded(
-                      //   //maintain the size
-                      //   child: SizedBox(),
-                      // ),
                     ],
+                  ),
+                  const SizedBox(height: 12),
+                  ProgressItemCard(
+                    onTap: () {
+                      context.pushNamed(
+                        DashBoardItemDetailsPage.routeName,
+                        extra: {
+                          'itemTitle': ProjectType.inECNEC.title,
+                        },
+                      );
+                    },
+                    title: ProjectType.inECNEC.title,
+                    count: unApprovedRepo.unapprovedForRecastProjectCount(),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

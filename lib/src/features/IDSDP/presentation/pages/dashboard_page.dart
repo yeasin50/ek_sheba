@@ -17,6 +17,7 @@ import '../widgets/unapproved_project_card.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+  static const String routeName = '/dashboard';
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -27,8 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
-    locator.get<AgencyAndMinistryNameBloc>().add(const GetAgencyAndMinistryName());
+   
   }
 
   @override
@@ -58,7 +58,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           child: const Text('Retry'),
                         ),
 
-                        Text('Or'),
+                        const Text('Or'),
 
                         //login
                         ElevatedButton(

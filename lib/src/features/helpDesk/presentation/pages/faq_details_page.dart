@@ -24,14 +24,17 @@ class FAQDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     logger.i(uuid);
     return BlocBuilder<FaqBloc, FaqState>(
-      bloc: FaqBloc(locator.get<FAQRepositoryImpl>())..add((OnFaqDetailsEvent(uuid))),
+      bloc: FaqBloc(locator.get<FAQRepositoryImpl>())
+        ..add((OnFaqDetailsEvent(uuid))),
       builder: (context, state) {
         bool isLoading = state is FaqLoading;
         bool isError = state is FaqError;
         final itemsList = state is FaqLoaded ? state.faqList : null;
         final firstItem = itemsList?.firstOrNull;
 
-        final title = firstItem != null ? firstItem.imsModuleName ?? firstItem.question ?? "FAQ Details" : "FAQ ....";
+        final title = firstItem != null
+            ? firstItem.imsModuleName ?? firstItem.question ?? "FAQ Details"
+            : "FAQ ....";
         return Builder(builder: (context) {
           return BackgroundDecoration(
             body: Column(
@@ -39,7 +42,8 @@ class FAQDetailsPage extends StatelessWidget {
                 MinimalAppBar(title: title),
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 40),
                     child: Column(
                       children: [
                         if (isLoading) ...[
