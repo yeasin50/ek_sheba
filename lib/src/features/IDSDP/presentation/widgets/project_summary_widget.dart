@@ -159,8 +159,13 @@ class ProjectSummaryWidget extends StatelessWidget {
         buildRow(
             title: 'বাস্তবায়নের সময়কাল',
             value:
-                "${(projectDetails.commencementDate).replaceAll('-', "/")} থেকে ${(projectDetails.completionDate).replaceAll('-', '/')}"),
+                "${_dateFormat(projectDetails.commencementDate)} থেকে ${_dateFormat(projectDetails.completionDate)}"),
       ],
     );
   }
+}
+
+String _dateFormat(String data) {
+  final items = data.split('-');
+  return '${items[2]}/${items[1]}/${items[0].substring(2)}';
 }

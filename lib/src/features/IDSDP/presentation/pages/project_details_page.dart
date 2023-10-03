@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/utils/logger.dart';
 import '../../../../common/utils/raw_text.dart';
-import '../../../../common/widgets/app_drawer.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../common/widgets/icon_button.dart';
@@ -62,7 +61,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
-                    ProjectLocationMapCard(),
+                    const ProjectLocationMapCard(),
                     // downloadOption(),
                     const SizedBox(height: 24),
                     ProjectSummaryWidget(projectDetails: projectDetails),
