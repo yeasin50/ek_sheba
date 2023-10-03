@@ -56,11 +56,20 @@ class _CriteriaBasedSearchState extends State<CriteriaBasedSearch> {
     widget.onSearch(_searchController.text, _sectorId, _status?.replaceAll(' ', '_'));
   }
 
+  void _clearEntry() {
+    _searchController.clear();
+
+    _sectorId = null;
+    _status = null;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     var sectorDropdownButtonFormField = DropdownButtonFormField<int?>(
       decoration: inputDecoration('Sector'),
       isExpanded: true,
+      value: _sectorId,
       items: sectors.entries
           .map(
             (e) => DropdownMenuItem(
@@ -78,6 +87,7 @@ class _CriteriaBasedSearchState extends State<CriteriaBasedSearch> {
     var statusDropdownButtonFormField = DropdownButtonFormField<String?>(
       decoration: inputDecoration('Status'),
       isExpanded: true,
+      value: _status,
       items: projectStatus
           .map(
             (e) => DropdownMenuItem(
@@ -115,11 +125,28 @@ class _CriteriaBasedSearchState extends State<CriteriaBasedSearch> {
           ],
         ),
         const SizedBox(height: 8),
-        AppButton(
-          text: 'Search',
-          isFilled: true,
-          largeButton: true,
-          onPressed: _onSearch,
+        Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 150,
+                child: AppButton(
+                  text: 'Search',
+                  isFilled: true,
+                  onPressed: _onSearch,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: AppButton(
+                text: 'Clear',
+                isFilled: false,
+                onPressed: _clearEntry,
+              ),
+            ),
+          ],
         ),
       ],
     );
