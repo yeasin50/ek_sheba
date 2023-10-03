@@ -17,51 +17,40 @@ Future<void> comment({
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text(
-          'মন্তব্য / পর্যবেক্ষণ',
-          // style: TextStyle(
-          //   fontSize: 18,
-          //   fontWeight: FontWeight.bold,
-          // ),
-        ),
+        scrollable: false,
+        title: const Text('মন্তব্য/পর্যবেক্ষণ'),
         content: Material(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FutureBuilder(
-                future: CommentRepoImpl.getData(project),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+          child: FutureBuilder(
+            future: CommentRepoImpl.getData(project),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-                  if (snapshot.hasError) {
-                    return Center(child: Text('Something went wrong ${snapshot.error}}'));
-                  }
+              if (snapshot.hasError) {
+                return Center(child: Text('Something went wrong ${snapshot.error}}'));
+              }
 
-                  if (snapshot.hasData) {
-                    logger.i("data ${snapshot.data}");
-                    return SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ...snapshot.data
-                                  ?.map<Widget>(
-                                    (e) => ListTile(
-                                      title: Text(e.comment),
-                                    ),
-                                  )
-                                  .toList() ??
-                              [],
-                        ],
-                      ),
-                    );
-                  }
+              if (snapshot.hasData) {
+                logger.i("data ${snapshot.data}");
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...snapshot.data
+                              ?.map<Widget>(
+                                (e) => ListTile(
+                                  title: Text(e.comment),
+                                ),
+                              )
+                              .toList() ??
+                          [],
+                    ],
+                  ),
+                );
+              }
 
-                  return const Center(child: Text('NA state'));
-                },
-              ),
-            ],
+              return const Center(child: Text('NA state'));
+            },
           ),
         ),
       );
