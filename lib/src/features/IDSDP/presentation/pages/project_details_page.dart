@@ -63,25 +63,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                 child: Column(
                   children: [
                     ProjectLocationMapCard(),
-                    const SizedBox(height: 24),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Spacer(),
-                        AppIconButton(
-                          onTap: () {},
-                          icon: Icons.forward_to_inbox,
-                          label: 'Download',
-                        ),
-                        const SizedBox(width: 8),
-                        AppIconButton(
-                          onTap: () {},
-                          icon: Icons.compare_arrows_rounded,
-                          label: 'Compare',
-                        ),
-                      ],
-                    ),
+                    // downloadOption(),
                     const SizedBox(height: 24),
                     ProjectSummaryWidget(projectDetails: projectDetails),
                     const SizedBox(height: 24),
@@ -91,6 +73,33 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               ),
             ],
           )),
+    );
+  }
+
+  Widget downloadOption() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 24),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Spacer(),
+            AppIconButton(
+              onTap: () {},
+              icon: Icons.forward_to_inbox,
+              label: 'Download',
+            ),
+            const SizedBox(width: 8),
+            AppIconButton(
+              onTap: () {},
+              icon: Icons.compare_arrows_rounded,
+              label: 'Compare',
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
