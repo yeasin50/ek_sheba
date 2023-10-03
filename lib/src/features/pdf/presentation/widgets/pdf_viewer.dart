@@ -61,9 +61,9 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return const Center(child: Text('Error loading PDF'));
+                  return Center(child: Text('Error loading PDF ${widget.pdfUrl}'));
                 } else if (!snapshot.hasData || snapshot.data == null) {
-                  return const Center(child: Text('No PDF data available'));
+                  return Center(child: Text('No PDF data available ${widget.pdfUrl}'));
                 } else {
                   return PDFView(
                     pdfData: snapshot.data,
@@ -82,4 +82,3 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
     );
   }
 }
-

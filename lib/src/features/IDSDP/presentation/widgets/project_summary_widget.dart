@@ -1,8 +1,7 @@
-import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/utils/logger.dart';
-import 'package:ek_sheba/src/common/utils/raw_text.dart';
-import 'package:ek_sheba/src/common/widgets/app_button.dart';
-import 'package:ek_sheba/src/features/IDSDP/domain/entities/project_details.dart';
+import '../../../../common/app_style.dart';
+import '../../../../common/utils/logger.dart';
+import '../../../../common/utils/raw_text.dart';
+import '../../domain/entities/project_details.dart';
 import 'package:flutter/material.dart';
 
 class ProjectSummaryWidget extends StatelessWidget {
@@ -87,57 +86,59 @@ class ProjectSummaryWidget extends StatelessWidget {
     }
 
     Widget buildProjectStatusRow() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 1,
-            child: buildText("প্রকল্পের অবস্থা"),
-          ),
-          SizedBox(width: 1),
-          Expanded(
-            flex: 3,
-            child: Material(
-              color: Color.fromARGB(214, 214, 211, 211),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 4),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: buildSmallButtonText(
-                            text: string2Raw(projectDetails.projectStatusBn),
-                            onTap: () {},
+      return IntrinsicHeight(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 1,
+              child: buildText("প্রকল্পের অবস্থা"),
+            ),
+            SizedBox(width: 1),
+            Expanded(
+              flex: 3,
+              child: Material(
+                color: Color.fromARGB(214, 214, 211, 211),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: buildSmallButtonText(
+                              text: string2Raw(projectDetails.projectStatusBn),
+                              onTap: () {},
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 4),
-                        Flexible(
-                          child: buildSmallButtonText(
-                            text: string2Raw(projectDetails.projectStageBn),
-                            onTap: () {},
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: buildSmallButtonText(
+                              text: string2Raw(projectDetails.projectStageBn),
+                              onTap: () {},
+                            ),
                           ),
-                        ),
+                        ],
+                      ),
+                      if ((projectDetails.assignedOfficer ?? "").isNotEmpty) ...[
+                        const SizedBox(height: 2),
+                        // if (projectDetails.showAssignedOfficer == true)
+                        Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
                       ],
-                    ),
-                    if ((projectDetails.assignedOfficer ?? "").isNotEmpty) ...[
-                      const SizedBox(height: 2),
-                      // if (projectDetails.showAssignedOfficer == true)
-                      Text("অফিসারের নাম: ${projectDetails.assignedOfficer ?? ""}"),
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
 
@@ -157,8 +158,14 @@ class ProjectSummaryWidget extends StatelessWidget {
         buildProjectStatusRow(),
         buildRow(
             title: 'বাস্তবায়নের সময়কাল',
-            value: "${projectDetails.commencementDate} থেকে ${projectDetails.completionDate}"),
+            value:
+                "${_dateFormat(projectDetails.commencementDate)} থেকে ${_dateFormat(projectDetails.completionDate)}"),
       ],
     );
   }
+}
+
+String _dateFormat(String data) {
+  final items = data.split('-');
+  return '${items[2]}/${items[1]}/${items[0].substring(2)}';
 }

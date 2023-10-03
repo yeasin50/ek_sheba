@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/utils/logger.dart';
 import '../../../../common/utils/raw_text.dart';
-import '../../../../common/widgets/app_drawer.dart';
 import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../common/widgets/icon_button.dart';
@@ -62,26 +61,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
-                    ProjectLocationMapCard(),
-                    const SizedBox(height: 24),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Spacer(),
-                        AppIconButton(
-                          onTap: () {},
-                          icon: Icons.forward_to_inbox,
-                          label: 'Download',
-                        ),
-                        const SizedBox(width: 8),
-                        AppIconButton(
-                          onTap: () {},
-                          icon: Icons.compare_arrows_rounded,
-                          label: 'Compare',
-                        ),
-                      ],
-                    ),
+                    const ProjectLocationMapCard(),
+                    // downloadOption(),
                     const SizedBox(height: 24),
                     ProjectSummaryWidget(projectDetails: projectDetails),
                     const SizedBox(height: 24),
@@ -91,6 +72,33 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               ),
             ],
           )),
+    );
+  }
+
+  Widget downloadOption() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 24),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Spacer(),
+            AppIconButton(
+              onTap: () {},
+              icon: Icons.forward_to_inbox,
+              label: 'Download',
+            ),
+            const SizedBox(width: 8),
+            AppIconButton(
+              onTap: () {},
+              icon: Icons.compare_arrows_rounded,
+              label: 'Compare',
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

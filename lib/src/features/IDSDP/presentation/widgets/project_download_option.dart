@@ -5,6 +5,7 @@ import '../../../../common/widgets/icon_button.dart';
 import '../../../pdf/domain/entities/entities.dart';
 import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../domain/entities/project_details.dart';
+import '../utils/comment_on_pdf_details.dart';
 
 // this page is used on  [ProjectDetailsPage]
 class ProjectDownloadOptions extends StatelessWidget {
@@ -21,6 +22,14 @@ class ProjectDownloadOptions extends StatelessWidget {
         project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase() ? dppPdfButtons : tappButtons;
 
     const String testUUId = '5119f081-55a1-48cb-a046-fb65e48d2f7f';
+
+    _comment() async {
+      await comment(
+        context: context,
+        project: project,
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,7 +43,11 @@ class ProjectDownloadOptions extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            AppIconButton(onTap: () {}, icon: Icons.chat, label: "মন্তব্য / পর্যবেক্ষণ"),
+            AppIconButton(
+              onTap: _comment,
+              icon: Icons.chat,
+              label: "মন্তব্য / পর্যবেক্ষণ",
+            ),
           ],
         ),
         const SizedBox(height: 16),

@@ -1,5 +1,6 @@
-import 'package:ek_sheba/src/common/app_style.dart';
-import 'package:ek_sheba/src/common/utils/token_storage.dart';
+import '../app_style.dart';
+import '../utils/token_storage.dart';
+import '../../features/IDSDP/presentation/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -183,22 +184,33 @@ class AppDrawer extends StatelessWidget {
 
     var listView = ListView(
       children: [
-        Material(
-          color: const Color.fromARGB(255, 32, 155, 132),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: 16,
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.now_widgets_outlined,
-                  color: Colors.white,
-                ),
-                const SizedBox(width: 8),
-                Text("Dashboard", style: labelStyle),
-              ],
+        GestureDetector(
+          onTap: () {
+            //navigate to dashboard
+            final currentRoute = GoRouter.of(context).location;
+            if (currentRoute != DashboardPage.routeName) {
+              context.push('/dashboard');
+            } else {
+              Navigator.of(context).pop();
+            }
+          },
+          child: Material(
+            color: const Color.fromARGB(255, 32, 155, 132),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 24,
+                horizontal: 16,
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.now_widgets_outlined,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(width: 8),
+                  Text("Dashboard", style: labelStyle),
+                ],
+              ),
             ),
           ),
         ),

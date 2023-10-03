@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/features/IDSDP/data/repositories/comment_repo_impl.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/Auth/data/repositories/auth_repository.dart';
@@ -26,26 +27,21 @@ final locator = GetIt.instance;
 
 void setup() {
   locator.registerLazySingleton(() => AuthRepositoryImpl());
-  locator
-      .registerLazySingleton(() => AuthBloc(locator.get<AuthRepositoryImpl>()));
+  locator.registerLazySingleton(() => AuthBloc(locator.get<AuthRepositoryImpl>()));
 
   locator.registerLazySingleton(() => FAQRepositoryImpl());
-  locator
-      .registerLazySingleton(() => FaqBloc(locator.get<FAQRepositoryImpl>()));
+  locator.registerLazySingleton(() => FaqBloc(locator.get<FAQRepositoryImpl>()));
 
   locator.registerLazySingleton(() => GuidelineRepositoryImpl());
-  locator.registerLazySingleton(
-      () => GuidelineBloc(locator.get<GuidelineRepositoryImpl>()));
+  locator.registerLazySingleton(() => GuidelineBloc(locator.get<GuidelineRepositoryImpl>()));
 
   locator.registerLazySingleton(() => ResourceRepositoryImpl());
-  locator.registerLazySingleton(
-      () => ResourceBloc(locator.get<ResourceRepositoryImpl>()));
+  locator.registerLazySingleton(() => ResourceBloc(locator.get<ResourceRepositoryImpl>()));
 
   locator.registerLazySingleton(() => HelplineRepositoryImpl());
 
   locator.registerLazySingleton(() => NoticeRepositoryImpl());
-  locator.registerLazySingleton(
-      () => NoticePlanBloc(locator.get<NoticeRepositoryImpl>()));
+  locator.registerLazySingleton(() => NoticePlanBloc(locator.get<NoticeRepositoryImpl>()));
 
   locator.registerLazySingleton(() => DashboardProjectRepoImpl(
         approvedRepo: DashboardApprovedProjectRepoImpl(),
@@ -57,4 +53,6 @@ void setup() {
 
   locator.registerLazySingleton(() => PDfHandler());
   locator.registerLazySingleton(() => PdfRepositoryImpl());
+
+  locator.registerLazySingleton(() => CommentRepoImpl());
 }

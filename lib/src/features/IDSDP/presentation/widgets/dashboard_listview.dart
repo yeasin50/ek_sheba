@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../common/app_style.dart';
 import '../../../../locator.dart';
 import '../../data/models/project_type.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';

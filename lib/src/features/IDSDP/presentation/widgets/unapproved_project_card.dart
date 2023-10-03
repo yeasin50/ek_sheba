@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../common/app_style.dart';
 import '../../../../common/widgets/card_decoration.dart';
 import '../../../../locator.dart';
+import '../../data/models/project_type.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../pages/pages.dart';
 import 'label_decorator.dart';
@@ -30,7 +31,7 @@ class UnApprovedProjectCard extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(top: 12),
+      padding: const EdgeInsets.only(top: 12, bottom: 12),
       child: CardDecoration(
         child: Column(
           children: [
@@ -53,11 +54,11 @@ class UnApprovedProjectCard extends StatelessWidget {
                           onTap: () {
                             context.pushNamed(
                               DashBoardItemDetailsPage.routeName,
-                              extra: {'itemTitle': "In ECNEC"},
+                              extra: {'itemTitle': ProjectType.inPreparation.title},
                             );
                           },
-                          title: "In ECNEC",
-                          count: unApprovedRepo.unapprovedInEcnecProjectCount(),
+                          title: ProjectType.inPreparation.title,
+                          count: unApprovedRepo.unapprovedInPreparationProjectCount(),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -66,24 +67,13 @@ class UnApprovedProjectCard extends StatelessWidget {
                           onTap: () {
                             context.pushNamed(
                               DashBoardItemDetailsPage.routeName,
-                              extra: {'itemTitle': "For Recast"},
+                              extra: {
+                                'itemTitle': ProjectType.forRecast.title,
+                              },
                             );
                           },
-                          title: "For Recast",
+                          title: ProjectType.forRecast.title,
                           count: unApprovedRepo.unapprovedForRecastProjectCount(),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: ProgressItemCard(
-                          onTap: () {
-                            context.pushNamed(
-                              DashBoardItemDetailsPage.routeName,
-                              extra: {'itemTitle': "In Ministry"},
-                            );
-                          },
-                          title: "In Ministry",
-                          count: unApprovedRepo.unapprovedInMinistryProjectCount(),
                         ),
                       ),
                     ],
@@ -97,11 +87,13 @@ class UnApprovedProjectCard extends StatelessWidget {
                           onTap: () {
                             context.pushNamed(
                               DashBoardItemDetailsPage.routeName,
-                              extra: {'itemTitle': "In Preparation"},
+                              extra: {
+                                'itemTitle': ProjectType.inMinistry.title,
+                              },
                             );
                           },
-                          title: "In Preparation",
-                          count: unApprovedRepo.unapprovedInPreparationProjectCount(),
+                          title: ProjectType.inMinistry.title,
+                          count: unApprovedRepo.unapprovedInMinistryProjectCount(),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -111,18 +103,31 @@ class UnApprovedProjectCard extends StatelessWidget {
                           onTap: () {
                             context.pushNamed(
                               DashBoardItemDetailsPage.routeName,
-                              extra: {'itemTitle': "In Planning Commission"},
+                              extra: {'itemTitle': ProjectType.inPlanningCommission.title},
                             );
                           },
-                          title: "In Planning Commission",
+                          title: ProjectType.inPlanningCommission.title,
                           count: unApprovedRepo.unapprovedInPlanningCommissionProjectCount(),
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 12),
+                  ProgressItemCard(
+                    onTap: () {
+                      context.pushNamed(
+                        DashBoardItemDetailsPage.routeName,
+                        extra: {
+                          'itemTitle': ProjectType.inECNEC.title,
+                        },
+                      );
+                    },
+                    title: ProjectType.inECNEC.title,
+                    count: unApprovedRepo.unapprovedForRecastProjectCount(),
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

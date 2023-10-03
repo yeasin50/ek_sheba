@@ -17,6 +17,7 @@ import '../widgets/unapproved_project_card.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+  static const String routeName = '/dashboard';
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -27,10 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
-    locator
-        .get<AgencyAndMinistryNameBloc>()
-        .add(const GetAgencyAndMinistryName());
+   
   }
 
   @override
@@ -55,20 +53,18 @@ class _DashboardPageState extends State<DashboardPage> {
                         Text(state.message),
                         ElevatedButton(
                           onPressed: () {
-                            BlocProvider.of<IdsdpBloc>(context)
-                                .add(LoadProjectsEvent());
+                            BlocProvider.of<IdsdpBloc>(context).add(LoadProjectsEvent());
                           },
                           child: const Text('Retry'),
                         ),
 
-                        Text('Or'),
+                        const Text('Or'),
 
                         //login
                         ElevatedButton(
                           onPressed: () async {
                             await TokenManager.deleteSecureToken();
-                            if (context.mounted)
-                              context.pushReplacementNamed(LoginPage.routeName);
+                            if (context.mounted) context.pushReplacementNamed(LoginPage.routeName);
                           },
                           child: const Text('Login'),
                         ),
