@@ -69,7 +69,7 @@
 
     - Ref: [Screenshot](https://prnt.sc/O0rsIsX1fUtp)
 
-16. [-] After clicking on the সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী) button, the report is not open and shows a message “No PDF data available.”
+16. [x] After clicking on the সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী) button, the report is not open and shows a message “No PDF data available.”
 
     - Ref: [Screenshot](https://prnt.sc/-LufBhuhMyLj)
 
