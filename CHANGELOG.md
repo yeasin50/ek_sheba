@@ -1,31 +1,31 @@
 ## 2nd Oct fix
 
-1. [ ] Add a dashboard button to easily navigate the dashboard
+1. [x] Add a dashboard button to easily navigate the dashboard
 
    - Ref: [Screenshot](https://prnt.sc/mPpq8wPpYdLs)
 
-2. [ ] Incorrect information is showing in the list of ongoing projects. For the user nilg_desk@mail.com, it shows more than 100 projects in the “On-Going” part, whereas it shows only 20 projects on the dashboard.
+2. [x] Incorrect information is showing in the list of ongoing projects. For the user nilg_desk@mail.com, it shows more than 100 projects in the “On-Going” part, whereas it shows only 20 projects on the dashboard.
 
    - Ref: [Screenshot](https://prnt.sc/Zv6wyyFjypoN)
    - Previous issue: For “On-Going,” and “For Recast” projects, it shows a greater number of projects than what it is showing in the number in the button. For the user nilg_desk@mail.com, it shows more than 100 projects in the “On-Going” part, whereas it shows only 19 projects.
 
-3. [ ] Will be On Going project list
+3. [x] Will be On Going project list
 
    - Ref: [Screenshot](https://prnt.sc/gbWt6be_B_CF)
 
-4. [ ] Apps dashboard data does not match with website dashboard for On Going , Completed and For Recast
+4. [x] Apps dashboard data does not match with website dashboard for On Going , Completed and For Recast
 
    - Ref: [Screenshot](https://prnt.sc/b_SwyrE76sXV)
 
-5. [ ] Rearrange the unapproved project list in the dashboard as per web application
+5. [x] Rearrange the unapproved project list in the dashboard as per web application
 
    - Ref: [Screenshot](https://prnt.sc/syTRQw-fkpHT)
 
-6. [ ] Clear button will be added to clear the search data
+6. [x] Clear button will be added to clear the search data
 
    - Ref: [Screenshot](https://prnt.sc/z2Iw_jwdjRb7)
 
-7. [ ] মন্তব্য/পর্যবেক্ষণ button is not working
+7. [x] মন্তব্য/পর্যবেক্ষণ button is not working
 
    - Ref: [Screenshot](https://prnt.sc/7yHp1r0xaFgL)
 
@@ -52,28 +52,28 @@
     - Previous issue: Additional attachments options are not available, and the right-side download word is crossing the border. Alignment should be corrected.
     - Ref: [Screenshot](https://prnt.sc/CMVHNy9nyfV-)
 
-12. [ ] Buttons/ options for forward, recast, and approval, etc., are not available.
+12. [-] Buttons/ options for forward, recast, and approval, etc., are not available.
 
     - Ref: [Screenshot](https://prnt.sc/zAl3QXQEykdL)
 
-13. [ ] Why this download button? And existing buttons are not working
+13. [-] Why this download button? And existing buttons are not working
 
     - Ref: [Screenshot 1](https://prnt.sc/bJ1T9-nSdQzo)
     - Ref: [Screenshot 2](https://prnt.sc/zpon4mfrPkNe)
 
-14. [ ] Report data is not showing properly
+14. [-] Report data is not showing properly
 
     - Ref: [Screenshot](https://prnt.sc/c_2FWjNLkMd_)
 
-15. [ ] Date format will be DD/MM/YY
+15. [x] Date format will be DD/MM/YY
 
     - Ref: [Screenshot](https://prnt.sc/O0rsIsX1fUtp)
 
-16. [ ] After clicking on the সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী) button, the report is not open and shows a message “No PDF data available.”
+16. [x] After clicking on the সংযোজনী-৫ (খ) (প্রাক্কলিত ব্যয়ের বছরভিত্তিক বিস্তারিত বিবরণী) button, the report is not open and shows a message “No PDF data available.”
 
     - Ref: [Screenshot](https://prnt.sc/-LufBhuhMyLj)
 
-17. [ ] Dashboard button should be workable
+17. [x] Dashboard button should be workable
     - Ref: [Screenshot](https://prnt.sc/THyUricyUwNI)
 
 ## 28th September fix

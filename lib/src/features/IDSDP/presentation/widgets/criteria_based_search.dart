@@ -125,26 +125,22 @@ class _CriteriaBasedSearchState extends State<CriteriaBasedSearch> {
           ],
         ),
         const SizedBox(height: 8),
-        Stack(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: 150,
-                child: AppButton(
-                  text: 'Search',
-                  isFilled: true,
-                  onPressed: _onSearch,
-                ),
+            SizedBox(
+              width: 150,
+              child: AppButton(
+                text: 'Search',
+                isFilled: true,
+                onPressed: _onSearch,
               ),
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: AppButton(
-                text: 'Clear',
-                isFilled: false,
-                onPressed: _clearEntry,
-              ),
+            const SizedBox(width: 8),
+            AppButton(
+              text: 'Clear',
+              isFilled: false,
+              onPressed: _clearEntry,
             ),
           ],
         ),

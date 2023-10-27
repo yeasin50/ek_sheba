@@ -27,10 +27,6 @@ dependencies:
     git: https://github.com/yeasin50/my_utils.git
   fpdart: ^1.1.0
   flutter_secure_storage: ^8.0.0
-  patch_pal:
-    git:
-      url: https://github.com/yeasin50/patch_pal.git
-      ref: master
   path_provider: ^2.1.1
 
 
@@ -43,6 +39,7 @@ dependencies:
   webview_flutter_android: ^3.10.0
   webview_flutter_wkwebview: ^3.7.4
   file_picker: ^5.5.0
+  patch_pal: ^1.0.0
  
 
   
