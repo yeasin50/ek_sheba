@@ -705,12 +705,11 @@ packages:
   patch_pal:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: e1c446d98edd55379d495eed27bf3938ce99c8ae
-      url: "https://github.com/yeasin50/patch_pal.git"
-    source: git
-    version: "0.0.1"
+      name: patch_pal
+      sha256: "9c6873d90921c9b1637dfe3e4c14ae41bcb8d5f71fac4fe2a8a23159dcf8fb1e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
