@@ -30,7 +30,7 @@ jobs:
         uses: haya14busa/action-cond@v1
         id: folder_id
         with:
-          cond: ${{ steps.get_branch_name.outputs.branch == 'master' }}
+          cond: ${{ steps.branch.outputs.branch == 'deploy' }}
           if_true: ${{secrets.MASTER_FOLDER_ID}}
 
     #   - run: flutter pub get
