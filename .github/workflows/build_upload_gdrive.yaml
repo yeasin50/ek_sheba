@@ -20,8 +20,20 @@ jobs:
             
             - name: Get Branch Name
               id: get_branch_name
-              run: echo "::set-output name=branch::$(echo ${GITHUB_REF##*/})"
+              run: echo "name=branch::$(echo ${GITHUB_REF##*/})" >> $GITHUB_OUTPUT
             
             - name: Get Today's Date
               id: get_date
-              run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+              run: echo "name=date::$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+            - name: Get Folder id by condition
+              uses: haya14busa/action-cond@v1
+              id: folder_id
+              with:
+                cond: ${{ steps.get_branch_name.outputs.branch == 'deploy' }}
+                if_true: ${{ secrets.MASTERFOLDERID }}
+
+            - run: flutter pub get
+            - run: flutter build apk --release
+            
+
