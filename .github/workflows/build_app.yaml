@@ -19,9 +19,18 @@ jobs:
           channel: "stable"
       - run: flutter clean
       - run: flutter pub get
-      - run: flutter build apk
-      - run: flutter build appbundle
-      - uses: actions/upload-artifact@v1
+      - name: Build APK and App Bundle
+        run: |
+          flutter build apk
+          flutter build appbundle
+
+      - name: Create ZIP Archive
+        run: |
+          # Create a zip archive of the release folder
+          zip -r release-folder.zip build/app/outputs/
+
+      - name: Upload ZIP Archive
+        uses: actions/upload-artifact@v1
         with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          name: release-zip
+          path: release-folder.zip
