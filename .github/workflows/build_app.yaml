@@ -23,15 +23,15 @@ jobs:
         run: |
           flutter build apk
           flutter build appbundle
-      - name: build ios
-        run: |
-          flutter build ios --release --no-codesign
-          
+      # - name: build ios
+      #   run: |
+      #     flutter build ios --release --no-codesign
+      #     
       - name: Create ZIP Archive
         run: |
           # Create a zip archive of the release folder
           zip -r release-folder.zip build/app/outputs/
-          zip -r release-folder.zip build/ios/
+          # zip -r release-folder.zip build/ios/
 
       - name: Upload ZIP Archive
         uses: actions/upload-artifact@v1
