@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/features/pdf_other_information/presentation/pages/project_others_info_and_related_meetinfs.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/utils/logger.dart';
@@ -67,6 +68,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                     ProjectSummaryWidget(projectDetails: projectDetails),
                     const SizedBox(height: 24),
                     ProjectDownloadOptions(project: projectDetails),
+                    const SizedBox(height: 24),
+                    ProjectOtherInformation(projectDetails: projectDetails),
                   ],
                 ),
               ),
