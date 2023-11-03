@@ -16,11 +16,11 @@ class PdfOtherInfoImpl implements PdfOtherInfoRepo {
     int page = 0,
     int size = 1000,
   }) async {
-    final path = "https://gwtraining.plandiv.gov.bd/pps-pc/dashboardAttachment/getPageableList/${1950}/DPP";
+    final path =
+        "https://gwtraining.plandiv.gov.bd/pps-pc/dashboardAttachment/getPageableList/$id/$projectType?page=$page&size=$size";
+    // final path = "https://gwtraining.plandiv.gov.bd/pps-pc/dashboardAttachment/getPageableList/${1950}/DPP";
 
-    final token =
-        "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkdXR5VHlwZSI6IkRlc2tfT2ZmaWNlciIsInVzZXJfbmFtZSI6Im5pbGdfZGVza0BtYWlsLmNvbSIsInVzZXJOYW1lIjoibmlsZ19kZXNrQG1haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9HRVRfQUxMX0FQUFJPVkVEX0RQUC9UQVBQIiwiUk9MRV9HRVRfUFJPSkVDVF9DT05DRVBUX0xJU1RfRk9SX0ZTIiwiUk9MRV9DUkVBVEVfRlNfUFJPUE9TQUwiLCJST0xFX1ZJRVdfUFJPSkVDVF9DT05DRVBUX0RBU0hCT0FSRCIsIlJPTEVfVklFV19EUFAvVEFQUF9EQVNIQk9BUkQiLCJST0xFX0dFVF9SRFBQX1RBUFBfTElTVCIsIlJPTEVfUVVFU1RJT05fQU5TV0VSX0xJU1QiLCJST0xFX0NSRUFURV9QUk9KRUNUX0NPTkNFUFQiLCJST0xFX0VESVRfRFBQL1RBUFBfREFTSEJPQVJEIiwiUk9MRV9DUkVBVEVfRFBQL1RBUFAiLCJST0xFX0dFVF9QUk9KRUNUX0NPTkNFUFRfTElTVF9GT1JfRFBQL1RBUFAiLCJST0xFX0dFVF9QUk9KRUNUX0NPTkNFUFRfTElTVCIsIlJPTEVfQ1JFQVRFX0ZTX1JFUE9SVCIsIlJPTEVfRURJVF9QUk9KRUNUX0NPTkNFUFRfREFTSEJPQVJEIiwiUk9MRV9WSUVXX0ZTX0RBU0hCT0FSRCJdLCJjbGllbnRfaWQiOiJpYmNzcGxhbm5pbmdpZHNkcCIsImlzSW5zdGl0dXRpb25hbCI6bnVsbCwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm9yZ2FuaWdhdGlvbk5hbWUiOm51bGwsIm5hbWUiOiJOSUxHIERlc2sgT2ZmaWNlciIsImlkIjoiODciLCJ1c2VyVHlwZSI6bnVsbCwiZXhwIjoxNjk5ODM5MDExLCJhcHBBY2Nlc3MiOlsiUFBTIl0sImp0aSI6IjhmMjczMTY5LTdiNmItNDJmOS05MzVmLWZjNmY0MGQ3ODA0NCJ9.FwpuXNb6lS7cKQeuIWiW_h6ZJQkgdzjoJAcX-hK2_oBs4LKinntiaw3cEFJOmh7Wf8mDKogEExgHWlYcpCoC-GqNc8Az6xH1e9PmvhtgBvBxs7XYs3iGgqDfszKMIRflO0Y2Mhpxxzh3Z2zMZEmtytfSovq1fioyEHSHHfuKb2dhdwDCcB7qgLAgyJkXPtu9l5qpbS3kj091kF5JurJrC9vGzcRF8NB6oZrYvKFHjl6L1QXy5aFX4ac--U_1SIO1Cz7dy4YR0oHbvKYUpQ0suM9KSYE9TW2J3mECAxt7RtTqb_DpvUweH3lisEQwOHnXs49MzqxH2WWfWlVbQkciEQ";
-    // await TokenManager.getToken();
+    final token = await TokenManager.getToken();
     if (token == null) {
       logger.e('token is null');
       return left(NullFailure());
@@ -31,7 +31,10 @@ class PdfOtherInfoImpl implements PdfOtherInfoRepo {
 
       final response = await http.get(uri, headers: {"Authorization": "Bearer $token"});
 
-      if (response.statusCode != 200) return left(ServerFailure());
+      if (response.statusCode != 200) {
+        logger.e('projectUUID:$id $path \n response.statusCode: ${response.body}');
+        return left(ServerFailure());
+      }
       final contents = jsonDecode(response.body)['content'] as List?;
       final items = contents?.map((e) => PdfOtherInfoModel.fromMap(e)).toList() ?? [];
 
