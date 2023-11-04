@@ -34,13 +34,14 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
     super.initState();
     projectDetails = widget.projectDetails;
     future = locator.get<DashboardProjectRepoImpl>().getProjectDetails(widget.projectDetails.uuid);
-
+    logger.i('projectDetails: ${projectDetails.assignedOfficer} id ${projectDetails.id}');
     //skipping futureBuilder for now,while we already have some data
     future.then((value) {
       if (value != null) {
         projectDetails = value;
+
         setState(() {});
-        logger.i('projectDetails: ${projectDetails.assignedOfficer}');
+        logger.i('projectDetails: ${projectDetails.assignedOfficer} id ${projectDetails.id} projectMovementStageId ');
       }
     });
   }

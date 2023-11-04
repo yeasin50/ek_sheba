@@ -25,11 +25,11 @@ class ProjectOtherInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late final _relatedMeetingAttachments =
-        locator.get<PdfOtherInfoImpl>().getPdfRelatedMeetingAttachments(projectMovementStageId: projectDetails.uuid);
+        locator.get<PdfOtherInfoImpl>().getPdfRelatedMeetingAttachments(projectMovementStageId: "${projectDetails.id}");
 
     late final _otherInformation = locator
         .get<PdfOtherInfoImpl>()
-        .otherInfo(id: projectDetails.uuid, projectType: projectDetails.projectType.nameEn);
+        .otherInfo(id: "${projectDetails.id}", projectType: projectDetails.projectType.nameEn);
 
     return Column(
       children: [
