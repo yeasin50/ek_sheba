@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 import 'pdf_item_attachemnt.dart';
+import 'project_movement_state.dart';
 
 class PdfOtherInfoModel extends Equatable {
   const PdfOtherInfoModel({
@@ -18,6 +19,8 @@ class PdfOtherInfoModel extends Equatable {
     this.title,
     this.projectType,
     this.attachment,
+    this.projectMovementState,
+    this.paperType,
   });
 
   final int id;
@@ -32,6 +35,9 @@ class PdfOtherInfoModel extends Equatable {
   final String? title;
   final String? projectType;
   final PdfItemAttachment? attachment;
+  final ProjectMovementState? projectMovementState;
+
+  final String? paperType;
 
   @override
   List<Object?> get props => [
@@ -47,6 +53,8 @@ class PdfOtherInfoModel extends Equatable {
         title,
         projectType,
         attachment,
+        projectMovementState,
+        paperType,
       ];
 
   Map<String, dynamic> toMap() {
@@ -84,6 +92,12 @@ class PdfOtherInfoModel extends Equatable {
     if (attachment != null) {
       result.addAll({'attachment': attachment!.toMap()});
     }
+    if (projectMovementState != null) {
+      result.addAll({'projectMovementState': projectMovementState!.toMap()});
+    }
+    if (paperType != null) {
+      result.addAll({'paperType': paperType});
+    }
 
     return result;
   }
@@ -102,6 +116,9 @@ class PdfOtherInfoModel extends Equatable {
       title: map['title'],
       projectType: map['projectType'],
       attachment: map['attachment'] != null ? PdfItemAttachment.fromMap(map['attachment']) : null,
+      projectMovementState:
+          map['projectMovementState'] != null ? ProjectMovementState.fromMap(map['projectMovementState']) : null,
+      paperType: map['paperType'],
     );
   }
 
