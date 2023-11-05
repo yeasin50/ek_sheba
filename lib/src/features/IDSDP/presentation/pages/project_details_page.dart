@@ -28,20 +28,27 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   late Future<ProjectDetails?> future;
 
   late ProjectDetails projectDetails;
+  ProjectDetails? projectDetailsFromDB;
 
   @override
   void initState() {
     super.initState();
     projectDetails = widget.projectDetails;
     future = locator.get<DashboardProjectRepoImpl>().getProjectDetails(widget.projectDetails.uuid);
-    logger.i('projectDetails: ${projectDetails.assignedOfficer} id ${projectDetails.id}');
+    logger.i(
+        'projectDetails: ProjectDetailsPage ${projectDetails.assignedOfficer}  ${projectDetails.uuid} id ${projectDetails.id} ${projectDetails.projectMovementStageId} ${projectDetails.sourceId}');
     //skipping futureBuilder for now,while we already have some data
     future.then((value) {
+      if (value == null) {
+        logger.e(
+            'projectDetails: details not found for uuid: ${widget.projectDetails.uuid} id: ${widget.projectDetails.id}');
+      }
       if (value != null) {
-        projectDetails = value;
+        projectDetailsFromDB = value;
 
         setState(() {});
-        logger.i('projectDetails: ${projectDetails.assignedOfficer} id ${projectDetails.id} projectMovementStageId ');
+        logger.d(
+            'projectDetails: data found>>  ${projectDetailsFromDB?.assignedOfficer} , projectMovementStageId: ${projectDetailsFromDB?.projectMovementStageId}  ');
       }
     });
   }
@@ -70,7 +77,10 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                     const SizedBox(height: 24),
                     ProjectDownloadOptions(project: projectDetails),
                     const SizedBox(height: 24),
-                    ProjectOtherInformation(projectDetails: projectDetails),
+                    if (projectDetailsFromDB != null)
+                      ProjectOtherInformation(
+                        projectDetails: projectDetailsFromDB!,
+                      ),
                   ],
                 ),
               ),

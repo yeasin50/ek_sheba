@@ -63,7 +63,7 @@ class PdfOtherInfoImpl implements PdfOtherInfoRepo {
     try {
       final uri = Uri.parse(path);
 
-      final response = await http.get(uri, headers: {"Authentication": "Bearer $token"});
+      final response = await http.get(uri, headers: {"Authorization": "Bearer $token"});
 
       if (response.statusCode != 200) {
         logger.e('projectUUID:$projectMovementStageId response.statusCode: ${response.body}');

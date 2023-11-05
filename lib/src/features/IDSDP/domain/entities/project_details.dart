@@ -32,6 +32,7 @@ class ProjectDetails extends Equatable {
     this.nothiStatusBn,
     this.isForeignAid = false,
     this.projectMovementStageId,
+    this.sourceId,
   });
 
   final int id;
@@ -62,13 +63,14 @@ class ProjectDetails extends Equatable {
 
   final bool isForeignAid;
   final int? projectMovementStageId;
+  final int? sourceId;
   @override
   List<Object?> get props =>
-      [id, uuid, titleEn, titleBn, commencementDate, completionDate, status, totalAmount, isForeignAid];
+      [id, uuid, titleEn, titleBn, commencementDate, completionDate, status, totalAmount, isForeignAid, sourceId];
 
   @override
   String toString() {
-    return 'ProjectDetails(id: $id, uuid: $uuid, titleEn: $titleEn, titleBn: $titleBn, commencementDate: $commencementDate, completionDate: $completionDate, status: $status, totalAmount: $totalAmount, projectType: $projectType, sector: $sector, sectorDivision: $sectorDivision, agency: $agency, ministryDivision: $ministryDivision, currentProjectMovementStage: $currentProjectMovementStage, subSector: $subSector, projectStatusEn: $projectStatusEn, projectStatusBn: $projectStatusBn, projectStageEn: $projectStageEn, projectStageBn: $projectStageBn, showAssignedOfficer: $showAssignedOfficer, assignedOfficer: $assignedOfficer, nothiStatusEn: $nothiStatusEn, nothiStatusBn: $nothiStatusBn , isForeignAid: $isForeignAid, projectMovementStageId: $projectMovementStageId)';
+    return 'ProjectDetails(id: $id, uuid: $uuid, titleEn: $titleEn, titleBn: $titleBn, commencementDate: $commencementDate, completionDate: $completionDate, status: $status, totalAmount: $totalAmount, projectType: $projectType, sector: $sector, sectorDivision: $sectorDivision, agency: $agency, ministryDivision: $ministryDivision, currentProjectMovementStage: $currentProjectMovementStage, subSector: $subSector, projectStatusEn: $projectStatusEn, projectStatusBn: $projectStatusBn, projectStageEn: $projectStageEn, projectStageBn: $projectStageBn, showAssignedOfficer: $showAssignedOfficer, assignedOfficer: $assignedOfficer, nothiStatusEn: $nothiStatusEn, nothiStatusBn: $nothiStatusBn , isForeignAid: $isForeignAid, projectMovementStageId: $projectMovementStageId sourceId: $sourceId)';
   }
 
   Map<String, dynamic> toMap() {
@@ -111,6 +113,9 @@ class ProjectDetails extends Equatable {
     if (projectMovementStageId != null) {
       result.addAll({'projectMovementStageId': projectMovementStageId});
     }
+    if (sourceId != null) {
+      result.addAll({'sourceId': sourceId});
+    }
     if (assignedOfficer != null) {
       result.addAll({'assignedOfficer': assignedOfficer});
     }
@@ -151,7 +156,8 @@ class ProjectDetails extends Equatable {
         nothiStatusEn: map['nothiStatusEn'],
         nothiStatusBn: map['nothiStatusBn'],
         isForeignAid: map['isForeignAid'] ?? false,
-        projectMovementStageId: int.tryParse("${map['projectMovementStageId']}}"));
+        projectMovementStageId: map['projectMovementStageId']?.toInt(),
+        sourceId: map['sourceId']?.toInt());
   }
 
   String toJson() => json.encode(toMap());

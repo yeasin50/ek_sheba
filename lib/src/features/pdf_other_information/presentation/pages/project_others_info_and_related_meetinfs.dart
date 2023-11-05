@@ -25,7 +25,7 @@ class ProjectOtherInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late final _relatedMeetingAttachments =
-        locator.get<PdfOtherInfoImpl>().getPdfRelatedMeetingAttachments(projectMovementStageId: "${projectDetails.id}");
+        locator.get<PdfOtherInfoImpl>().getPdfRelatedMeetingAttachments(projectMovementStageId: "${projectDetails.projectMovementStageId}");
 
     late final _otherInformation = locator
         .get<PdfOtherInfoImpl>()
