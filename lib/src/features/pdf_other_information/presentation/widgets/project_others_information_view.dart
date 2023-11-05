@@ -1,16 +1,15 @@
 import 'package:collection/collection.dart';
-import 'package:ek_sheba/src/features/pdf/presentation/pages/pdf_page.dart';
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart' show Either;
 import 'package:go_router/go_router.dart';
 
 import '../../../../common/utils/logger.dart';
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_dialog.dart';
-import '../../domain/entities/pdf_other_info_model.dart';
-import 'package:flutter/material.dart';
-
 import '../../../../locator.dart';
+import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../data/repositories/pdf_other_inforomation_impl.dart';
+import '../../domain/entities/pdf_other_info_model.dart';
 import 'project_header_tile.dart';
 import 'project_others_header.dart';
 
