@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../common/utils/api_config.dart';
 import '../../../../common/widgets/icon_button.dart';
 import '../../../pdf/domain/entities/entities.dart';
 import '../../../pdf/presentation/pages/pdf_page.dart';
@@ -18,15 +19,28 @@ class ProjectDownloadOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<PDFButton> items =
-        project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase() ? dppPdfButtons : tappButtons;
+    bool isDPP = project.projectType.nameEn.toLowerCase() == "DPP".toLowerCase();
 
-    const String testUUId = '5119f081-55a1-48cb-a046-fb65e48d2f7f';
+    late final List<PDFButton> items = isDPP ? dppPdfButtons : tappButtons;
 
     _comment() async {
       await comment(
         context: context,
         project: project,
+      );
+    }
+
+    void _fullPDFDownload() {
+      // dpp => {{BASE_URL_END_POINT}}/external/mobile-apps/get-dpp-report/full/{{pcUuid}}
+      // tpp => {{BASE_URL_END_POINT}}/external/mobile-apps/get-tapp-report/full/{{pcUuid}}
+      final path = "${isDPP ? DppPDFPath().full : TappPDF.full}${project.uuid}";
+      context.push(
+        PDFPage.routeName,
+        extra: {
+          "path": path,
+          "title": "সম্ভাব্যতা যাচাই প্রতিবেদন",
+          "isTokenRequired": true,
+        },
       );
     }
 
@@ -91,7 +105,7 @@ class ProjectDownloadOptions extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF61AB9E),
           ),
-          onPressed: () {},
+          onPressed: _fullPDFDownload,
           child: const Text("সম্ভাব্যতা যাচাই প্রতিবেদন ডাউনলোড করুন"),
         ),
         const SizedBox(height: 12),
