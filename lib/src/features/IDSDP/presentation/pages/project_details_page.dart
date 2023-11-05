@@ -1,4 +1,3 @@
-import 'package:ek_sheba/src/features/pdf_other_information/presentation/pages/project_others_info_and_related_meetinfs.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/utils/logger.dart';
@@ -7,6 +6,9 @@ import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../common/widgets/icon_button.dart';
 import '../../../../locator.dart';
+import '../../../pdf_other_information/presentation/pages/project_others_info_and_related_meetinfs.dart';
+import '../../../pdf_other_information/presentation/widgets/project_others_information_view.dart';
+import '../../../pdf_other_information/presentation/widgets/project_related_meetings_view.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
 import '../widgets/project_download_option.dart';
@@ -69,18 +71,28 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
+                  key: const ValueKey('_ProjectDetailsPageState other pdf Column'),
                   children: [
                     const ProjectLocationMapCard(),
                     // downloadOption(),
-                    const SizedBox(height: 24),
-                    ProjectSummaryWidget(projectDetails: projectDetailsFromDB ?? projectDetails),
-                    const SizedBox(height: 24),
-                    ProjectDownloadOptions(project: projectDetailsFromDB ?? projectDetails),
-                    const SizedBox(height: 24),
-                    if (projectDetailsFromDB != null)
+                    // const SizedBox(height: 24),
+                    // ProjectSummaryWidget(projectDetails: projectDetailsFromDB ?? projectDetails),
+                    // const SizedBox(height: 24),
+                    // ProjectDownloadOptions(project: projectDetailsFromDB ?? projectDetails),
+                    // const SizedBox(height: 24),
+                    if (projectDetailsFromDB != null) ...[
+                      // ProjectOtherPDFInformation(projectDetails: projectDetailsFromDB!),
                       ProjectOtherInformation(
-                        projectDetails: projectDetailsFromDB!,
+                        id: "${projectDetailsFromDB?.id}",
+                        projectType: projectDetailsFromDB!.projectType.nameEn,
+                        isForeignAid: projectDetailsFromDB!.isForeignAid,
                       ),
+                      const SizedBox(height: 24),
+                      ProjectRelatedMeetingView(
+                        isForeignAid: projectDetailsFromDB!.isForeignAid,
+                        projectMovementStageId: projectDetailsFromDB!.projectMovementStageId.toString(),
+                      )
+                    ]
                   ],
                 ),
               ),

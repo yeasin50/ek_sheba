@@ -1,21 +1,21 @@
 import 'package:collection/collection.dart';
-import 'package:ek_sheba/src/common/widgets/app_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:my_utils/my_utils.dart';
 
+import '../../../../common/widgets/app_dialog.dart';
+import '../../../../locator.dart';
+import '../../../IDSDP/domain/entities/project_details.dart';
+import '../../data/repositories/pdf_other_inforomation_impl.dart';
 import '../../domain/entities/pdf_other_info_model.dart';
 import '../widgets/project_header_tile.dart';
 import '../widgets/project_others_header.dart';
-import '../../../../locator.dart';
-import 'package:flutter/material.dart';
-
-import '../../../IDSDP/domain/entities/project_details.dart';
-import '../../data/repositories/pdf_other_inforomation_impl.dart';
 
 ///* fetch and load other information and related meeting attachments
-///
-class ProjectOtherInformation extends StatelessWidget {
-  const ProjectOtherInformation({
+/// Combine [ProjectOtherInformation] & [ProjectRelatedMeetingView]
+@Deprecated('use [ProjectOtherInformation] & [ProjectRelatedMeetingView] instead')
+class ProjectOtherPDFInformation extends StatelessWidget {
+  const ProjectOtherPDFInformation({
     Key? key,
     required this.projectDetails,
   }) : super(key: key);
@@ -24,8 +24,9 @@ class ProjectOtherInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final _relatedMeetingAttachments =
-        locator.get<PdfOtherInfoImpl>().getPdfRelatedMeetingAttachments(projectMovementStageId: "${projectDetails.projectMovementStageId}");
+    late final _relatedMeetingAttachments = locator
+        .get<PdfOtherInfoImpl>()
+        .getPdfRelatedMeetingAttachments(projectMovementStageId: "${projectDetails.projectMovementStageId}");
 
     late final _otherInformation = locator
         .get<PdfOtherInfoImpl>()
@@ -50,6 +51,7 @@ class ProjectOtherInformation extends StatelessWidget {
   }
 }
 
+@Deprecated('use use [ProjectOtherInformation] & [ProjectRelatedMeetingView] instead')
 class _ExtraPdfLoader extends StatelessWidget {
   const _ExtraPdfLoader({
     Key? key,
