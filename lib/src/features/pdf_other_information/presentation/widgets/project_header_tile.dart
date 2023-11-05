@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common/app_style.dart';
- 
 
 /// used to show title and download option
 ///
@@ -23,28 +22,31 @@ class ProjectOtherAttachmentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     const slWidth = 30.0;
     const totalCostWidth = 95.0;
-    final headerTextStyles = GoogleFonts.poppins(
-      color: AppStyle.textWhite,
+    final textStyle = GoogleFonts.poppins(
+      color: AppStyle.textBlack,
       fontSize: 14,
-      fontWeight: FontWeight.w500,
     );
-    return ListTile(
-      onTap: onTap,
-      leading: SizedBox(
-        width: slWidth,
-        child: Text(
-          '$index',
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: ListTile(
+        tileColor: AppStyle.lightGreen,
+        onTap: onTap,
+        leading: SizedBox(
+          width: slWidth,
+          child: Text(
+            '$index',
+          ),
         ),
-      ),
-      title: Text(
-        title,
-        style: headerTextStyles,
-      ),
+        title: Text(
+          title,
+          style: textStyle,
+        ),
 
-      ///* download option
-      trailing: Icon(
-        Icons.download_rounded,
-        color: Colors.green,
+        ///* download option
+        trailing: Icon(
+          Icons.download_rounded,
+          color: Colors.green,
+        ),
       ),
     );
   }

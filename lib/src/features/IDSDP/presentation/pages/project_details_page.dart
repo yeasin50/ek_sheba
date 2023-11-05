@@ -73,9 +73,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                     const ProjectLocationMapCard(),
                     // downloadOption(),
                     const SizedBox(height: 24),
-                    ProjectSummaryWidget(projectDetails: projectDetails),
+                    ProjectSummaryWidget(projectDetails: projectDetailsFromDB ?? projectDetails),
                     const SizedBox(height: 24),
-                    ProjectDownloadOptions(project: projectDetails),
+                    ProjectDownloadOptions(project: projectDetailsFromDB ?? projectDetails),
                     const SizedBox(height: 24),
                     if (projectDetailsFromDB != null)
                       ProjectOtherInformation(
