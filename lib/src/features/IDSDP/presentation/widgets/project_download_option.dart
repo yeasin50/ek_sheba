@@ -29,7 +29,8 @@ class ProjectDownloadOptions extends StatelessWidget {
         project: project,
       );
     }
-
+   
+   //FIXME: this is not working
     void _fullPDFDownload() {
       // dpp => {{BASE_URL_END_POINT}}/external/mobile-apps/get-dpp-report/full/{{pcUuid}}
       // tpp => {{BASE_URL_END_POINT}}/external/mobile-apps/get-tapp-report/full/{{pcUuid}}

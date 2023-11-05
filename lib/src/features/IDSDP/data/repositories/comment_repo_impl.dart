@@ -15,8 +15,8 @@ class CommentRepoImpl {
 
       final uri = Uri.parse(baseUrl);
       final Map<String, String> queryParams = {
-        'projectConceptUuid': "67c26fb6-d4a0-48e0-a2d6-a6b490371df1", // project.uuid,
-        'projectType': "DPP" //  project.projectType.nameEn,
+        'projectConceptUuid': project.uuid,
+        'projectType': project.projectType.nameEn,
       };
       final uriWithQueryParams = uri.replace(queryParameters: queryParams);
       final response = await http.get(
