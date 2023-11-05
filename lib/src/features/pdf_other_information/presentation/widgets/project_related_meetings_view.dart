@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_utils/my_utils.dart';
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_dialog.dart';
+import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../domain/entities/pdf_other_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart' as fpdart;
@@ -70,7 +72,19 @@ class _ProjectRelatedMeetingViewState extends State<ProjectRelatedMeetingView> {
                     (i, e) => ProjectOtherAttachmentTile(
                       title: e.title ?? '',
                       index: i + 1,
-                      onTap: () {},
+                      onTap: () {
+                        final path = "https://gwtraining.plandiv.gov.bd/pps-dpp-tapp/${e.attachment?.urlPath}";
+                        final title = e.title ?? 'Other attachment Pdf ';
+
+                        context.push(
+                          PDFPage.routeName,
+                          extra: {
+                            'path': path,
+                            'title': title,
+                            'isTokenRequired': true,
+                          },
+                        );
+                      },
                     ),
                   )
                   .toList(),

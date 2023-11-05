@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
+import 'package:ek_sheba/src/features/pdf/presentation/pages/pdf_page.dart';
 import 'package:fpdart/fpdart.dart' show Either;
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/utils/logger.dart';
 import '../../../../common/widgets/app_button.dart';
@@ -98,7 +100,20 @@ class _ProjectOtherInformationState extends State<ProjectOtherInformation> {
                     (i, e) => ProjectOtherAttachmentTile(
                       title: e.title ?? '',
                       index: i + 1,
-                      onTap: () {},
+                      onTap: () {
+                        //TODO: open pdf
+                        final path = "https://gwtraining.plandiv.gov.bd/pps-pc/${e.attachment?.urlPath}";
+                        final title = e.title ?? 'Other attachment Pdf ';
+
+                        context.push(
+                          PDFPage.routeName,
+                          extra: {
+                            'path': path,
+                            'title': title,
+                            'isTokenRequired': true,
+                          },
+                        );
+                      },
                     ),
                   )
                   .toList(),
