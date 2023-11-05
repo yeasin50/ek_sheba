@@ -31,6 +31,7 @@ class ProjectDetails extends Equatable {
     this.nothiStatusEn,
     this.nothiStatusBn,
     this.isForeignAid = false,
+    this.projectMovementStageId,
   });
 
   final int id;
@@ -60,13 +61,14 @@ class ProjectDetails extends Equatable {
   final String? nothiStatusBn;
 
   final bool isForeignAid;
+  final int? projectMovementStageId;
   @override
   List<Object?> get props =>
       [id, uuid, titleEn, titleBn, commencementDate, completionDate, status, totalAmount, isForeignAid];
 
   @override
   String toString() {
-    return 'ProjectDetails(id: $id, uuid: $uuid, titleEn: $titleEn, titleBn: $titleBn, commencementDate: $commencementDate, completionDate: $completionDate, status: $status, totalAmount: $totalAmount, projectType: $projectType, sector: $sector, sectorDivision: $sectorDivision, agency: $agency, ministryDivision: $ministryDivision, currentProjectMovementStage: $currentProjectMovementStage, subSector: $subSector, projectStatusEn: $projectStatusEn, projectStatusBn: $projectStatusBn, projectStageEn: $projectStageEn, projectStageBn: $projectStageBn, showAssignedOfficer: $showAssignedOfficer, assignedOfficer: $assignedOfficer, nothiStatusEn: $nothiStatusEn, nothiStatusBn: $nothiStatusBn , isForeignAid: $isForeignAid)';
+    return 'ProjectDetails(id: $id, uuid: $uuid, titleEn: $titleEn, titleBn: $titleBn, commencementDate: $commencementDate, completionDate: $completionDate, status: $status, totalAmount: $totalAmount, projectType: $projectType, sector: $sector, sectorDivision: $sectorDivision, agency: $agency, ministryDivision: $ministryDivision, currentProjectMovementStage: $currentProjectMovementStage, subSector: $subSector, projectStatusEn: $projectStatusEn, projectStatusBn: $projectStatusBn, projectStageEn: $projectStageEn, projectStageBn: $projectStageBn, showAssignedOfficer: $showAssignedOfficer, assignedOfficer: $assignedOfficer, nothiStatusEn: $nothiStatusEn, nothiStatusBn: $nothiStatusBn , isForeignAid: $isForeignAid, projectMovementStageId: $projectMovementStageId)';
   }
 
   Map<String, dynamic> toMap() {
@@ -106,6 +108,9 @@ class ProjectDetails extends Equatable {
     if (showAssignedOfficer != null) {
       result.addAll({'showAssignedOfficer': showAssignedOfficer});
     }
+    if (projectMovementStageId != null) {
+      result.addAll({'projectMovementStageId': projectMovementStageId});
+    }
     if (assignedOfficer != null) {
       result.addAll({'assignedOfficer': assignedOfficer});
     }
@@ -122,31 +127,31 @@ class ProjectDetails extends Equatable {
 
   factory ProjectDetails.fromMap(Map<String, dynamic> map) {
     return ProjectDetails(
-      id: map['id']?.toInt() ?? 0,
-      uuid: map['uuid'] ?? '',
-      titleEn: map['titleEn'] ?? '',
-      titleBn: map['titleBn'] ?? '',
-      commencementDate: map['commencementDate'] ?? '',
-      completionDate: map['completionDate'] ?? '',
-      status: map['status'] ?? '',
-      totalAmount: Decimal.tryParse("${map['totalAmount']}") ?? Decimal.zero,
-      projectType: ProjectSubItemInfo.fromMap(map['projectType']),
-      sector: ProjectSubItemInfo.fromMap(map['sector']),
-      sectorDivision: ProjectSubItemInfo.fromMap(map['sectorDivision']),
-      agency: ProjectSubItemInfo.fromMap(map['agency']),
-      ministryDivision: ProjectSubItemInfo.fromMap(map['ministryDivision']),
-      currentProjectMovementStage: map['currentProjectMovementStage'],
-      subSector: map['subSector'] != null ? ProjectSubItemInfo.fromMap(map['subSector']) : null,
-      projectStatusEn: map['projectStatusEn'],
-      projectStatusBn: map['projectStatusBn'],
-      projectStageEn: map['projectStageEn'],
-      projectStageBn: map['projectStageBn'],
-      showAssignedOfficer: map['showAssignedOfficer'],
-      assignedOfficer: map['assignedOfficer'],
-      nothiStatusEn: map['nothiStatusEn'],
-      nothiStatusBn: map['nothiStatusBn'],
-      isForeignAid: map['isForeignAid'] ?? false,
-    );
+        id: map['id']?.toInt() ?? 0,
+        uuid: map['uuid'] ?? '',
+        titleEn: map['titleEn'] ?? '',
+        titleBn: map['titleBn'] ?? '',
+        commencementDate: map['commencementDate'] ?? '',
+        completionDate: map['completionDate'] ?? '',
+        status: map['status'] ?? '',
+        totalAmount: Decimal.tryParse("${map['totalAmount']}") ?? Decimal.zero,
+        projectType: ProjectSubItemInfo.fromMap(map['projectType']),
+        sector: ProjectSubItemInfo.fromMap(map['sector']),
+        sectorDivision: ProjectSubItemInfo.fromMap(map['sectorDivision']),
+        agency: ProjectSubItemInfo.fromMap(map['agency']),
+        ministryDivision: ProjectSubItemInfo.fromMap(map['ministryDivision']),
+        currentProjectMovementStage: map['currentProjectMovementStage'],
+        subSector: map['subSector'] != null ? ProjectSubItemInfo.fromMap(map['subSector']) : null,
+        projectStatusEn: map['projectStatusEn'],
+        projectStatusBn: map['projectStatusBn'],
+        projectStageEn: map['projectStageEn'],
+        projectStageBn: map['projectStageBn'],
+        showAssignedOfficer: map['showAssignedOfficer'],
+        assignedOfficer: map['assignedOfficer'],
+        nothiStatusEn: map['nothiStatusEn'],
+        nothiStatusBn: map['nothiStatusBn'],
+        isForeignAid: map['isForeignAid'] ?? false,
+        projectMovementStageId: int.tryParse("${map['projectMovementStageId']}}"));
   }
 
   String toJson() => json.encode(toMap());
@@ -178,6 +183,7 @@ class ProjectDetails extends Equatable {
     String? nothiStatusEn,
     String? nothiStatusBn,
     bool? isForeignAid,
+    int? projectMovementStageId,
   }) {
     return ProjectDetails(
       id: id ?? this.id,
@@ -204,6 +210,7 @@ class ProjectDetails extends Equatable {
       nothiStatusEn: nothiStatusEn ?? this.nothiStatusEn,
       nothiStatusBn: nothiStatusBn ?? this.nothiStatusBn,
       isForeignAid: isForeignAid ?? this.isForeignAid,
+      projectMovementStageId: projectMovementStageId ?? this.projectMovementStageId,
     );
   }
 }
