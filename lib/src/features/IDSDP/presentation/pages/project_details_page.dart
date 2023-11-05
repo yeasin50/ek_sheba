@@ -75,11 +75,11 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   children: [
                     const ProjectLocationMapCard(),
                     // downloadOption(),
-                    // const SizedBox(height: 24),
-                    // ProjectSummaryWidget(projectDetails: projectDetailsFromDB ?? projectDetails),
-                    // const SizedBox(height: 24),
-                    // ProjectDownloadOptions(project: projectDetailsFromDB ?? projectDetails),
-                    // const SizedBox(height: 24),
+                    const SizedBox(height: 24),
+                    ProjectSummaryWidget(projectDetails: projectDetailsFromDB ?? projectDetails),
+                    const SizedBox(height: 24),
+                    ProjectDownloadOptions(project: projectDetailsFromDB ?? projectDetails),
+                    const SizedBox(height: 24),
                     if (projectDetailsFromDB != null) ...[
                       // ProjectOtherPDFInformation(projectDetails: projectDetailsFromDB!),
                       ProjectOtherInformation(
