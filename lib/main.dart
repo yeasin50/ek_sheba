@@ -29,18 +29,18 @@ class _Patcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final item = PatchPal.getItem('patchedEnabled');
+    final item = PatchPal.getItem('moveForward');
 
-    // if (item?.value == true) {
+    if (item?.value == false) {
       return const EkSheba();
-    // } else {
-    //   return const MaterialApp(
-    //     home: Scaffold(
-    //       body: Center(
-    //         child: Text('This feature is not available right now.'),
-    //       ),
-    //     ),
-    //   );
-    // }
+    } else {
+      return MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Text(item?.message ?? 'please try updating the app.'),
+          ),
+        ),
+      );
+    }
   }
 }
