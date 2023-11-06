@@ -6,6 +6,9 @@ import '../../../../common/widgets/background.dart';
 import '../../../../common/widgets/custom_appbar.dart';
 import '../../../../common/widgets/icon_button.dart';
 import '../../../../locator.dart';
+import '../../../pdf_other_information/presentation/pages/project_others_info_and_related_meetinfs.dart';
+import '../../../pdf_other_information/presentation/widgets/project_others_information_view.dart';
+import '../../../pdf_other_information/presentation/widgets/project_related_meetings_view.dart';
 import '../../data/repositories/dashboard_projects_repo_impl.dart';
 import '../../domain/entities/project_details.dart';
 import '../widgets/project_download_option.dart';
@@ -27,19 +30,27 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   late Future<ProjectDetails?> future;
 
   late ProjectDetails projectDetails;
+  ProjectDetails? projectDetailsFromDB;
 
   @override
   void initState() {
     super.initState();
     projectDetails = widget.projectDetails;
     future = locator.get<DashboardProjectRepoImpl>().getProjectDetails(widget.projectDetails.uuid);
-
+    logger.i(
+        'projectDetails: ProjectDetailsPage ${projectDetails.assignedOfficer}  ${projectDetails.uuid} id ${projectDetails.id} ${projectDetails.projectMovementStageId} ${projectDetails.sourceId}');
     //skipping futureBuilder for now,while we already have some data
     future.then((value) {
+      if (value == null) {
+        logger.e(
+            'projectDetails: details not found for uuid: ${widget.projectDetails.uuid} id: ${widget.projectDetails.id}');
+      }
       if (value != null) {
-        projectDetails = value;
+        projectDetailsFromDB = value;
+
         setState(() {});
-        logger.i('projectDetails: ${projectDetails.assignedOfficer}');
+        logger.d(
+            'projectDetails: data found>>  ${projectDetailsFromDB?.assignedOfficer} , projectMovementStageId: ${projectDetailsFromDB?.projectMovementStageId}  ');
       }
     });
   }
@@ -60,13 +71,28 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
+                  key: const ValueKey('_ProjectDetailsPageState other pdf Column'),
                   children: [
                     const ProjectLocationMapCard(),
                     // downloadOption(),
                     const SizedBox(height: 24),
-                    ProjectSummaryWidget(projectDetails: projectDetails),
+                    ProjectSummaryWidget(projectDetails: projectDetailsFromDB ?? projectDetails),
                     const SizedBox(height: 24),
-                    ProjectDownloadOptions(project: projectDetails),
+                    ProjectDownloadOptions(project: projectDetailsFromDB ?? projectDetails),
+                    const SizedBox(height: 24),
+                    if (projectDetailsFromDB != null) ...[
+                      // ProjectOtherPDFInformation(projectDetails: projectDetailsFromDB!),
+                      ProjectOtherInformation(
+                        id: "${projectDetailsFromDB?.id}",
+                        projectType: projectDetailsFromDB!.projectType.nameEn,
+                        isForeignAid: projectDetailsFromDB!.isForeignAid,
+                      ),
+                      const SizedBox(height: 24),
+                      ProjectRelatedMeetingView(
+                        isForeignAid: projectDetailsFromDB!.isForeignAid,
+                        projectMovementStageId: projectDetailsFromDB!.projectMovementStageId.toString(),
+                      )
+                    ]
                   ],
                 ),
               ),
