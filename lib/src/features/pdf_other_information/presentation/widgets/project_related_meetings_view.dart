@@ -71,27 +71,28 @@ class _ProjectRelatedMeetingViewState extends State<ProjectRelatedMeetingView> {
             ]
           : [
               ProjectOtherInfoHeader(type: ProjectOtherInfoType.relatedMeetingAttachments, isBN: widget.isForeignAid),
-              ...items!
-                  .mapIndexed(
-                    (i, e) => ProjectOtherAttachmentTile(
-                      title: e.title ?? '',
-                      index: i + 1,
-                      onTap: () {
-                        final path = "https://gwtraining.plandiv.gov.bd/pps-dpp-tapp/${e.attachment?.urlPath}";
-                        final title = e.title ?? 'Other attachment Pdf ';
+              ...items!.mapIndexed((i, e) {
+                final title = e.title ??
+                    e.attachment?.name?.replaceAll("_", " ").replaceAll(".pdf", " ") ??
+                    "Can't find title or name";
+                    
+                return ProjectOtherAttachmentTile(
+                  title: title,
+                  index: i + 1,
+                  onTap: () {
+                    final path = "https://gwtraining.plandiv.gov.bd/pps-dpp-tapp/${e.attachment?.urlPath}";
 
-                        context.push(
-                          PDFPage.routeName,
-                          extra: {
-                            'path': path,
-                            'title': title,
-                            'isTokenRequired': true,
-                          },
-                        );
+                    context.push(
+                      PDFPage.routeName,
+                      extra: {
+                        'path': path,
+                        'title': title,
+                        'isTokenRequired': true,
                       },
-                    ),
-                  )
-                  .toList(),
+                    );
+                  },
+                );
+              }).toList(),
               if (items!.isEmpty)
                 const Center(
                   child: Padding(
