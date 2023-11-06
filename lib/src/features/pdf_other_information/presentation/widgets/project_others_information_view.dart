@@ -9,6 +9,7 @@ import '../../../../common/widgets/app_dialog.dart';
 import '../../../../locator.dart';
 import '../../../pdf/presentation/pages/pdf_page.dart';
 import '../../data/repositories/pdf_other_inforomation_impl.dart';
+import '../../domain/entities/entities.dart';
 import '../../domain/entities/pdf_other_info_model.dart';
 import 'project_header_tile.dart';
 import 'project_others_header.dart';
@@ -39,9 +40,10 @@ class _ProjectOtherInformationState extends State<ProjectOtherInformation> {
   int currentPage = 0;
   int size = 5;
   bool isLoading = false;
+  bool isLastPage = false;
 
-  Future<Either<Failure, List<PdfOtherInfoModel>>> _getItems() async {
-    logger.d('fetching other information $currentPage');
+  Future<Either<Failure, PaginatedProjectAttachments>> _getItems() async {
+    // logger.d('fetching other information $currentPage');
     final result = await locator.get<PdfOtherInfoImpl>().otherInfo(
           id: widget.id,
           projectType: widget.projectType,
@@ -66,10 +68,11 @@ class _ProjectOtherInformationState extends State<ProjectOtherInformation> {
         });
       },
       (r) {
-        logger.d('loaded items ${r.length}');
+        // logger.d('loaded items ${r.content. length}');
         setState(() {
           isLoading = false;
-          items = [...items ?? [], ...r];
+          isLastPage = r.isLast;
+          items = [...items ?? [], ...r.content];
         });
       },
     );
@@ -127,7 +130,7 @@ class _ProjectOtherInformationState extends State<ProjectOtherInformation> {
                 const Center(
                   child: CircularProgressIndicator(),
                 )
-              else
+              else if(isLastPage==false)
                 AppButton(
                   isFilled: false,
                   text: "Load more",

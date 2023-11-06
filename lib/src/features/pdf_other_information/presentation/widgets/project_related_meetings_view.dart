@@ -4,6 +4,7 @@ import 'package:my_utils/my_utils.dart';
 import '../../../../common/widgets/app_button.dart';
 import '../../../../common/widgets/app_dialog.dart';
 import '../../../pdf/presentation/pages/pdf_page.dart';
+import '../../domain/entities/entities.dart';
 import '../../domain/entities/pdf_other_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart' as fpdart;
@@ -32,8 +33,10 @@ class _ProjectRelatedMeetingViewState extends State<ProjectRelatedMeetingView> {
 
   int currentPage = 0;
   int size = 5;
+  bool isLoading = false;
+  bool isLastPage = false;
 
-  Future<fpdart.Either<Failure, List<PdfOtherInfoModel>>> _getItems() async =>
+  Future<fpdart.Either<Failure, PaginatedProjectAttachments>> _getItems() async =>
       await locator.get<PdfOtherInfoImpl>().getPdfRelatedMeetingAttachments(
             projectMovementStageId: widget.projectMovementStageId,
             page: currentPage,
@@ -44,7 +47,8 @@ class _ProjectRelatedMeetingViewState extends State<ProjectRelatedMeetingView> {
     final _newItems = await _getItems();
     _newItems.fold((l) => logger.e('error loading more items'), (r) {
       setState(() {
-        items = [...items ?? [], ...r];
+        isLastPage = r.isLast;
+        items = [...items ?? [], ...r.content];
       });
       currentPage++;
     });
@@ -95,7 +99,11 @@ class _ProjectRelatedMeetingViewState extends State<ProjectRelatedMeetingView> {
                     child: Text('No data found'),
                   ),
                 )
-              else
+              else if (isLoading)
+                const Center(
+                  child: CircularProgressIndicator(),
+                )
+              else if (isLastPage == false)
                 AppButton(
                   isFilled: false,
                   text: "Load more",
