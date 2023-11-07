@@ -13,7 +13,7 @@ import '../../../pdf/presentation/pages/pdf_page.dart';
 downloadByObservation(BuildContext context, String uuid, {required bool isBn}) async {
   //test  "67c26fb6-d4a0-48e0-a2d6-a6b490371df1";
   final path =
-      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/get-feasibility-study-report/${"67c26fb6-d4a0-48e0-a2d6-a6b490371df1"}";
+      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/get-feasibility-study-report/$uuid";
 
   try {
     final response = await http.get(
