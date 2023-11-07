@@ -12,8 +12,7 @@ import '../../../pdf/presentation/pages/pdf_page.dart';
 /// this function is used on [ProjectDownloadOptions] on [ProjectDetailsPage]
 downloadByObservation(BuildContext context, String uuid, {required bool isBn}) async {
   //test  "67c26fb6-d4a0-48e0-a2d6-a6b490371df1";
-  final path =
-      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/get-feasibility-study-report/$uuid";
+  final path = "https://gwtraining.plandiv.gov.bd/external/mobile-apps/get-feasibility-study-report/$uuid";
 
   try {
     final response = await http.get(
@@ -41,11 +40,11 @@ downloadByObservation(BuildContext context, String uuid, {required bool isBn}) a
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: Text(data.fsAttachmentName.pdfName),
+                title: Text(!isBn ? "Fesibility Study Report" : "সম্ভাব্যতা যাচাই প্রতিবেদন"),
                 trailing: const Icon(Icons.download),
                 onTap: () async {
                   final url =
-                      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/attachment/get-pdf-file-by-fs-uuid/${data.fsUuid}";
+                      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/attachment/get-pdf-file-by-fs-attachment-id/${data.fsAttachmentId}";
                   Navigator.of(context).pop();
                   context.push(
                     PDFPage.routeName,
@@ -59,11 +58,11 @@ downloadByObservation(BuildContext context, String uuid, {required bool isBn}) a
               ),
               const SizedBox(height: 16),
               ListTile(
-                title: Text(!isBn ? "Fesibility Study Report" : "সম্ভাব্যতা যাচাই প্রতিবেদন"),
+                title: Text(data.fsAttachmentName.pdfName),
                 trailing: const Icon(Icons.download),
                 onTap: () async {
                   final url =
-                      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/attachment/get-pdf-file-by-fs-attachment-id/${data.fsAttachmentId}";
+                      "https://gwtraining.plandiv.gov.bd/external/mobile-apps/attachment/get-pdf-file-by-fs-uuid/${data.fsUuid}";
                   Navigator.of(context).pop();
                   context.push(
                     PDFPage.routeName,
