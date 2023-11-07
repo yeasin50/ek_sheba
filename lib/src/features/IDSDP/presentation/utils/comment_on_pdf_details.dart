@@ -15,7 +15,7 @@ Future<void> comment({
     builder: (context) {
       return AlertDialog(
         scrollable: false,
-        title: Text(isBn ? 'মন্তব্য' : 'Comment'),
+        title: Text(isBn?  "মন্তব্য / পর্যবেক্ষণ" : "Comment / Observation",),
         content: Material(
           child: FutureBuilder(
             future: CommentRepoImpl.getData(project),
