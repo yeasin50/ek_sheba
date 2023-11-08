@@ -24,7 +24,10 @@ downloadByObservation(BuildContext context, String uuid, {required bool isBn}) a
 
     if (response.statusCode != 200) {
       logger.e(response.body);
-      await _showErr(context, "There are currently no file available for this project");
+      await _showErr(
+        context,
+        isBn ? "কোন তথ্য পাওয়া যায়নি!" : "There are currently no file available for this project",
+      );
 
       return;
     }
