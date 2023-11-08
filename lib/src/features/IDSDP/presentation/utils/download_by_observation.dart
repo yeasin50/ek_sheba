@@ -23,7 +23,8 @@ downloadByObservation(BuildContext context, String uuid, {required bool isBn}) a
     );
 
     if (response.statusCode != 200) {
-      await _showErr(context, response.body);
+      logger.e(response.body);
+      await _showErr(context, "There are currently no file available for this project");
 
       return;
     }
@@ -81,16 +82,34 @@ downloadByObservation(BuildContext context, String uuid, {required bool isBn}) a
     );
   } catch (e) {
     logger.e(e.toString());
-    _showErr(context, e.toString());
+    _showErr(context, "Something went wrong!");
   }
 }
 
 _showErr(BuildContext context, String msg) async {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text('Something went wrong!\n $msg'),
-    ),
+  await showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        // title: const Text('Something went wrong!'),
+        content: Text(msg),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
   );
+
+  // ScaffoldMessenger.of(context).showSnackBar(
+  //   SnackBar(
+  //     content: Text(msg),
+  //   ),
+  // );
 }
 
 class _ObservationInfo {
