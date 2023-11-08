@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -22,7 +23,8 @@ class PdfRepositoryImpl {
       if (response.statusCode == 200) {
         return response.bodyBytes;
       } else {
-        throw Exception('Failed to load PDF');
+        logger.e(response.body);
+        throw Exception(jsonDecode(response.body));
       }
     } catch (e) {
       print('Error: $e');
@@ -56,11 +58,12 @@ class PdfRepositoryImpl {
     return true;
   }
 
-  static Future<bool> directDownload(String url,  {required String name,  String? token}) async {
-     final data  = await loadPDF(url, token);
-      if(data == null) return false;
-      return await downloadPDF(data, name)?? false;
+  static Future<bool> directDownload(String url, {required String name, String? token}) async {
+    final data = await loadPDF(url, token);
+    if (data == null) return false;
+    return await downloadPDF(data, name) ?? false;
   }
+
   @Deprecated('Not using')
   Future<Directory> _getDownloadsDirectoryPath() async {
     final List<Directory>? externalStorageDirectories =

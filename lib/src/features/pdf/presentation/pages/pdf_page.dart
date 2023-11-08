@@ -19,7 +19,7 @@ class PDFPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.d('PDFPage: ${path}');
+    // logger.d('PDFPage: ${path}');
 
     return Scaffold(
       body: SafeArea(

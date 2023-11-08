@@ -1,3 +1,4 @@
+import 'package:ek_sheba/src/common/utils/raw_text.dart';
 import 'package:ek_sheba/src/common/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -43,7 +44,7 @@ class ProjectDownloadOptions extends StatelessWidget {
         PDFPage.routeName,
         extra: {
           "path": path,
-          "title": "সম্ভাব্যতা যাচাই প্রতিবেদন",
+          "title": isBn ? string2Raw(project.titleBn) : project.titleEn,
           "isTokenRequired": true,
         },
       );
