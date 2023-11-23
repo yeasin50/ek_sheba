@@ -123,7 +123,7 @@ class UnApprovedProjectCard extends StatelessWidget {
                       );
                     },
                     title: ProjectType.inECNEC.title,
-                    count: unApprovedRepo.unapprovedForRecastProjectCount(),
+                    count: unApprovedRepo.unapprovedInEcnecProjectCount(),
                   ),
                 ],
               ),

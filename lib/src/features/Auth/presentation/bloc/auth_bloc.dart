@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
 
     const _failureMessage =
-        "দুঃখিত আপনার ইমেইল  এড্রেস অথবা পাসওয়ার্ড সঠিক নয়!";
+        "দুঃখিত আপনার ইমেইল এড্রেস অথবা পাসওয়ার্ড সঠিক নয়!";
     switch (event.authType) {
       case AuthType.ekSheba:
         final result = await _authRepository.ekShebaLogin(

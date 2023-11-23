@@ -1,13 +1,8 @@
-import 'dart:io';
 import 'dart:typed_data';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:my_utils/my_utils.dart';
 
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:my_utils/my_utils.dart';
 
 import '../../../helpDesk/presentation/widgets/widgets.dart';
 import '../../data/repositories/pdf_repo_impl.dart';
@@ -61,9 +56,11 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error loading PDF ${widget.pdfUrl}'));
+                  final error = (snapshot.error as Map?)?['message'].toString() ?? "";
+                  return Center(child: Text(error.isEmpty ? 'unable to find PDF' : error));
                 } else if (!snapshot.hasData || snapshot.data == null) {
-                  return Center(child: Text('No PDF data available ${widget.pdfUrl}'));
+                  final error = (snapshot.error as Map?)?['message'].toString() ?? "";
+                  return Center(child: Text(error.isEmpty ? 'unable to find PDF' : error));
                 } else {
                   return PDFView(
                     pdfData: snapshot.data,

@@ -18,6 +18,7 @@ class DPPTAPPPage extends StatefulWidget {
 
 class _DPPTAPPPageState extends State<DPPTAPPPage> {
   List<ProjectDetails> projectsInfo = [];
+  List<ProjectDetails> filteredProjectsInfo = [];
 
   int page = 1;
   String? projectName;
@@ -32,7 +33,8 @@ class _DPPTAPPPageState extends State<DPPTAPPPage> {
 
     searchProject().then((value) {
       setState(() {
-        projectsInfo.addAll(value);
+        projectsInfo.addAll([...value]);
+        filteredProjectsInfo.addAll([...value]);
         isLoading = false;
       });
     }).catchError((e) {
@@ -68,6 +70,7 @@ class _DPPTAPPPageState extends State<DPPTAPPPage> {
     setState(() {
       isLoading = false;
       projectsInfo.addAll(result);
+      filteredProjectsInfo.addAll(result);
     });
   }
 
@@ -97,8 +100,12 @@ class _DPPTAPPPageState extends State<DPPTAPPPage> {
               child: Column(
                 children: [
                   CriteriaBasedSearch(
+                    onClear: () {
+                      logger.d('on clear called');
+                      filteredProjectsInfo = [...projectsInfo];
+                      setState(() {});
+                    },
                     onSearch: (value, sectorId, status) {
-                      projectsInfo.clear();
                       page = 1;
                       isLoading = true;
                       projectName = value;
@@ -112,7 +119,8 @@ class _DPPTAPPPageState extends State<DPPTAPPPage> {
                         status: status,
                       ).then((value) {
                         setState(() {
-                          projectsInfo.addAll(value);
+                          filteredProjectsInfo.clear();
+                          filteredProjectsInfo.addAll(value);
                           isLoading = false;
                         });
                       }).catchError((e) {
@@ -122,7 +130,7 @@ class _DPPTAPPPageState extends State<DPPTAPPPage> {
                   ),
                   SizedBox(height: 16),
                   ProjectListBuild(
-                    projectDetails: projectsInfo,
+                    projectDetails: filteredProjectsInfo,
                   )
                 ],
               ),

@@ -31,7 +31,7 @@ class _Patcher extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = PatchPal.getItem('moveForward');
 
-    if (item?.value == false) {
+    if (item?.value == true) {
       return const EkSheba();
     } else {
       return MaterialApp(
