@@ -122,7 +122,12 @@ class ProjectDownloadOptions extends StatelessWidget {
             project.uuid,
             isBn: isBn,
           ),
-          child: const Text("সম্ভাব্যতা যাচাই প্রতিবেদন ডাউনলোড করুন"),
+          child: const Text(
+            "সম্ভাব্যতা যাচাই প্রতিবেদন ডাউনলোড করুন",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
         ),
         const SizedBox(height: 12),
       ],
