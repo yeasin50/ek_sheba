@@ -15,10 +15,12 @@ typedef OnSearch = void Function(
 class CriteriaBasedSearch extends StatefulWidget {
   const CriteriaBasedSearch({
     required this.onSearch,
+    required this.onClear,
     Key? key,
   }) : super(key: key);
 
   final OnSearch onSearch;
+  final VoidCallback? onClear;
 
   @override
   State<CriteriaBasedSearch> createState() => _CriteriaBasedSearchState();
@@ -58,6 +60,7 @@ class _CriteriaBasedSearchState extends State<CriteriaBasedSearch> {
 
   void _clearEntry() {
     _searchController.clear();
+    widget.onClear?.call();
 
     _sectorId = null;
     _status = null;
