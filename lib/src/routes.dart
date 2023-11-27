@@ -44,12 +44,12 @@ final routes = GoRouter(
       path: DPPTAPPPage.routeName,
       builder: (context, state) => const DPPTAPPPage(),
     ),
-    GoRoute(
-        path: HtmlPDFDashboard.routeName,
-        builder: (context, state) {
-          final url = state.extra as String? ?? "";
-          return HtmlPDFDashboard(url: url);
-        }),
+    // GoRoute(
+    //     path: HtmlPDFDashboard.routeName,
+    //     builder: (context, state) {
+    //       final url = state.extra as String? ?? "";
+    //       return HtmlPDFDashboard(url: url);
+    //     }),
     GoRoute(
       path: '/',
       builder: (context, state) => const HomePage(),
